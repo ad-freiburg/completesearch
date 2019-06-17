@@ -1,0 +1,78 @@
+# A docker image for starting a CompleteSearch backend.
+#
+# Build a container with: docker build -f Dockerfile.backend -t completesearch:backend .
+# Run the container with: docker run -e DB=<DB> -p 0.0.0.0:<PORT>:8181 -v <DATA_DIR>:/data -it completesearch:backend
+#
+# =================================================================================================
+
+FROM alpine:3.9.4
+
+# The name of the database to start the backend for (must correspond to a folder in ./databases).
+ARG DB=dblp
+
+# =================================================================================================
+# Install some dependencies from the standard package manager.
+
+RUN apk add --no-cache \
+		# Bash (needed for console output etc.).
+		bash \
+	  # Meta-package with gcc, libc-dev, etc. (needed for compiling the code).
+    build-base \
+		# Git (needed to download the source code of STXXL below).
+	  git \
+	  # Expat library (needed to parse XML files, e.g., dblp.xml).
+		expat-dev \
+		# Linux headers (needed for installing Boost below).
+	  linux-headers \
+		# Perl (needed for e.g., producing console output).
+		perl \
+	  # Google Hash Map (needed for the index).
+	  sparsehash \
+	  # Compression library.
+	  zlib-dev
+
+# =================================================================================================
+# Install some (specific) dependencies from scratch.
+
+RUN mkdir -p /opt
+WORKDIR /opt
+
+# CompleteSearch requires STXXL <= 1.3.1.
+RUN git clone --branch 1.3.1 https://github.com/stxxl/stxxl.git
+RUN cd stxxl && \
+    make config_gnu && \
+	  # Edit /utils/mlock.cpp so the code compiles with the latest version of gcc.
+	  sed -i '20 i #include <ctime>' utils/mlock.cpp \
+		&& sed -i '20 i #include <cerrno>' utils/mlock.cpp \
+		&& sed -i 's/sleep(86400);/nanosleep((const struct timespec[]){{0, 864000L}}, NULL);/g' utils/mlock.cpp \
+		&& make library_g++
+
+# Install the Boost components 'system' and 'regex'.
+RUN wget -q http://freefr.dl.sourceforge.net/project/boost/boost/1.66.0/boost_1_66_0.tar.gz
+RUN tar -zxf boost_1_66_0.tar.gz
+RUN cd boost_1_66_0 \
+    && ./bootstrap.sh --with-libraries=system,regex \
+    && ./bjam -d 0 release \
+    && ./bjam -d 0 --includedir=/usr/include --libdir=/usr/lib install
+
+# =================================================================================================
+
+# Copy all files into the container.
+COPY ./codebase /codebase
+COPY ./databases /databases
+
+# The Makefile of CompleteSearch expects the bash under '/usr/local/bin/bash'.
+RUN ln -s /bin/bash /usr/local/bin/bash
+
+# Build all.
+WORKDIR /codebase
+RUN make clean-all build-all
+
+# =================================================================================================
+
+WORKDIR /databases
+
+# Start the server. The "-Z" option is required so that the server is running in the foreground.
+CMD ["/bin/sh", "-c", "ln -sfn /data ./${DB}/data && ln -sfn /codebase ./${DB}/codebase && make -C ./${DB} DB=data/${DB} PORT=8181 SERVER_OPTIONS_SHORT='-Z' start"]
+
+EXPOSE 8181

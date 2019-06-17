@@ -1,0 +1,7 @@
+html { overflow: -moz-scrollbars-vertical; }
+.hits_number { padding-left: 0.3em; }
+/*
+.completion { float: left; clear: both; }
+.more_link { float: left; clear: both; }
+.hits_number { float: right; }
+*/

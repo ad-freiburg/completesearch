@@ -1,0 +1,69 @@
+FROM php:7.3.6-apache
+
+ARG BACKEND_HOST=localhost
+ARG BACKEND_PORT=8181
+ARG SERVER_NAME
+
+# =================================================================================================
+
+# Install some extra Apache modules.
+RUN a2enmod proxy \
+ && a2enmod proxy_http \
+ && a2enmod rewrite \
+ && a2enmod headers
+
+# =================================================================================================
+
+# Copy the required files into the container.
+COPY ./codebase /codebase
+COPY ./databases /databases
+
+# TODO Make some directories and files needed for logging.
+RUN mkdir -m 777 /var/log/dblp
+RUN touch /var/log/dblp/access.log
+RUN chmod 777 /var/log/dblp/access.log
+RUN touch /var/log/dblp/error.log
+RUN chmod 777 /var/log/dblp/error.log
+
+# =================================================================================================
+# Patch some file.
+
+WORKDIR /databases/dblp/www.dblp.org
+
+# In PHP 5.4., the handling of warnings has changed. So now, there is an warning if you try to
+# access an object which wasn't initialized yet, see
+# https://stackoverflow.com/questions/8900701/creating-default-object-from-empty-value-in-php.
+# This is crucial for ./search/autocomplete_config.php; so patch the file such that the object
+# "$config" is correctly initialized.
+# NOTE: The single quotes (instead of double quotes) are important because otherwise, "$php" and
+# "$config" is interpreted as a Docker argument.
+RUN sed -i 's#<?php#<?php\nif (!isset($config)) $config = new stdClass();\n#g' ./search/autocomplete_config.php
+
+# Fix the backend host wherever necessary.
+RUN sed -i "s#localhost#${BACKEND_HOST}#g" ../apache-sites/dblp.org
+RUN sed -ir -e "s#\$config->server_hostname = \"localhost\";#\$config->server_hostname = \"${BACKEND_HOST}\";\n#g" ./autocomplete-php/autocomplete_config.php
+RUN sed -ir -e "s#\$config->server_hostname = \"localhost\";#\$config->server_hostname = \"${BACKEND_HOST}\";\n#g" ./search/autocomplete_config.php
+
+# Fix the backend port wherever necessary.
+RUN sed -i "s#8181#${BACKEND_PORT}#g" ../apache-sites/dblp.org
+RUN sed -i "s#\$config->server_port = 8181;#\$config->server_port = ${BACKEND_PORT};\n#g" ./autocomplete-php/autocomplete_config.php
+RUN sed -i "s#\$config->server_port = 8181;#\$config->server_port = ${BACKEND_PORT};\n#g" ./search/autocomplete_config.php
+
+# Change the document root in the config from "/var/www" to "/var/www/html".
+RUN sed -i 's#/var/www#/var/www/html#g' ../apache-sites/dblp.org
+
+# Fix the server name in the Apache config and delete all aliases.
+RUN sed -i "s#ServerName.*#ServerName ${SERVER_NAME}#g" ../apache-sites/dblp.org
+RUN sed -i "s#ServerAlias.*##g" ../apache-sites/dblp.org
+
+# =================================================================================================
+# Deploy the files to the Apache webserver.
+
+WORKDIR /
+
+# Make the frontend files available to Apache.
+RUN ln -s /databases/dblp/www.dblp.org /var/www/html/www.dblp.org
+
+# Delete the default Apache config and replace it by the config required by the frontend.
+RUN rm -f /etc/apache2/sites-enabled/000-default.conf
+RUN ln -s /databases/dblp/apache-sites/dblp.org /etc/apache2/sites-enabled/dblp-org.conf

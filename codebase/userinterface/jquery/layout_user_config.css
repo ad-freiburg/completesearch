@@ -1,0 +1,30 @@
+/* Modify to overwrite the basic default. It might be necessary to take a look
+ * at the selector specifies. */
+
+/* Modify the general body */
+/*body {
+  font-family: "Lucida Grande",Verdana,sans-serif;
+  font-size: 11px;
+  line-height: 16px;
+  background: #ffffff;
+}*/
+
+/* Modfiy the top panel */
+/*div#header {
+  text-align: center;
+  color: #ffffff;
+  background-color: #444444;
+}*/
+
+/* Modify the fboxes */
+/*div.fbox {
+  background: #f8f8f8;
+  border-width:2px;
+  border-style:solid;
+  border-color:#eeeeee;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  box-shadow: 2px 2px 2px 1px #999;
+}*/
+
+

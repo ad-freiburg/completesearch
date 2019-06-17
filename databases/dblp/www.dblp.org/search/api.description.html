@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+<title>DBLP Search API</title>
+<link rel="stylesheet" type="text/css" href="api-description.css">
+</head>
+<body>
+<h1>DBLP Search API</h1>
+
+<p>This is the DBLP Search API. In the following it will be explained by example. Just click on the link and look at the result, this will make most things clear enough.</p>
+
+<table>
+
+<colgroup>
+  <col span="1" style="width: 15em;">
+</colgroup>
+
+<tr><td><b>Basic one-word query: </b></td>
+<td><a href="?q=algorithm">?q=algorithm</a></td>
+<td>(query word is matched anywhere in the record)</td></tr>
+
+<tr><td><b>Basic multi-word query: </b></td>
+<td><a href="?q=graph+algorithm">?q=graph+algorithm</a></td>
+<td>(query words are matched anywhere in the record)</td></tr>
+
+<tr><td><b>Specify range of hits : </b></td>
+<td><a href="?q=graph*+algo*&f=0&h=2">?q=graph*+algo*&f=0&h=2</a></td>
+<td>(the <em>f</em> specifies the index of the first hit, <em>h</em> specifies the number of hits)</td></tr>
+
+<tr><td><b>Prefix query and completions: </b></td>
+<td><a href="?q=graph*+algo*">?q=graph*+algo*</a></td>
+<td>(will show completions for last query word that lead to hits)</td></tr>
+
+<tr><td><b>Specify number of completions: </b></td>
+<td><a href="?q=graph*+algo*&c=30">?q=graph*+algo*&c=30</a></td>
+<td></td></tr>
+
+<tr><td><b>... can be arbitrarily combined: </b></td>
+<td><a href="?q=graph*+algo*&h=0&c=30">?q=graph*+algo*&h=0&c=30</a></td>
+<td></td></tr>
+
+<tr><td><b>Specific facet for a particular query: </b></td>
+<td><a href="?q=graph*+algo*+:ce:author:*">?q=graph*+algo*+:ce:author:*</a></td>
+<td>(facets available are: <em>author</em>, <em>venue</em>, <em>year</em>, <em>type</em>)</td></tr>
+
+<tr><td><b>Error-tolerant (fuzzy) search: </b></td>
+<td><a href="?q=algrithm~">?q=algrithm~</a></td>
+<td>(the <em>~</em> can be added or not separately for each query word)</td></tr>
+
+<tr><td><b>Disable normalization:
+<td><a href="?q=&quot;müller&quot;">?q="müller"</a></td>
+<td>(the quotes can surround letters or whole words and can be used multiple times)</td></tr>
+
+<tr><td><b>... can also be used to disable the interpretation of special characters: </b></td>
+<td><a  href="?q=ce:author:li_li_chen:Li&quot;-&quot;Li_Chen">?q=ce:author:li_li_chen:Li"-"Li_Chen</a></td>
+<td></td></tr>
+
+</table>
+<!--
+<p>Just add <em>/?q=&lt;query&gt;</em> to the URL to get the results for an ordinary full-text query. Separate the query words by <em>+</em>. Here are a few examples, click on them to see what kind of result you get. Each hit contains the original DBLP record in the <em>&lt;info&gt;...&lt;/info&gt;</em> tag.</p>
+
+<p><a href="?q=algorithm">?q=algorithm</a></p>
+<p><a href="?q=graph+algorithm">?q=graph+algorithm</a></p>
+<p><a href="?q=hannah+bast">?q=hannah+bast</a></p>
+
+<h2>Prefix search and completion</h2>
+<p>You can add a <em>*</em> after each query word, this will do prefix search for that query word. If the last query word ends with a <em>*</em>, you 
+-->
+
+</body>
+</html>

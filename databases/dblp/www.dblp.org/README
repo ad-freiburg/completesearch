@@ -1,0 +1,5 @@
+Hannah 18Aug11 23:23 : Now link to codebase/userinterface/autocomplete-php instead of
+having another instance of that directory here, which I found confusing. Of
+course, I committed all changes to the SVN and made sure that the two versions
+are identical before I executed this step. Once Ina has taken note of this, we
+can remove the autocomplete-php.MOVED_SEE_README.

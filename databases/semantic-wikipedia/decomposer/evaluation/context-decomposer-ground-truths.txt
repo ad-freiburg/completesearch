@@ -1,0 +1,1092 @@
+S1	He spent five years training to be a priest and is an avid fan of Al Jolson
+P1	PP VBD CD NNS VBG TO VB DT NN CC VBZ DT JJ NN IN NP NP
+N1	B-NP B-VP B-NP I-NP B-VP I-VP I-VP B-NP I-NP O B-VP B-NP I-NP I-NP B-PP B-NP I-NP
+B1	* LIT( * * * * * * LIT) * LIT( * * * * * LIT)
+C1	He spent five years training to be a priest
+C1	He is an avid fan of Al Jolson
+
+S2	His father was Hermann Einstein , a salesman and engineer
+P2	PP$ NN VBD NP NP , DT NN CC NN
+N2	B-NP I-NP B-VP B-NP I-NP O B-NP I-NP I-NP I-NP
+B2	* * * * * * RELA( * * RELA)
+C2	His father was Hermann Einstein
+C2	Hermann Einstein , a salesman and engineer
+
+S3	He bought a book , went to the cinema and liked smoking cigars
+P3	PP VBD DT NN , VBD TO DT NN CC VBD NN NNS
+N3	B-NP B-VP B-NP I-NP O B-VP B-PP B-NP I-NP O B-VP B-NP I-NP
+B3	* LIT( * LIT) * LIT( * * LIT) * LIT( * LIT)
+C3	He bought a book
+C3	He went to the cinema
+C3	He liked smoking cigars
+
+S4	He was born in Birmingham in 1921 and is the father of Sir Tim Berners-Lee , the inventor of the World Wide Web
+P4	PP VBD VBN IN NP IN CD CC VBZ DT NN IN NP NP NP , DT NN IN DT NP NP NP
+N4	B-NP B-VP I-VP B-PP B-NP B-PP B-NP O B-VP B-NP I-NP B-PP B-NP I-NP I-NP O B-NP I-NP B-PP B-NP I-NP I-NP I-NP
+B4	* LIT( * * * * LIT) * LIT( * * * * * LIT) * RELA( * * * * * RELA)
+C4	He was born in Birmingham in 1921
+C4	He is the father of Sir Tim Berners-Lee
+C4	Sir Tim Berners-Lee the inventor of the World Wide Web
+
+S5	Valdez also played in the Red Sox and Chicago Cubs minor league systems
+P5	NP RB VBD IN DT NP NPS CC NP NP JJ NN NNS
+N5	B-NP B-ADVP B-VP B-PP B-NP I-NP I-NP O B-NP I-NP I-NP I-NP I-NP
+B5	* * * * LIT( * LIT) * LIT( * * * LIT)
+C5	Valdez also played in the Red Sox
+C5	Valdez also played Chicago Cubs minor league systems
+
+S6	Woodwards hypothesis is related to Dennis William Sciama 's formulation of Mach 's principle , a rather vague concept propounded by the philosopher Ernst Mach which Albert Einstein viewed as something along the lines of inertia originates in a kind of interaction between bodies
+P6	NP NN VBZ VBN TO NP NP NP POS NN IN NP POS NN , DT RB JJ NN VBN IN DT NN NP NP WDT NP NP VBD IN NN IN DT NNS IN NN VBZ IN DT NN IN NN IN NNS
+N6	B-NP I-NP B-VP I-VP B-PP B-NP I-NP I-NP B-NP I-NP B-PP B-NP B-NP I-NP O B-NP I-NP I-NP I-NP B-VP B-PP B-NP I-NP I-NP I-NP B-NP B-NP I-NP B-VP B-PP B-NP B-PP B-NP I-NP B-PP B-NP B-VP B-PP B-NP I-NP B-PP B-NP B-PP B-NP
+B6	* * * * * * * * * * * * * * * RELA( * * * * * * * * * * * * * * * * * * * * * * * * * * * RELA)
+C6	Test
+
+S7	Camphauser Straße expressway , which leads to the B 268 and the B 51 , was destroyed
+P7	NP NP NN , WDT VBZ TO DT NP CD CC DT NP CD , VBD VBN
+N7	B-NP I-NP I-NP O B-NP B-VP B-PP B-NP I-NP I-NP O B-NP I-NP I-NP O B-VP I-VP
+B7	* * * * REL( * LIT( * * LIT) * LIT( * LIT),REL) * * *
+C7	Camphauser Straße expressway which leads to the B 268
+C7	Camphauser Straße expressway which leads to the B 51
+C7	Camphauser Straße expressway was destroyed
+
+S8	Bernhard Caesar Einstein , son of Hans Albert Einstein , grandson of Albert Einstein
+P8	NP NP NP , NN IN NP NP NP , NN IN NP NP
+N8	B-NP I-NP I-NP O B-NP B-PP B-NP I-NP I-NP O B-NP B-PP B-NP I-NP
+B8	* * * * RELA( * * * RELA) * RELA( * * RELA)
+C8	Bernhard Caesar Einstein , son of Hans Albert Einstein
+C8	Bernhard Caesar Einstein , grandson of Albert Einstein
+
+S9	Eduard Einstein , second son of Albert and Mileva
+P9	NP NP , JJ NN IN NP CC NP
+N9	B-NP I-NP O B-NP I-NP B-PP B-NP O O
+B9	* * * RELA( * * LIT(,LIT) * LIT(,LIT),RELA)
+C9	Eduard Einstein , second son of Albert
+C9	Eduard Einstein , second son of Mileva
+
+S10	According to research done by Professor Henry Louis Gates , Jr. , of Harvard University , in 2010 for the PBS series Faces of America , Nichols grandfather was a leading theorist on anarchism in the early 20th century and Nichols is related to Albert Einstein who was a cousin on his mother’s side
+P10	VBG TO VB VBN IN NP NP NP NP , NP , IN NP NP , IN CD IN DT NP NN NP IN NP , NP NN VBD DT VBG NN IN NN IN DT JJ JJ NN CC NP VBZ VBN TO NP NP WP VBD DT NN IN PP$ JJ NN
+N10	B-PP B-VP I-VP I-VP B-PP B-NP I-NP I-NP I-NP O B-NP O B-PP B-NP I-NP O B-PP B-NP B-PP B-NP I-NP I-NP I-NP B-PP B-NP O B-NP I-NP B-VP B-NP I-NP I-NP B-PP B-NP B-PP B-NP I-NP I-NP I-NP O B-NP B-VP I-VP B-PP B-NP I-NP B-NP B-VP B-NP I-NP B-PP B-NP I-NP I-NP
+B10	* * * * * * * * * * RELA(,RELA) * RELA( * RELA) * * * * * * * * * * SEP * * * * * * * * * * * * * SEP * * * * * * * * * * * * * *
+C10	According to research done by Professor Henry Louis Gates , Jr. , of Harvard University , in 2010 for the PBS series Faces of America
+C10	Nichols grandfather was a leading theorist on anarchism in the early 20th century
+C10	Nichols is related to Albert Einstein who was a cousin on his mother’s side
+
+S11	This is Thomas , born in 1999 , who goes to school
+P11	DT VBZ NP , VBN IN CD , WP VBZ TO NN
+N11	B-NP B-VP B-NP O B-VP B-PP B-NP O B-NP B-VP B-PP B-NP
+B11	* * * * REL( * REL) * REL( * * REL)
+C11	Thomas born in 1999
+C11	This is Thomas who goes to school
+
+S12	A house , which , built in 1999 , was built by strong , stupid and dumb workers , collapsed
+P12	DT NN , WDT , VBN IN CD , VBD VBN IN JJ , JJ CC JJ NNS , VBD
+N12	B-NP I-NP O B-NP O B-VP B-PP B-NP O B-VP I-VP B-PP B-NP I-NP I-NP I-NP I-NP I-NP O B-VP
+B12	* * * REL( * REL( * REL) * * * * * * * * * REL) * *
+C12	A house built in 1999
+C12	A house which was built by strong stupid and dumb workers
+C12	A house collapsed
+
+S13	In 1834 Orlandi suddenly collapsed and died backstage at the opera house in Rovigo just prior to going on stage as Adalgisa in Bellinis Norma
+P13	IN CD NP RB VBD CC VBD RB IN DT NN NN IN NP RB RB TO VBG IN NN IN NP IN NP NP
+N13	B-PP B-NP I-NP B-ADVP B-VP O B-VP B-ADVP B-PP B-NP I-NP I-NP B-PP B-NP B-ADVP I-ADVP B-PP B-VP B-PP B-NP B-PP B-NP B-PP B-NP I-NP
+B13	* * * LIT( LIT) * LIT( * * * * * * * * * * * * * * * * * LIT)
+C13	In 1834 Orlandi suddenly collapsed
+C13	In 1834 Orlandi suddenly died backstage at the opera house in Rovigo just prior to going on stage as Adalgisa in Bellinis Norma
+
+S14	Einstein started a small discussion group , self-mockingly named The Olympia Academy , which met regularly to discuss science and philosophy
+P14	NP VBD DT JJ NN NN , RB VBN DT NP NP , WDT VBD RB TO VB NN CC NN
+N14	B-NP B-VP B-NP I-NP I-NP I-NP O B-ADVP B-VP B-NP I-NP I-NP O B-NP B-VP B-ADVP B-VP I-VP B-NP I-NP I-NP
+B14	* * * * * * * REL( * * * REL) * REL( * * * * * * REL)
+C14	Einstein started a small discussion group
+C14	a small discussion group , self-mockingly named The Olympia Academy
+C14	The Olympia Academy , which met regularly to discuss science and philosophy
+
+S15	He published four groundbreaking papers , on the photoelectric effect , Brownian motion , special relativity , and the equivalence of matter and energy , which were to bring him to the notice of the academic world
+P15	PP VBD CD JJ NNS , IN DT JJ NN , NP NN , JJ NN , CC DT NN IN NN CC NN , WDT VBD TO VB PP TO DT NN IN DT JJ NN
+N15	B-NP B-VP B-NP I-NP I-NP O B-PP B-NP I-NP I-NP O B-NP I-NP O B-NP I-NP O O B-NP I-NP B-PP B-NP I-NP I-NP O B-NP B-VP I-VP I-VP B-NP B-PP B-NP I-NP B-PP B-NP I-NP I-NP
+B15	* * LIT( * LIT) * LIT( * * LIT) * LIT( LIT) * LIT( LIT) * * LIT( * * * * LIT) * REL( * * * * * * * * * * REL)
+C15	He published four groundbreaking papers 
+C15	He published on the photoelectric effect
+C15	He published on the Brownian motion
+C15	He published on the special relativity
+C15	He published on the equivalence of matter and energy
+C15	four groundbreaking papers which were to bring him to the notice of the academic world
+
+S16	Behind the foremast a little deckhouse contained the two donkey boilers that drove four steam winches , a steam capstan , the rudder machine , and a generator for electricity
+P16	IN DT NN DT JJ NN VBD DT CD NN NNS WDT VBD CD NN VBZ , DT NN NN , DT NN NN , CC DT NN IN NN
+N16	B-PP B-NP I-NP B-NP I-NP I-NP B-VP B-NP I-NP I-NP I-NP B-NP B-VP B-NP I-NP B-VP O B-NP I-NP I-NP O B-NP I-NP I-NP O O B-NP I-NP B-PP B-NP
+B16	* * * * * * * * * * * * * LIT( * LIT) * LIT( * LIT) * LIT( * LIT) * * LIT( * * LIT)
+C16	Behind the foremast a little deckhouse contained the two donkey boilers that drove four steam winches
+C16	Behind the foremast a little deckhouse contained the two donkey boilers that drove a steam capstan
+C16	Behind the foremast a little deckhouse contained the two donkey boilers that drove the rudder machine
+C16	Behind the foremast a little deckhouse contained the two donkey boilers that drove a generator for electricity
+
+S17	They began by looking for their grandfather , Doctor Who , in a junkyard
+P17	PP VBD IN VBG IN PP$ NN , NP WP , IN DT NN
+N17	B-NP B-VP B-PP B-VP B-PP B-NP I-NP O B-NP I-NP O B-PP B-NP I-NP
+B17	* * * * * * * * RELA( RELA) * * * *
+C17	They began by looking for their grandfather in a junkyard
+C17	their grandfather Doctor Who
+
+S18	John and Gillian , a young brother and sister , are characters in the TV Comic strip based on the long-running British science fiction television series Doctor Who
+P18	NP CC NP , DT JJ NN CC NN , VBP NNS IN DT NP NP NN VBN IN DT JJ JJ NN NN NN NN NP WP
+N18	B-NP I-NP I-NP O B-NP I-NP I-NP I-NP I-NP O B-VP B-NP B-PP B-NP I-NP I-NP I-NP B-PP B-PP B-NP I-NP I-NP I-NP I-NP I-NP I-NP B-VP B-NP
+B18	* * * * RELA( * * * RELA) * * * * * * * * * * * * * * * * * * *
+C18	John an Gillian a young brother and sister
+C18	John an Gillian are characters in the TV Comic strip based on the long-running British science fiction television series Doctor Who
+
+S19	The burden fell on Pilimatalava , the first Adigar ( Prime Minister ) Pilimatalawe , an able , ambitious and intriguing chief , to select a successor to the vacant throne
+P19	DT NN VBD IN NP , DT JJ NP ( NN NP ) NP , DT JJ , JJ CC JJ NN , TO VB DT NN TO DT JJ NN
+N19	B-NP I-NP B-VP B-PP B-NP O B-NP I-NP I-NP I-NP I-NP I-NP I-NP I-NP O B-NP I-NP I-NP I-NP I-NP I-NP I-NP O B-VP I-VP B-NP I-NP B-PP B-NP I-NP I-NP
+B19	* * * * * * RELA( * * * * * * RELA) * RELA( * * * * * RELA) * * * * * * * * *
+C19	Pilimatalava , the first Adigar ( Prime Minister ) Pilimatalawe
+C19	the first Adigar ( Prime Minister ) Pilimatalawe , an able , ambitious and intriguing chief
+C19	The burden fell on Pilimatalava to select a successor to the vacant throne
+
+S20	He had six daughters and two sons by his favorite Sinhala lady ( Yakada Doli ) , daughter of the late Dissave ( Headman ) of Bintenna and granddaughter of the blind and aged Mampitiya Dissave
+P20	PP VBD CD NNS CC CD NNS IN PP$ JJ NN NN ( NP NP ) , NN IN DT JJ NN ( NN ) IN NP CC NN IN DT JJ CC VBN NP NP
+N20	B-NP B-VP B-NP I-NP O B-NP I-NP B-PP B-NP I-NP I-NP I-NP I-NP I-NP I-NP I-NP O B-NP B-PP B-NP I-NP I-NP I-NP I-NP I-NP B-PP B-NP I-NP I-NP B-PP B-NP I-NP I-NP I-NP I-NP O
+B20	* * * * * * * * * * * * * * * * * RELA( * * * * * * RELA) * RELA( * * * * * * * * RELA)
+C20	his favorite Sinhala lady ( Yakada Doli ) , daughter of the late Dissave ( Headman ) of Bintenna
+C20	his favorite Sinhala lady ( Yakada Doli ) , granddaughter of the blind and aged Mampitiya Dissave
+C20	He had six daughters and two sons by his favorite Sinhala lady ( Yakada Doli )
+
+S21	In 1708 the king married a bride from Madurai Royal family , the daughter of Pitti Nayakkar
+P21	IN CD DT NN VBD DT NN IN NP NP NN , DT NN IN NP NP
+N21	B-PP B-NP B-NP I-NP B-VP B-NP I-NP B-PP B-NP I-NP I-NP O B-NP I-NP B-PP B-NP I-NP
+B21	* * * * * * * * * * * * RELA( * * * RELA)
+C21	In 1708 the king married a bride from Madurai Royal family
+C21	a bride from Madurai Royal family , the daughter of Pitti Nayakkar
+
+S22	Later attempts by Raghunatha Nayak to recover the Jaffna kingdom from the Portugese for his proteage , the prince of Rameshwaram , met with failure
+P22	JJR NNS IN NP NP TO VB DT NN NN IN DT NP IN PP$ NN , DT NN IN NP , VBN IN NN
+N22	B-NP I-NP B-PP B-NP I-NP B-VP I-VP B-NP I-NP I-NP B-PP B-NP I-NP B-PP B-NP I-NP O B-NP I-NP B-PP B-NP O B-VP B-PP B-NP
+B22	* * * * * * * * * * * * * * * * * RELA( * * RELA) * * * *
+C22	his proteage , the prince of Rameshwaram
+C22	Later attempts by Raghunatha Nayak to recover the Jaffna kingdom from the Portugese for his proteage met with failure
+
+S23	Some came up with their own distinct codes of rules , most notably the Sheffield Football Club , formed by former public school pupils in 1857 , which led to formation of a Sheffield FA in 1867
+P23	DT VBD RP IN PP$ JJ JJ NNS IN NNS , RBS RB DT NP NP NP , VBN IN JJ JJ NN NNS IN CD , WDT VBD TO NN IN DT NP NP IN CD
+N23	B-NP B-VP B-PRT B-PP B-NP I-NP I-NP I-NP B-PP B-NP O B-ADVP I-ADVP B-NP I-NP I-NP I-NP O B-VP B-PP B-NP I-NP I-NP I-NP B-PP B-NP O B-NP B-VP B-PP B-NP B-PP B-NP I-NP I-NP B-PP B-NP
+B23	* * * * * * * * * * * REL( * * * * REL) * REL( * * * * * * REL) * REL( * * * * * * * * REL)
+C23	the Sheffield Football Club , formed by former public school pupils in 1857
+C23	Some came up with their own distinct codes of rules , most notably the Sheffield Football Club
+C23	Some came up with their own distinct codes of rules which led to formation of a Sheffield FA in 1867
+
+S24	He received an official welcome by the Mayor , followed by three weeks of lectures and receptions
+P24	PP VBD DT JJ NN IN DT NP , VBN IN CD NNS IN NNS CC NNS
+N24	B-NP B-VP B-NP I-NP I-NP B-PP B-NP I-NP O B-VP B-PP B-NP I-NP B-PP B-NP I-NP I-NP
+B24	* * * * * * * * * REL( * * * * * * REL)
+C24	He received an official welcome by the Mayor
+C24	an official welcome by the Mayor , followed by three weeks of lectures and receptions
+
+S25	In 1911 , he had calculated that , based on his new theory of general relativity , light from another star would be bent by the Sun 's gravity
+P25	IN CD , PP VBD VBN IN , VBN IN PP$ JJ NN IN JJ NN , NN IN DT NN MD VB JJ IN DT NP POS NN
+N25	B-PP B-NP O B-NP B-VP I-VP B-SBAR O B-PP B-PP B-NP I-NP I-NP B-PP B-NP I-NP O B-NP B-PP B-NP I-NP B-VP I-VP B-ADJP B-PP B-NP I-NP B-NP I-NP
+B25	* * * * * * * * REL( * * * * * * REL) * * * * * * * * * * * * *
+C25	In 1911 , he had calculated that light from another star would be bent by the Sun 's gravity
+C25	he had calculated that , based on his new theory of general relativity
+
+S26	On 30 April 1905 , he completed his thesis , with Alfred Kleiner , Professor of Experimental Physics , serving as pro-forma advisor
+P26	IN CD NP CD , PP VBD PP$ NN , IN NP NP , NP IN NP NP , VBG IN JJ NN
+N26	B-PP B-NP I-NP I-NP O B-NP B-VP B-NP I-NP O B-PP B-NP I-NP O B-NP B-PP B-NP I-NP O B-VP B-PP B-NP I-NP
+B26	* * * * * * * * * * * * * * RELA( * * RELA) * * * * *
+C26	Alfred Kleiner Professor of Experimental Physics
+C26	On 30 April 1905 , he completed his thesis with Alfred Kleiner serving as pro-forma advisor
+
+S27	A former classmate 's father helped him secure a job in Bern , at the Federal Office for Intellectual Property , the patent office , as an assistant examiner
+P27	DT JJ NN POS NN VBD PP VB DT NN IN NP , IN DT NP NP IN NP NP , DT NN NN , IN DT JJ NN
+N27	B-NP I-NP I-NP B-NP I-NP B-VP I-VP I-VP B-NP I-NP B-PP B-NP O B-PP B-NP I-NP I-NP B-PP B-NP I-NP O B-NP I-NP I-NP O B-PP B-NP I-NP I-NP
+B27	* * * * * * * * * * * * * * * * * * * * * RELA( * RELA) * * * * *
+C27	the Federal Office for Intellectual Property , the patent office
+C27	A former classmate 's father helped him secure a job in Bern , at the Federal Office for Intellectual Property as an assistant examiner
+
+S28	Their second son , Eduard , was born in Zurich in July 1910
+P28	PP$ JJ NN , NP , VBD VBN IN NP IN NP CD
+N28	B-NP I-NP I-NP O B-NP O B-VP I-VP B-PP B-NP B-PP B-NP I-NP
+B28	* * * * RELA(,RELA) * * * * * * * *
+C28	Their second son , Eduard
+C28	Their second son was born in Zurich in July 1910
+
+S29	In May 1904 , the couple 's first son , Hans Albert Einstein , was born in Bern , Switzerland
+P29	IN NP CD , DT NN POS JJ NN , NP NP NP , VBD VBN IN NP , NP
+N29	B-PP B-NP I-NP O B-NP I-NP B-NP I-NP I-NP O B-NP I-NP I-NP O B-VP I-VP B-PP B-NP O B-NP
+B29	* * * * * * * * * * RELA( * RELA) * * * * * * RELA(,RELA)
+C29	the couple 's first son , Hans Albert Einstein
+C29	In May 1904 , the couple 's first son was born in Bern
+C29	Bern , Switzerland
+
+S30	Maric failed the examination with a poor grade in the mathematics component , theory of functions
+P30	NP VBD DT NN IN DT JJ NN IN DT NN NN , NN IN NNS
+N30	B-NP B-VP B-NP I-NP B-PP B-NP I-NP I-NP B-PP B-NP I-NP I-NP O B-NP B-PP B-NP
+B30	* * * * * * * * * * * * * RELA( * RELA)
+C30	the mathematics component , theory of functions
+C30	Maric failed the examination with a poor grade in the mathematics component
+
+S31	Marie Winteler moved to Olsberg , Switzerland , for a teaching post
+P31	NP NP VBD TO NP , NP , IN DT NN NN
+N31	B-NP I-NP B-VP B-PP B-NP O B-NP O B-PP B-NP I-NP I-NP
+B31	* * * * * * RELA(,RELA) * * * * *
+C31	Olsberg , Switzerland
+C31	Marie Winteler moved to Olsberg for a teaching post
+
+S32	His sister Maja later married the Wintelers' son , Paul
+P32	PP$ NN NP RBR VBD DT NP NN , NP
+N32	B-NP I-NP I-NP B-ADVP B-VP B-NP I-NP I-NP O O
+B32	* * * * * * * * * RELA(,RELA)
+C32	Wintelers' son , Paul
+C32	His sister Maja later married the Wintelers' son
+
+S33	He fell in love with Winteler 's daughter , Marie
+P33	PP VBD IN NN IN NP POS NN , NP
+N33	B-NP B-VP B-PP B-NP B-PP B-NP B-NP I-NP O O
+B33	* * * * * * * * * RELA(,RELA)
+C33	Winteler 's daughter , Marie
+C33	He fell in love with Winteler 's daughter
+
+S34	Einstein applied directly to the Eidgenössische Polytechnische Schule ( ETH ) in Zurich , Switzerland
+P34	NP VBD RB TO DT NP NP NP ( NN ) IN NP , NP
+N34	B-NP B-VP B-ADVP B-PP B-NP I-NP I-NP I-NP I-NP I-NP I-NP B-PP B-NP O B-NP
+B34	* * * * * * * * * * * * * * RELA(,RELA)
+C34	Zurich , Switzerland
+C34	Einstein applied directly to the Eidgenössische Polytechnische Schule ( ETH ) in Zurich
+
+S35	In the spring of 1895 , he withdrew to join his family in Pavia , convincing the school to let him go by using a doctor 's note
+P35	IN DT NN IN CD , PP VBD TO VB PP$ NN IN NP , VBG DT NN TO VB PP VB IN VBG DT NN POS NN
+N35	B-PP B-NP I-NP B-PP B-NP O B-NP B-VP I-VP I-VP B-NP I-NP B-PP B-NP O B-VP B-NP I-NP B-VP I-VP B-NP B-VP B-PP B-VP B-NP I-NP B-NP I-NP
+B35	* * * * * * * * * * * * * * * REL( * * * * * * * * * * * REL)
+C35	In the spring of 1895 , he withdrew to join his family in Pavia
+C35	he withdrew to join his family in Pavia , convincing the school to let him go by using a doctor 's note
+
+S36	Einstein's friendship with activist Paul Robeson , with whom he served as co-chair of the American Crusade to End Lynching , lasted twenty years
+P36	NP NN IN JJ NP NP , IN WP PP VBD IN NN IN DT NP NP TO NP NP , VBD CD NNS
+N36	B-NP I-NP B-PP B-NP I-NP I-NP O B-PP B-NP B-NP B-VP B-PP B-NP B-PP B-NP I-NP I-NP B-PP B-NP I-NP O B-VP B-NP I-NP
+B36	* * * * * * * REL( * * * * * * * * * * * REL) * * * *
+C36	activist Paul Robeson , with whom he served as co-chair of the American Crusade to End Lynching
+C36	Einstein's friendship with activist Paul Robeson lasted twenty years
+
+S37	While in Prague he met Albert Einstein for the first time , and they remained close friends thereafter
+P37	IN IN NP PP VBD NP NP IN DT JJ NN , CC PP VBD JJ NNS RB
+N37	B-SBAR B-PP B-NP I-NP B-VP B-NP I-NP B-PP B-NP I-NP I-NP O O B-NP B-VP B-NP I-NP B-ADVP
+B37	* * * * * * * * * * * * SEP * * * * *
+C37	While in Prague he met Albert Einstein for the first time
+C37	they remained close friends thereafter
+
+S38	He also met Albert Einstein for the first time , they became friends and Laue went on to contribute to the acceptance and development of Einstein’s theory of relativity
+P38	PP RB VBD NP NP IN DT JJ NN , PP VBD NNS CC NP VBD RP TO VB TO DT NN CC NN IN NP NN IN NN
+N38	B-NP B-ADVP B-VP B-NP I-NP B-PP B-NP I-NP I-NP O B-NP B-VP B-NP O B-NP B-VP B-PRT B-VP I-VP B-PP B-NP I-NP I-NP I-NP B-PP B-NP I-NP B-PP B-NP
+B38	* * * * * * * * * SEP * * * SEP * * * * * * * * * * * * * * *
+C38	He also met Albert Einstein for the first time
+C38	they became friends
+C38	Laue went on to contribute to the acceptance and development of Einstein’s theory of relativity
+
+S39	Soon Einstein invited him repeatedly to dinner at his home , and a friendship sprang up between the two men
+P39	RB NP VBD PP RB TO NN IN PP$ NN , CC DT NN VBD RP IN DT CD NNS
+N39	B-ADVP B-NP B-VP B-NP B-ADVP B-PP B-NP B-PP B-NP I-NP O O B-NP I-NP B-VP B-PRT B-PP B-NP I-NP I-NP
+B39	* * * * * * * * * * * SEP * * * * * * * *
+C39	Soon Einstein invited him repeatedly to dinner at his home
+C39	a friendship sprang up between the two men
+
+S40	When the 23 year-old Albert Einstein started a study group , the Olympia Academy , with his two younger friends , Maurice Solovine and Conrad Habicht , he suggested that the first book to be read was Pearsons The Grammar of Science
+P40	WRB DT CD JJ NP NP VBD DT NN NN , DT NP NP , IN PP$ CD JJR NNS , NP NP CC NP NP , PP VBD IN DT JJ NN TO VB VBN VBD NP DT NP IN NP
+N40	B-ADVP B-NP I-NP I-NP I-NP I-NP B-VP B-NP I-NP I-NP O B-NP I-NP I-NP O B-PP B-NP I-NP I-NP I-NP O B-NP I-NP O B-NP I-NP O B-NP B-VP B-SBAR B-NP I-NP I-NP B-VP I-VP I-VP B-VP B-NP I-NP I-NP B-PP O
+B40	* * * * * * * * * * * RELA( * RELA) * * * * * * * RELA( * * * RELA) * * * * * * * * * * * * * * * *
+C40	a study group , the Olympia Academy
+C40	his two younger friends , Maurice Solovine and Conrad Habicht
+C40	When the 23 year-old Albert Einstein started a study group he suggested that the first book to be read was Pearsons The Grammar of Science
+
+S41	Panofsky was known to be friends with Wolfgang Pauli , one of the main contributors to quantum physics and atomic theory , as well as Albert Einstein
+P41	NP VBD VBN TO VB NNS IN NP NP , CD IN DT JJ NNS TO NN NNS CC JJ NN , RB RB IN NP NP
+N41	B-NP B-VP I-VP I-VP I-VP B-NP B-PP B-NP I-NP O B-NP B-PP B-NP I-NP I-NP B-PP B-NP I-NP O B-NP I-NP O B-CONJP I-CONJP I-CONJP B-NP I-NP
+B41	* * * * * * * LIT( * * RELA( * * * * * * * * * RELA),LIT) * * * * LIT( LIT)
+C41	Panofsky was known to be friends with Wolfgang Pauli
+C41	Panofsky was known to be friends with Albert Einstein
+C41	Wolfgang Pauli , one of the main contributors to quantum physics and atomic theory
+
+S42	Dersu Uzala , made in the Soviet Union and set in Siberia in the early 20th century , was the only Kurosawa film made outside Japan and not in Japanese
+P42	NP NP , VBN IN DT NP NP CC VBN IN NP IN DT JJ JJ NN , VBD DT JJ NP NN VBN IN NP CC RB IN JJ
+N42	B-NP I-NP O B-VP B-PP B-NP I-NP I-NP O B-VP B-PP B-NP B-PP B-NP I-NP I-NP I-NP O B-VP B-NP I-NP I-NP I-NP B-VP B-PP B-NP O O B-PP B-NP
+B42	* * * REL( * * * * * * * * * * * * REL) * * * * * * * * * * * * *
+C42	Dersu Uzala , made in the Soviet Union and set in Siberia in the early 20th century
+C42	Dersu Uzala was the only Kurosawa film made outside Japan and not in Japanese
+
+S43	On December 1 , 1991 , following the collapse of Communism , the church was reopened and the parish re-established
+P43	IN NP CD , CD , VBG DT NN IN NN , DT NN VBD VBN CC DT NN VBD
+N43	B-PP B-NP I-NP I-NP I-NP O B-PP B-NP I-NP B-PP B-NP O B-NP I-NP B-VP I-VP O B-NP I-NP B-VP
+B43	* * * * * * REL( * * * REL) * * * * * * * * *
+C43	On December 1 , 1991 , following the collapse of Communism
+C43	On December 1 , 1991 , the church was reopened and the parish re-established
+
+S44	In 1967 , after the formation of the Grand Coalition between SPD and CDU , he became chairman of the Social Democrat parliamentary party , a post he held until the elections of 1969
+P44	IN CD , IN DT NN IN DT NP NP IN NP CC NP , PP VBD NN IN DT NP NP JJ NN , DT NN PP VBD IN DT NNS IN CD
+N44	B-PP B-NP O B-PP B-NP I-NP B-PP B-NP I-NP I-NP B-PP B-NP O B-NP O B-NP B-VP B-NP B-PP B-NP I-NP I-NP I-NP I-NP O B-NP I-NP I-NP B-VP B-PP B-NP I-NP B-PP B-NP
+B44	* * * REL( * * * * * * * * * REL) * * * * * * * * * * * REL( * * * * * * * REL)
+C44	In 1967 , after the formation of the Grand Coalition between SPD and CDU
+C44	In 1967 he became chairman of the Social Democrat parliamentary party
+C44	chairman of the Social Democrat parliamentary party , a post he held until the elections of 1969
+
+S45	The state miscalculated on the amount of credit they could afford , and by 1841 the state was on the edge of bankruptcy having burrowed more than$ 10 million dollars , an equivalent to the states previous fifteen years of tax revenue
+P45	DT NN VBD IN DT NN IN NN PP MD VB , CC IN CD DT NN VBD IN DT NN IN NN VBG VBN RBR JJ CD CD NNS , DT NN TO DT NNS JJ CD NNS IN NN NN
+N45	B-NP I-NP B-VP B-PP B-NP I-NP B-PP B-NP B-NP B-VP I-VP O O B-PP B-NP B-NP I-NP B-VP B-PP B-NP I-NP B-PP B-NP B-VP I-VP B-NP I-NP I-NP I-NP I-NP O B-NP I-NP B-PP B-NP I-NP B-ADJP B-NP I-NP B-PP B-NP I-NP
+B45	* * * * * * * * * * * * SEP * * * * * * * * * * * * * * * * * * RELA( * * * * * * * * * RELA)
+C45	The state miscalculated on the amount of credit they could afford
+C45	by 1841 the state was on the edge of bankruptcy having burrowed more than$ 10 million dollars
+C45	10 million dollars , an equivalent to the states previous fifteen years of tax revenue
+
+S46	In addition , late in 1995 Yeltsin dismissed Anatoly Chubais , one of the last economic reform advocates remaining in a top Government position , as deputy prime minister in charge of economic policy
+P46	IN NN , RB IN CD NP VBD NP NP , CD IN DT JJ JJ NN NNS VBG IN DT JJ NN NN , IN JJ JJ NN IN NN IN JJ NN
+N46	B-PP B-NP O B-ADVP B-PP B-NP I-NP B-VP B-NP I-NP O B-NP B-PP B-NP I-NP I-NP I-NP I-NP B-VP B-PP B-NP I-NP I-NP I-NP O B-SBAR B-NP I-NP I-NP B-PP B-NP B-PP B-NP I-NP
+B46	* * * * * * * * * * * RELA( * * * * * * * * * * * RELA) * REL( * * * * * * * REL)
+C46	Anatoly Chubais , one of the last economic reform advocates remaining in a top Government position
+C46	Anatoly Chubais , as deputy prime minister in charge of economic policy
+C46	In addition , late in 1995 Yeltsin dismissed Anatoly Chubais
+
+S47	Love and Marriage is an 18-episode situation comedy which aired on NBC from September 21 , 1959 , to January 25 , 1960 , starring veteran film star William Demarest ( 1892 - 1983 ) as William Harris , the owner of the nearly bankrupt Harris Music Publishing Company in Tin Pan Alley in New York City
+P47	NP CC NP VBZ DT JJ NN NN WDT VBD IN NP IN NP CD , CD , TO NP CD , CD , VBG JJ NN NN NP NP ( CD : CD ) IN NP NP , DT NN IN DT RB JJ NP NP NP NP IN NP NP NP IN NP NP NP
+N47	B-NP I-NP I-NP B-VP B-NP I-NP I-NP I-NP B-NP B-VP B-PP B-NP B-PP B-NP I-NP I-NP I-NP O B-PP B-NP I-NP I-NP I-NP O B-VP B-NP I-NP I-NP I-NP I-NP O B-NP O B-NP O B-PP B-NP I-NP O B-NP I-NP B-PP B-NP I-NP I-NP I-NP I-NP I-NP I-NP B-PP B-NP I-NP I-NP B-PP B-NP I-NP O
+B47	* * * * * * * * * * * * * * * * * * * * * * * * REL( * * * * * * * * * * * * REL) * RELA( * * * * * * * * * * * * * * * * RELA)
+C47	Love and Marriage is an 18-episode situation comedy which aired on NBC from September 21 , 1959 , to January 25 , 1960
+C47	Love and Marriage , starring veteran film star William Demarest ( 1892 - 1983 ) as William Harris
+C47	William Harris , the owner of the nearly bankrupt Harris Music Publishing Company in Tin Pan Alley in New York City
+
+S48	His eldest daughter Marguerite married the first Duke of Cadaval , a distant cousin of King John IV of Portugal who created the title in 1645
+P48	PP$ JJ NN NP VBD DT JJ NP IN NP , DT JJ NN IN NP NP NP IN NP WP VBD DT NN IN CD
+N48	B-NP I-NP I-NP I-NP B-VP B-NP I-NP I-NP B-PP B-NP O B-NP I-NP I-NP B-PP B-NP I-NP I-NP B-PP B-NP B-NP B-VP B-NP I-NP B-PP B-NP
+B48	* * * * * * * * * * * RELA( * * * * * * * * * * * * * RELA)
+C48	Duke of Cadaval , a distant cousin of King John IV of Portugal who created the title in 1645
+C48	His eldest daughter Marguerite married the first Duke of Cadaval
+
+S49	He was survived by his son , Grammy-winning saxophonist Tom Scott , his second wife , Frances McCune Scott , his daughter , Linda Colley , his brother and two grandchildren
+P49	PP VBD VBN IN PP$ NN , JJ NN NP NP , PP$ JJ NN , NP NP NP , PP$ NN , NP NP , PP$ NN CC CD NNS
+N49	B-NP B-VP I-VP B-PP B-NP I-NP O B-NP I-NP I-NP I-NP O B-NP I-NP I-NP O B-NP I-NP I-NP O B-NP I-NP O B-NP I-NP O B-NP I-NP O B-NP I-NP
+B49	* * * * * LIT( LIT) RELA( * * RELA) * LIT( * LIT) * RELA( * RELA) * LIT( LIT) * RELA( RELA) * LIT( LIT) * LIT( LIT)
+C49	his son , Grammy-winning saxophonist Tom Scott
+C49	his second wife , Frances McCune Scott
+C49	his daughter , Linda Colley
+C49	He was survived by his son
+C49	He was survived by his second wife
+C49	He was survived by his daughter
+C49	He was survived by his brother
+C49	He was survived by two grandchildren
+
+
+S50	Several major buildings in the city were damaged and evacuated , including Southern Cross Station , evacuated primarily due to a roofing collapse , and Flinders Street Station , evacuated primarily due to flooding
+P50	JJ JJ NNS IN DT NN VBD VBN CC VBN , VBG NP NP NP , VBN RB JJ TO DT NN NN , CC NP NP NP , VBN RB JJ TO VBG
+N50	B-NP I-NP I-NP B-PP B-NP I-NP B-VP I-VP I-VP I-VP O B-PP B-NP I-NP I-NP O B-VP B-ADVP B-PP B-PP B-NP I-NP I-NP O O B-NP I-NP I-NP O B-VP B-ADVP B-ADJP B-PP B-VP
+B50	* * * * * * * * * * * REL( LIT( * LIT) * REL( * * * * * REL) * * LIT( * LIT) * REL( * * * REL),REL)
+C50	Several major buildings in the city were damaged and evacuated
+C50	Several major buildings including Southern Cross Station
+C50	Several major buildings including Flinders Street Station
+C50	Southern Cross Station , evacuated primarily due to a roofing collapse
+C50	Flinders Street Station , evacuated primarily due to flooding
+
+S51	Some contemporary scientists include Stephen Hawking , Richard Dawkins , Nobel prize-winner Anthony James Leggett , and Tim Berners-Lee , co-inventor of the World Wide Web
+P51	DT JJ NNS VBP NP NP , NP NP , NP NP NP NP NP , CC NP NP , NN IN DT NP NP NP
+N51	B-NP I-NP I-NP B-VP B-NP I-NP O B-NP I-NP O B-NP I-NP I-NP I-NP I-NP O O B-NP I-NP O B-NP B-PP B-NP I-NP I-NP O
+B51	* * * * LIT( LIT) * LIT( LIT) * LIT( * * * LIT) * * LIT( LIT) * RELA( * * * * RELA)
+C51	Some contemporary scientists include Stephen Hawking
+C51	Some contemporary scientists include Richard Dawkins
+C51	Some contemporary scientists include Nobel prize-winner Anthony James Leggett
+C51	Some contemporary scientists include Tim Berners-Lee
+C51	Tim Berners-Lee , co-inventor of the World Wide Web
+
+S52	Möller has acted as political commentator in most all of the Swedish media , including Dagens Nyheter , Svenska Dagbladet , Aftonbladet , Expressen , Dagens Eko and Rapport
+P52	NP VBZ VBN IN JJ NN IN JJS DT IN DT JJ NNS , VBG NP NP , NP NP , NP , NP , NP NP CC NP
+N52	B-NP B-VP I-VP B-PP B-NP I-NP B-PP B-NP I-NP B-PP B-NP I-NP I-NP O B-PP B-NP I-NP O B-NP I-NP O B-NP O B-NP O B-NP I-NP O O
+B52	* * * * * * * * * * * * * * REL( LIT( LIT) * LIT( LIT) * LIT(,LIT) * LIT(,LIT) * LIT( LIT) * LIT(,LIT),REL)
+C52	Möller has acted as political commentator in most all of the Swedish media
+C52	most all of the Swedish media , including Dagens Nyheter
+C52	most all of the Swedish media , including Svenska Dagbladet
+C52	most all of the Swedish media , including Aftonbladet
+C52	most all of the Swedish media , including Expressen
+C52	most all of the Swedish media , including Dagens Eko
+C52	most all of the Swedish media , including Rapport
+
+S53	He is a member of the editorial boards of several journals , including Cell , Molecular Cell , the Journal of Cell Biology , and the Science magazine Science Signaling journal
+P53	PP VBZ DT NN IN DT JJ NNS IN JJ NNS , VBG NP , NP NP , DT NP IN NP NP , CC DT NP NN NP NP NN
+N53	B-NP B-VP B-NP I-NP B-PP B-NP I-NP I-NP B-PP B-NP I-NP O B-PP B-NP O B-NP I-NP O B-NP I-NP B-PP B-NP I-NP O O B-NP I-NP I-NP I-NP I-NP I-NP
+B53	* * * * * * * * * * * * REL( LIT(,LIT) * LIT( LIT) * LIT( * * * LIT) * * LIT( * * * * LIT),REL)
+C53	He is a member of the editorial boards of several journals
+C53	several journals , including Cell
+C53	several journals , including Molecular Cell
+C53	several journals , including the Journal of Cell Biology
+C53	several journals , including the Science magazine Science Signaling journal
+
+S54	The present Duchess of Cadaval , wife of Charles Philippe d'Orléans , is a descendant of Marguerite
+P54	DT JJ NP IN NP , NN IN NP NP NNS , VBZ DT NN IN NP
+N54	B-NP I-NP I-NP B-PP B-NP O B-NP B-PP B-NP I-NP I-NP O B-VP B-NP I-NP B-PP O
+B54	* * * * * * RELA( * * * RELA) * * * * * *
+C54	present Duchess of Cadaval , wife of Charles Philippe d'Orléans
+C54	The present Duchess of Cadaval is a descendant of Marguerite
+
+S55	John Burke , state attorney for Rolette County , after hearing of the fraud agreed to represent Chief Little Shell before the US Senate
+P55	NP NP , NN NN IN NP NP , IN NN IN DT NN VBD TO VB NP NP NP IN DT NP NP
+N55	B-NP I-NP O B-NP I-NP B-PP B-NP I-NP O B-PP B-NP B-PP B-NP I-NP B-VP I-VP I-VP B-NP I-NP I-NP B-PP B-NP I-NP I-NP
+B55	* * * RELA( * * * RELA) * * * * * * * * * * * * * * * *
+C55	John Burke , state attorney for Rolette County
+C55	John Burke after hearing of the fraud agreed to represent Chief Little Shell before the US Senate
+
+S56	Senator McCumber agreed with John Burke that the treaty was a fraud , and the US Senate waited until after his death in 1905 to ratify the fraudulent treaty
+P56	NP NP VBD IN NP NP IN DT NN VBD DT NN , CC DT NP NP VBD IN IN PP$ NN IN CD TO VB DT JJ NN
+N56	B-NP I-NP B-VP B-PP B-NP I-NP B-SBAR B-NP I-NP B-VP B-NP I-NP O O B-NP I-NP I-NP B-VP B-PP B-PP B-NP I-NP B-PP B-NP B-VP I-VP B-NP I-NP I-NP
+B56	* * * * * * * * * * * * * SEP * * * * * * * * * * * * * * *
+C56	Senator McCumber agreed with John Burke that the treaty was a fraud
+C56	the US Senate waited until after his death in 1905 to ratify the fraudulent treaty
+
+S57	The park is built on the former site of the Brooklyn Eastern District Terminal , the first offline railroad terminal to be located in Brooklyn
+P57	DT NN VBZ VBN IN DT JJ NN IN DT NP NP NP NP , DT JJ NN NN NN TO VB VBN IN NP
+N57	B-NP I-NP B-VP I-VP B-PP B-NP I-NP I-NP B-PP B-NP I-NP I-NP I-NP I-NP O B-NP I-NP I-NP I-NP I-NP B-VP I-VP I-VP B-PP O
+B57	* * * * * * * * * * * * * * * RELA( * * * * * * * * RELA)
+C57	The park is built on the former site of the Brooklyn Eastern District Terminal
+C57	Brooklyn Eastern District Terminal , the first offline railroad terminal to be located in Brooklyn
+
+S58	Kishen , now a conman , swindles people with a little help from his accomplice , Babu , to earn enough money to educate his sister Divya who 's studying in London
+P58	NP , RB DT NN , VBZ NNS IN DT JJ NN IN PP$ NN , NP , TO VB JJ NN TO VB PP$ JJ NP WP VBZ VBG IN NP
+N58	B-NP O B-ADVP B-NP I-NP O B-VP B-NP B-PP B-NP I-NP I-NP B-PP B-NP I-NP O B-ADVP O B-VP I-VP B-NP I-NP B-VP I-VP B-NP I-NP I-NP B-NP B-VP I-VP B-PP O
+B58	* * REL( * REL) * * * * * * * * * * * RELA(,RELA) * * * * * * * * * * * * * * *
+C58	Kishen , now a conman
+C58	Kishen swindles people with a little help from his accomplice to earn enough money to educate his sister Divya who 's studying in London
+C58	his accomplice , Babu
+
+S59	A Moscow Ballet , founded in 1979 , gained publicity in 1987 when a dancer , Andrei Ustinov , defected during the company 's first U.S. tour
+P59	DT NP NP , VBN IN CD , VBD NN IN CD WRB DT NN , NP NP , VBD IN DT NN POS JJ NP NN
+N59	B-NP I-NP I-NP O B-VP B-PP B-NP O B-VP B-NP B-PP B-NP B-ADVP B-NP I-NP O B-NP I-NP O B-VP B-PP B-NP I-NP B-NP I-NP I-NP I-NP
+B59	* * * * REL( * REL) * * * * * * * * * RELA( RELA) * * * * * * * * *
+C59	A Moscow Ballet , founded in 1979
+C59	A Moscow Ballet gained publicity in 1987 when a dancer defected during the company 's first U.S. tour
+C59	a dancer , Andrei Ustinov
+
+
+S60	The city lies at the centre of a heavily populated area , circled by a ring of smaller towns
+P60	DT NN VBZ IN DT NN IN DT RB JJ NN , VBD IN DT NN IN JJR NNS
+N60	B-NP I-NP B-VP B-PP B-NP I-NP B-PP B-NP I-NP I-NP I-NP O B-VP B-PP B-NP I-NP B-PP B-NP I-NP
+B60	* * * * * * * * * * * * REL( * * * * * REL)
+C60	The city lies at the centre of a heavily populated area
+C60	a heavily populated area , circled by a ring of smaller towns
+
+S61	It specifies conceptual structures by means of about 140 predefined relations and functions , which are systematically characterized and underpinned by a formal axiomatic apparatus
+P61	PP VBZ JJ NNS IN NNS IN RB CD JJ NNS CC NNS , WDT VBP RB VBN CC VBN IN DT JJ JJ NN
+N61	B-NP B-VP B-NP I-NP B-PP B-NP B-PP B-NP I-NP I-NP I-NP I-NP I-NP O B-NP B-VP I-VP I-VP I-VP I-VP B-PP B-NP I-NP I-NP I-NP
+B61	* * * * * * * * * * * * * * REL( * * * * * * * * * REL)
+C61	It specifies conceptual structures by means of about 140 predefined relations and functions
+C61	140 predefined relations and functions , which are systematically characterized
+C61	140 predefined relations and functions , which are underpinned by a formal axiomatic apparatus
+
+S62	He finished high school at Eerde , a boarding school in the Netherlands , at age 16 and moved to the United States as an exchange student
+P62	PP VBD JJ NN IN NP , DT VBG NN IN DT NPS , IN NN CD CC VBD TO DT NP NPS IN DT NN NN
+N62	B-NP B-VP B-NP I-NP B-PP B-NP O B-NP I-NP I-NP B-PP B-NP I-NP O B-PP B-NP I-NP O B-VP B-PP B-NP I-NP I-NP B-PP B-NP I-NP I-NP
+B62	* * * * * * * RELA( * * * * RELA) * * * * * * * * * * * * * *
+C62	He finished high school at Eerde at age 16 and moved to the United States as an exchange student
+C62	Eerde , a boarding school in the Netherlands
+
+S63	The only Einstein he found was a relative : Albert Einstein 's son , Hans Albert Einstein
+P63	DT JJ NP PP VBD VBD DT JJ : NP NP POS NN , NP NP NP
+N63	B-NP I-NP I-NP I-NP B-VP B-VP B-NP I-NP O B-NP I-NP B-NP I-NP O B-NP I-NP O
+B63	* * * * * * * * * LIT( * * LIT) * RELA( * RELA)
+C63	The only Einstein he found was a relative : Albert Einstein 's son
+C63	Albert Einstein 's son , Hans Albert Einstein
+
+S64	Recently they formed the Hans Einstein Memorial Scholarship , which is awarded annually to a medical student from Bakersfield , California , on a need and academic basis
+P64	RB PP VBD DT NP NP NP NP , WDT VBZ VBN RB TO DT JJ NN IN NP , NP , IN DT NN CC JJ NN
+N64	B-ADVP B-NP B-VP B-NP I-NP I-NP I-NP I-NP O B-NP B-VP I-VP B-ADVP B-PP B-NP I-NP I-NP B-PP B-NP O B-NP O B-PP B-NP I-NP O B-NP I-NP
+B64	* * * * * * * * * REL( * * * * * * * * * * RELA(,RELA) * * * * * * REL)
+C64	Hans Einstein Memorial Scholarship , which is awarded annually to a medical student from Bakersfield on a need and academic basis
+C64	Bakersfield , California
+C64	Recently they formed the Hans Einstein Memorial Scholarship
+
+S65	This is a Synchro-Compur shutter mounted behind the lens , which is interchangeable
+P65	DT VBZ DT NP NN VBD IN DT NN , WDT VBZ JJ
+N65	B-NP B-VP B-NP I-NP I-NP B-VP B-PP B-NP I-NP O B-NP B-VP B-ADJP
+B65	* * * * * * * * * * REL( * REL)
+C65	This is a Synchro-Compur shutter mounted behind the lens
+C65	a Synchro-Compur shutter which is interchangeable
+
+S66	This is a highly sought after collectible and is quite expensive
+P66	DT VBZ DT RB VBN IN JJ CC VBZ RB JJ
+N66	B-NP B-VP B-NP I-NP I-NP B-PP B-NP O B-VP B-ADJP I-ADJP
+B66	* LIT( * * * * LIT) * LIT( * LIT)
+C66	This is a highly sought after collectible
+C66	This is quite expensive
+
+S67	The Bessamatic has a reputation as a tricky camera to repair , although if looked after they are a reliable and pleasant to use camera
+P67	DT NP VBZ DT NN IN DT JJ NN TO VB , IN IN VBN IN PP VBP DT JJ CC JJ TO VB NN
+N67	B-NP I-NP B-VP B-NP I-NP B-PP B-NP I-NP I-NP B-VP I-VP O B-SBAR I-SBAR B-VP B-PP B-NP B-VP B-NP I-NP I-NP I-NP B-VP I-VP B-NP
+B67	* * * * * * * * * * * * SEP * * * * * * * * * * * *
+C67	The Bessamatic has a reputation as a tricky camera to repair
+C67	if looked after they are a reliable and pleasant to use camera
+
+S68	The mechanism is very precisely made with many small components and can be damaged if any of the controls are forced
+P68	DT NN VBZ RB RB VBN IN JJ JJ NNS CC MD VB VBN IN DT IN DT NNS VBP VBN
+N68	B-NP I-NP B-VP B-ADVP I-ADVP B-VP B-PP B-NP I-NP I-NP O B-VP I-VP I-VP B-SBAR B-NP B-PP B-NP I-NP B-VP I-VP
+B68	* * LIT( * * * * * * LIT) * LIT( * * * * * * * * LIT)
+C68	The mechanism is very precisely made with many small components
+C68	The mechanism can be damaged if any of the controls are forced
+
+S69	The California halibut or California flounder , Paralichthys californicus , is a large-tooth flounder native to the waters of the Pacific Coast of North America from the Quillayute River in Washington to Magdalena Bay in Baja California
+P69	DT NP NN CC NP VB , NP NP , VBZ DT NN VB JJ TO DT NNS IN DT NP NP IN NP NP IN DT NP NP IN NP TO NP NP IN NP NP
+N69	B-NP I-NP I-NP O B-NP I-NP O B-NP I-NP O B-VP B-NP I-NP B-VP B-ADJP B-PP B-NP I-NP B-PP B-NP I-NP I-NP B-PP B-NP I-NP B-PP B-NP I-NP I-NP B-PP B-NP B-PP B-NP I-NP B-PP B-NP I-NP
+B69	* * * * * * * RELA( RELA) * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+C69	California flounder , Paralichthys californicus
+C69	The California halibut is a large-tooth flounder native to the waters of the Pacific Coast of North America from the Quillayute River in Washington to Magdalena Bay in Baja California
+
+S70	Baits include anchovies , sardine , squid , mackerel , and queenfish ( brownbait )
+P70	NNS VBP NNS , NN , NN , NN , CC NNS ( NN )
+N70	B-NP B-VP B-NP O B-NP O B-NP O B-NP O O B-NP I-NP I-NP O
+B70	* * LIT(,LIT) * LIT(,LIT) * LIT(,LIT) * LIT(,LIT) * * LIT(,LIT) REL( * REL)
+C70	Baits include anchovies
+C70	Baits include sardine
+C70	Baits include squid
+C70	Baits include mackerel
+C70	Baits include queenfish
+C70	queenfish , brownbait
+
+S71	Most flatfish are generally either right-eyed or left-eyed , but the California halibut is unusual in having a roughly even number of each type
+P71	JJS NNS VBP RB RB JJ CC JJ , CC DT NP NN VBZ JJ IN VBG DT RB JJ NN IN DT NN
+N71	B-NP I-NP B-VP B-ADVP B-ADJP I-ADJP I-ADJP I-ADJP O O B-NP I-NP I-NP B-VP B-ADJP B-PP B-VP B-NP I-NP I-NP I-NP B-PP B-NP I-NP
+B71	* * * * * * * * * SEP * * * * * * * * * * * * * *
+C71	Most flatfish are generally either right-eyed or left-eyed
+C71	the California halibut is unusual in having a roughly even number of each type
+
+S72	All Dogs Go to Heaven 2 ( also known as All Dogs Go To Heaven 2 : Charlie 's New Adventure in other regions ) is a 1996 American animated family film , and a sequel to United Artists ' 1989 animated film All Dogs Go to Heaven
+P72	DT NNS VB TO NP CD ( RB VBN IN DT NP NP TO NP CD : NP POS NP NP IN JJ NNS ) VBZ DT CD JJ JJ NN NN , CC DT NN TO NP NP POS CD JJ NN DT NNS VB TO NP
+N72	B-NP I-NP B-VP B-PP B-NP I-NP O B-VP I-VP B-PP B-NP I-NP I-NP I-NP I-NP I-NP O B-NP B-NP I-NP I-NP B-PP B-NP I-NP O B-VP B-NP I-NP I-NP I-NP I-NP I-NP O O B-NP I-NP B-PP B-NP I-NP B-NP I-NP I-NP I-NP B-NP I-NP B-VP B-PP B-NP
+B72	* * * * * * REL( * * * * * * * * * * * * * * * * * REL) * LIT( * * * * LIT) * * LIT( * * * * * * * * * * * * LIT)
+C72	All Dogs Go to Heaven 2 , also known as All Dogs Go To Heaven 2 : Charlie 's New Adventure in other regions
+C72	All Dogs Go to Heaven 2 is a 1996 American animated family film
+C72	All Dogs Go to Heaven 2 is a sequel to United Artists ' 1989 animated film All Dogs Go to Heaven
+
+S73	Don Bluth , the director of the original film , had no involvement with the sequel
+P73	NP NP , DT NN IN DT JJ NN , VBD DT NN IN DT NN
+N73	B-NP I-NP O B-NP I-NP B-PP B-NP I-NP I-NP O B-VP B-NP I-NP B-PP B-NP I-NP
+B73	* * * RELA( * * * * RELA) * * * * * * *
+C73	Don Bluth , the director of the original film
+C73	Don Bluth had no involvement with the sequel
+
+S74	Its West African pedigree is evident in its use of blue notes , improvisation , polyrhythms , syncopation , and the swung note
+P74	PP$ JJ JJ NN VBZ JJ IN PP$ NN IN JJ NNS , NN , NNS , NN , CC DT VBN NN
+N74	B-NP I-NP I-NP I-NP B-VP B-ADJP B-PP B-NP I-NP B-PP B-NP I-NP O B-NP O B-NP O B-NP O O B-NP I-NP I-NP
+B74	* * * * * * * LIT( * * * LIT) * LIT(,LIT) * LIT(,LIT) * LIT(,LIT) * * LIT( * LIT)
+C74	Its West African pedigree is evident in its use of blue notes
+C74	Its West African pedigree is evident in its use of improvisation
+C74	Its West African pedigree is evident in its use of polyrhythms
+C74	Its West African pedigree is evident in its use of syncopation
+C74	Its West African pedigree is evident in its use of the swung note
+
+S75	An example of a semantic network is WordNet , a lexical database of English
+P75	DT NN IN DT JJ NN VBZ NP , DT JJ NN IN NP
+N75	B-NP I-NP B-PP B-NP I-NP I-NP B-VP B-NP O B-NP I-NP I-NP B-PP O
+B75	* * * * * * * * * RELA( * * * RELA)
+C75	An example of a semantic network is WordNet
+C75	WordNet , a lexical database of English
+
+S76	It groups English words into sets of synonyms called synsets , provides short , general definitions , and records the various semantic relations between these synonym sets
+P76	PP NNS JJ NNS IN NNS IN NNS VBD NNS , VBZ JJ , JJ NNS , CC VBZ DT JJ JJ NNS IN DT NN VBZ
+N76	B-NP I-NP B-NP I-NP B-PP B-NP B-PP B-NP B-VP B-NP O B-VP B-ADJP O B-NP I-NP O O B-VP B-NP I-NP I-NP I-NP B-PP B-NP I-NP B-VP
+B76	* LIT( * * * * * * * LIT) * LIT( * * * LIT) * * LIT( * * * * * * * LIT)
+C76	It groups English words into sets of synonyms called synsets
+C76	It provides short , general definitions
+C76	It records the various semantic relations between these synonym sets
+
+S77	Some of the notorious political liberal authors , who opposed monarchies and absolutism , were Voltaire , Jean-Jacques Rousseau , Montesquieu , Denis Diderot and Jean Le Rond d'Alembert , while the most notorious economic liberal was Adam Smith
+P77	DT IN DT JJ JJ JJ NNS , WP VBD NNS CC NN , VBD NP , NP NP , NP , NP NP CC NP NP NP NP , IN DT RBS JJ JJ NN VBD NP NP
+N77	B-NP B-PP B-NP I-NP I-NP I-NP I-NP O B-NP B-VP B-NP I-NP I-NP O B-VP B-NP O B-NP I-NP O B-NP O B-NP I-NP O B-NP I-NP I-NP I-NP O B-SBAR B-NP I-NP I-NP I-NP I-NP B-VP B-NP I-NP
+B77	* * * * * * * * REL( * * * REL) * * LIT(,LIT) * LIT( LIT) * LIT(,LIT) * LIT( LIT) * LIT( * * LIT) * SEP * * * * * * * *
+C77	notorious political liberal authors , who opposed monarchies and absolutism
+C77	Some of the notorious political liberal authors were Voltaire
+C77	Some of the notorious political liberal authors were Jean-Jacques Rousseau
+C77	Some of the notorious political liberal authors were Montesquieu
+C77	Some of the notorious political liberal authors were Denis Diderot
+C77	Some of the notorious political liberal authors were Jean Le Rond d'Alembert the most notorious economic liberal was Adam Smith
+C77	the most notorious economic liberal was Adam Smith
+
+S78	New York magazines John Leonard positively reviewed the film , adding that Horne transformed pretty tunes and banal lyrics into something that is both erotic and political , a fretting of raw edges
+P78	NP NP NNS NP NP RB VBD DT NN , VBG IN NP VBD JJ NNS CC JJ NNS IN NN WDT VBZ DT JJ CC JJ , DT VBG IN JJ NNS
+N78	B-NP I-NP I-NP B-VP B-NP B-ADVP B-VP B-NP I-NP O B-VP B-SBAR B-NP B-VP B-NP I-NP O B-NP I-NP B-PP B-NP B-NP B-VP B-NP I-NP I-NP I-NP O B-NP I-NP B-PP B-NP I-NP
+B78	* * * * * * * * * * REL( * * * LIT( LIT) * LIT( LIT) * * * * * * * * * RELA( * * * RELA),REL)
+C78	John Leonard positively reviewed the film , adding that Horne transformed pretty tunes into something that is both erotic and political
+C78	John Leonard positively reviewed the film , adding that Horne transformed banal lyrics into something that is both erotic and political something that is both erotic and political
+C78	something that is both erotic and political , a fretting of raw edges
+C78	New York magazines John Leonard positively reviewed the film
+
+S79	Since 1999 , Marful has served as a political counselor in the government of Spain and as a photojournalist and columnist
+P79	IN CD , NP VBZ VBN IN DT JJ NN IN DT NN IN NP CC IN DT NN CC NN
+N79	B-PP B-NP O B-NP B-VP I-VP B-PP B-NP I-NP I-NP B-PP B-NP I-NP B-PP B-NP O B-PP B-NP I-NP I-NP I-NP
+B79	* * * * * * LIT( * * * * * * * LIT) * LIT( * * * LIT)
+C79	Since 1999 , Marful has served as a political counselor in the government of Spain
+C79	Since 1999 , Marful has served as a photojournalist and columnist
+
+S80	He was arrested for his socialist political opinions , and received Victor Hugo 's support
+P80	PP VBD VBN IN PP$ JJ JJ NNS , CC VBD NP NP POS NN
+N80	B-NP B-VP I-VP B-PP B-NP I-NP I-NP I-NP O O B-VP B-NP I-NP B-NP I-NP
+B80	* LIT( * * * * * LIT) * * LIT( * * * LIT)
+C80	He was arrested for his socialist political opinions
+C80	He received Victor Hugo 's support
+
+S81	Like the characters often played by Schwarzenegger and Stallone , Duke is a confident , aggressive , and frequently politically incorrect muscle-man , who , although not superhuman , nonetheless manages to achieve incredible physical feats of violence and conquest through sheer machismo and expertise with automatic weapons
+P81	IN DT NNS RB VBN IN NP CC NP , NP VBZ DT JJ , JJ , CC RB RB JJ NN , WP , IN RB JJ , RB VBZ TO VB JJ JJ NNS IN NN CC NN IN JJ NN CC NN IN JJ NNS
+N81	B-PP B-NP I-NP B-VP I-VP B-PP B-NP I-NP I-NP O B-NP B-VP B-NP I-NP I-NP I-NP I-NP I-NP I-NP I-NP I-NP I-NP O B-NP O B-SBAR O B-ADJP O B-ADVP B-VP I-VP I-VP B-NP I-NP I-NP B-PP B-NP I-NP I-NP B-PP B-NP I-NP O B-NP B-PP B-NP I-NP
+B81	* * * * * * * * * SEP * * * * * * * * * * * * * REL( * REL( * REL) * * * * * * * * * * * * * * * * * * * REL)
+C81	Like the characters often played by Schwarzenegger and Stallone
+C81	Duke is a confident , aggressive , and frequently politically incorrect muscle-man
+C81	frequently politically incorrect muscle-man , who , although not superhuman
+C81	frequently politically incorrect muscle-man , who nonetheless manages to achieve incredible physical feats of violence and conquest through sheer machismo and expertise with automatic weapons
+
+S82	Maher covered various political and social topics such as Barack Obama , the Tea Party movement , the economy , drugs , terrorism , war and religion
+P82	NP VBD JJ JJ CC JJ NNS JJ IN NP NP , DT NP NP NN , DT NN , NNS , NN , NN CC NN
+N82	B-NP B-VP B-NP I-NP I-NP I-NP I-NP B-PP I-PP B-NP I-NP O B-NP I-NP I-NP I-NP O B-NP I-NP O B-NP O B-NP O B-NP O B-NP
+B82	* * * * * * * * * LIT( LIT) * LIT( * * LIT) * LIT( LIT) * LIT(,LIT) * LIT(,LIT) * LIT(,LIT) * LIT(,LIT)
+C82	Maher covered various political and social topics such as Barack Obama
+C82	Maher covered various political and social topics such as the Tea Party movement
+C82	Maher covered various political and social topics such as the economy
+C82	Maher covered various political and social topics such as drugs
+C82	Maher covered various political and social topics such as terrorism
+C82	Maher covered various political and social topics such as war
+C82	Maher covered various political and social topics such as religion
+
+S83	Before and after Barack Obama 's election as the 44th President of the United States , his wife Michelle Obama has frequently been the target of derogatory jokes , many of them politically charged , racist , or sexist in nature
+P83	IN CC IN NP NP POS NN IN DT JJ NN IN DT NP NPS , PP$ NN NP NP VBZ RB VBN DT NN IN JJ NNS , JJ IN PP RB VBD , JJ , CC JJ IN NN
+N83	B-PP I-PP I-PP B-NP I-NP B-NP I-NP B-PP B-NP I-NP I-NP B-PP B-NP I-NP I-NP O B-NP I-NP B-NP I-NP B-VP I-VP I-VP B-NP I-NP B-PP B-NP I-NP O B-NP B-PP B-NP B-ADVP B-VP O B-ADJP O O B-ADJP B-PP B-NP
+B83	* * * * * * * * * * * * * * * SEP * * * * * * * * * * * * * REL( * * LIT( LIT) * LIT(,LIT) * * LIT(,LIT) * REL)
+C83	Before and after Barack Obama 's election as the 44th President of the United States
+C83	his wife Michelle Obama has frequently been the target of derogatory jokes
+C83	derogatory jokes , many of them politically charged
+C83	derogatory jokes , many of them racist
+C83	derogatory jokes , many of them sexist in nature
+
+S84	However , Armond White criticized Avatar as the corniest movie ever made about the white man 's need to lose his identity and assuage racial , political , sexual and historical guilt
+P84	RB , NP NP VBD NP IN DT JJS NN RB VBN IN DT JJ NN POS NN TO VB PP$ NN CC VB JJ , JJ , JJ CC JJ NN
+N84	B-ADVP O B-NP I-NP B-VP B-NP B-PP B-NP I-NP I-NP B-ADVP B-VP B-PP B-NP I-NP I-NP B-NP I-NP B-VP I-VP B-NP I-NP O B-VP B-NP I-NP I-NP I-NP I-NP I-NP I-NP I-NP
+B84	* SEP * * * * * * * * * * * * * * * * * LIT( * LIT) * LIT( * * * * * * * LIT)
+C84	However
+C84	Armond White criticized Avatar as the corniest movie ever made about the white man 's need to lose his identity
+C84	Armond White criticized Avatar as the corniest movie ever made about the white man 's need to assuage racial , political , sexual and historical guilt
+
+S85	According to Hurston there were many reasons given for the alleged assassination , but the main actors in the supposed plot were men who were ambitious and stood to gain political power
+P85	VBG TO NP RB VBD JJ NNS VBN IN DT JJ NN , CC DT JJ NNS IN DT VBN NN VBD NNS WP VBD JJ CC VBD TO VB JJ NN
+N85	B-PP B-PP B-NP B-ADVP B-VP B-NP I-NP B-VP B-PP B-NP I-NP I-NP O O B-NP I-NP I-NP B-PP B-NP I-NP I-NP B-VP B-NP B-NP B-VP B-ADJP O B-VP I-VP I-VP B-NP I-NP
+B85	* * * * * * * * * * * * * SEP * * * * * * * * * * * * * * * * * *
+C85	According to Hurston there were many reasons given for the alleged assassination
+C85	the main actors in the supposed plot were men who were ambitious and stood to gain political power
+
+S86	Having received the appointment on the recommendation of Truman aide Donald Dawson , Whitehair was seen as a political appointment and was unpopular with the admirals of the United States Navy
+P86	VBG VBN DT NN IN DT NN IN NP NN NP NP , NP VBD VBN IN DT JJ NN CC VBD JJ IN DT NNS IN DT NP NPS NP
+N86	B-VP I-VP B-NP I-NP B-PP B-NP I-NP B-PP B-NP I-NP I-NP I-NP O B-NP B-VP I-VP B-PP B-NP I-NP I-NP O B-VP B-ADJP B-PP B-NP I-NP B-PP B-NP I-NP I-NP O
+B86	* * * * * * * * * * * * SEP * LIT( * * * * LIT) * LIT( * * * * * * * * LIT)
+C86	Having received the appointment on the recommendation of Truman aide Donald Dawson
+C86	Whitehair was seen as a political appointment
+C86	Whitehair was unpopular with the admirals of the United States Navy
+
+S87	However , she also supports the death penalty and strongly supports the war on drugs and the Cuba n embargo
+P87	RB , PP RB VBZ DT NN NN CC RB VBZ DT NN IN NNS CC DT NP NN NN
+N87	B-ADVP O B-NP B-ADVP B-VP B-NP I-NP I-NP O B-ADVP B-VP B-NP I-NP B-PP B-NP O B-NP I-NP I-NP I-NP
+B87	* * * * LIT( * * LIT) * LIT( * LIT( * * LIT) * LIT( * * LIT),LIT)
+C87	However , she also supports the death penalty
+C87	However , she strongly supports the war on drugs
+C87	However , she strongly supports the Cuba n embargo
+
+S88	The killings were believed to be retaliation for the death of Arturo Beltran-Leyva , as well as a warning against the military forces involved in President Felipe Calderon 's war on Mexicos drug cartels
+P88	DT NNS VBD VBN TO VB NN IN DT NN IN NP NP , RB RB IN DT NN IN DT JJ NNS VBN IN NP NP NP POS NN IN NPS NN NNS
+N88	B-NP I-NP B-VP I-VP I-VP I-VP B-NP B-PP B-NP I-NP B-PP B-NP I-NP O B-CONJP I-CONJP I-CONJP B-NP I-NP B-PP B-NP I-NP I-NP B-VP B-PP B-NP I-NP I-NP B-NP I-NP B-PP B-NP I-NP I-NP
+B88	* * * * * * LIT( * * * * * LIT) * * * * LIT( * * * * * * * * * * * * * * * LIT)
+C88	The killings were believed to be retaliation for the death of Arturo Beltran-Leyva
+C88	The killings were believed to be a warning against the military forces involved in President Felipe Calderon 's war on Mexicos drug cartels
+
+S89	His sons however by the aid of their maternal Grandfather W. Cookworthy , an eminent Druggist and Chemist , succeeded in establishing a high reputation for fidelity and probity in the drug trade and at their death left a comfortable independence to their posterity
+P89	PP$ NNS RB IN DT NN IN PP$ JJ NP NP NP , DT JJ NN CC NN , VBN IN VBG DT JJ NN IN NN CC NN IN DT NN NN CC IN PP$ NN VBD DT JJ NN TO PP$ NN
+N89	B-NP I-NP B-ADVP B-PP B-NP I-NP B-PP B-NP I-NP I-NP I-NP I-NP O B-NP I-NP I-NP I-NP I-NP O B-VP B-PP B-VP B-NP I-NP I-NP B-PP B-NP I-NP I-NP B-PP B-NP I-NP I-NP O B-PP B-NP I-NP B-VP B-NP I-NP I-NP B-PP B-NP I-NP
+B89	* * * * * * * * * * * * * RELA( * * * RELA) * LIT( * * * * * * * * * * * * LIT) * LIT( * * * * * * * * LIT)
+C89	their maternal Grandfather W. Cookworthy , an eminent Druggist and Chemist at their death left a comfortable independence to their posterity
+C89	His sons however by the aid of their maternal Grandfather W. Cookworthy succeeded in establishing a high reputation for fidelity and probity in the drug trade
+C89	His sons however by the aid of their maternal Grandfather W. Cookworthy at their death left a comfortable independence to their posterity
+
+S90	Kistler helped Rick get off drugs and the two were close friends until Ricks death
+P90	NP VBD NP VB RP NNS CC DT CD VBD JJ NNS IN NP NN
+N90	B-NP B-VP I-VP I-VP B-PRT B-NP O B-NP I-NP B-VP B-NP I-NP B-PP B-NP I-NP
+B90	* * * * * * SEP * * * * * * * *
+C90	Kistler helped Rick get off drugs
+C90	the two were close friends until Ricks death
+
+S91	In a 2009 paper he said adverse consequences of cannabis cultivation include political instability , drug addiction , money laundering , health problems , criminality and untimely death
+P91	IN DT CD NN PP VBD JJ NNS IN NN NN VBP JJ NN , NN NN , NN NN , NN NNS , NN CC JJ NN
+N91	B-PP B-NP I-NP I-NP I-NP B-VP B-NP I-NP B-PP B-NP I-NP B-VP B-NP I-NP O B-NP I-NP O B-NP I-NP O B-NP I-NP O B-NP O B-NP I-NP
+B91	* * * * * * * * * * * * LIT( LIT) * LIT( LIT) * LIT( LIT) * LIT( LIT) * LIT(,LIT) * LIT( LIT)
+C91	In a 2009 paper he said adverse consequences of cannabis cultivation include political instability
+C91	In a 2009 paper he said adverse consequences of cannabis cultivation include drug addiction
+C91	In a 2009 paper he said adverse consequences of cannabis cultivation include money laundering
+C91	In a 2009 paper he said adverse consequences of cannabis cultivation include health problems
+C91	In a 2009 paper he said adverse consequences of cannabis cultivation include criminality
+C91	In a 2009 paper he said adverse consequences of cannabis cultivation include untimely death
+
+S92	Although he is offered the best hospitality , he insists on knowing why he was drugged while Kathy talks to McCann about the rescue and Michaels death
+P92	IN PP VBZ VBN DT JJS NN , PP VBZ IN VBG WRB PP VBD VBN IN NP NNS TO NP IN DT NN CC NP NN
+N92	B-SBAR B-NP B-VP I-VP B-NP I-NP I-NP O B-NP B-VP B-PP B-VP B-ADVP B-NP B-VP I-VP B-SBAR B-NP I-NP B-PP B-NP B-PP B-NP I-NP O B-NP I-NP
+B92	* * * * * * * SEP * * * * * * * * SEP * * * * * * * * * *
+C92	Although he is offered the best hospitality
+C92	he insists on knowing why he was drugged
+C92	Kathy talks to McCann about the rescue and Michaels death
+
+S93	She has a list of things she wants to complete before her death , including sex , drugs and crime , for example
+P93	PP VBZ DT NN IN NNS PP VBZ TO VB IN PP$ NN , VBG NN , NNS CC NN , IN NN
+N93	B-NP B-VP B-NP I-NP B-PP B-NP B-NP B-VP I-VP I-VP B-PP B-NP I-NP O B-PP B-NP O B-NP O B-NP O B-PP B-NP
+B93	* * * * * * * * * * * * * * REL( LIT(,LIT) * LIT(,LIT) * LIT(,LIT) * * REL)
+C93	She has a list of things she wants to complete before her death
+C93	a list of things including sex for example
+C93	a list of things including drugs for example
+C93	a list of things including crime for example
+
+S94	Among other issues , he is pro-choice , opposes the death penalty , drug prohibition , and school vouchers , and supports gay marriage
+P94	IN JJ NNS , PP VBZ JJ , VBZ DT NN NN , NN NN , CC NN NNS , CC VBZ JJ NN
+N94	B-PP B-NP I-NP O B-NP B-VP B-ADJP O B-VP B-NP I-NP I-NP O B-NP I-NP O O B-NP I-NP O O B-VP B-NP I-NP
+B94	* * * * * LIT( LIT) * LIT( LIT( * LIT) * LIT( LIT) * * LIT( LIT),LIT) * * LIT( * LIT)
+C94	Among other issues , he is pro-choice
+C94	Among other issues , he opposes the death penalty
+C94	Among other issues , he opposes the death penalty
+
+S95	At the age of twenty , on the verge of death , he became the first person in the United States to receive the new drug insulin
+P95	IN DT NN IN CD , IN DT NN IN NN , PP VBD DT JJ NN IN DT NP NPS TO VB DT JJ NN NN
+N95	B-PP B-NP I-NP B-PP B-NP O B-PP B-NP I-NP B-PP B-NP O B-NP B-VP B-NP I-NP I-NP B-PP B-NP I-NP I-NP B-VP I-VP B-NP I-NP I-NP I-NP
+B95	* * * * * * REL( * * * REL) * * * * * * * * * * * * * * * *
+C95	At the age of twenty , on the verge of death
+C95	At the age of twenty he became the first person in the United States to receive the new drug insulin
+
+S96	Eager mentioned the death of Charlie Parker and his problems with drug addiction as reasons for his withdrawal from the scene
+P96	JJ VBD DT NN IN NP NP CC PP$ NNS IN NN NN IN NNS IN PP$ NN IN DT NN
+N96	B-NP B-VP B-NP I-NP B-PP B-NP I-NP O B-NP I-NP B-PP B-NP I-NP B-PP B-NP B-PP B-NP I-NP B-PP B-NP I-NP
+B96	* * LIT( * * * LIT) * LIT( * * * LIT) * * * * * * * *
+C96	Eager mentioned the death of Charlie Parker as reasons for his withdrawal from the scene
+C96	Eager mentioned his problems with drug addiction as reasons for his withdrawal from the scene
+
+S97	Checchi wanted to extend the death penalty to cover serial rapists and repeat child molesters , and he wanted a drug rehabilitation programs for the states prisoners , with release contingent on a drug-free record
+P97	NP VBD TO VB DT NN NN TO VB JJ NNS CC VB NN NNS , CC PP VBD DT NN NN NNS IN DT NNS NNS , IN NN NN IN DT JJ NN
+N97	B-NP B-VP I-VP I-VP B-NP I-NP I-NP B-VP I-VP B-NP I-NP O B-VP B-NP I-NP O O B-NP B-VP B-NP I-NP I-NP I-NP B-PP B-NP I-NP I-NP O B-PP B-NP I-NP B-PP B-NP I-NP I-NP
+B97	* * * * * * * * * LIT( LIT) * LIT( * LIT) * SEP * * * * * * * * * * * REL( * * * * * REL)
+C97	a drug rehabilitation programs for the states prisoners , with release contingent on a drug-free record
+C97	he wanted a drug rehabilitation programs for the states prisoners
+C97	Checchi wanted to extend the death penalty to cover serial rapists
+C97	Checchi wanted to extend the death penalty to cover repeat child molesters
+
+S98	After her mothers death , Gray moved in with her father but was forced to leave after her stepmother found drugs in her room
+P98	IN PP$ NNS NN , NP VBD IN IN PP$ NN CC VBD VBN TO VB IN PP$ NN VBD NNS IN PP$ NN
+N98	B-PP B-NP I-NP I-NP O B-NP B-VP B-PP B-PP B-NP I-NP O B-VP I-VP I-VP I-VP B-PP B-NP I-NP B-VP B-NP B-PP B-NP I-NP
+B98	* * * * SEP * * * * * * * * * * * * * * * * * * *
+C98	After her mothers death
+C98	Gray moved in with her father but was forced to leave after her stepmother found drugs in her room
+
+S99	By selling information to the Chala drug Cartel she purposefully sabotages an operation Harry is running , tragically causing the death of an informant with whom Tom had bonded
+P99	IN VBG NN TO DT NP NN NN PP RB VBZ DT NN NP VBZ VBG , RB VBG DT NN IN DT NN IN WP NP VBD VBN
+N99	B-PP B-VP B-NP B-PP B-NP I-NP I-NP I-NP B-NP B-ADVP B-VP B-NP I-NP B-NP B-VP I-VP O B-ADVP B-VP B-NP I-NP B-PP B-NP I-NP B-PP B-NP B-NP B-VP I-VP
+B99	* * * * * * * * * * * * * * * * REL( * * * * * * * * * * * REL)
+C99	By selling information to the Chala drug Cartel she purposefully sabotages an operation Harry is running
+C99	she purposefully sabotages an operation Harry is running , tragically causing the death of an informant with whom Tom had bonded
+
+S100	The shooting left Jack with a lot of resentment towards people who dealt with drugs and caused him to let an innocent man fall to his death
+P100	DT NN VBN NP IN DT NN IN NN IN NNS WP VBD IN NNS CC VBD PP TO VB DT JJ NN NN TO PP$ NN
+N100	B-NP I-NP B-VP B-ADVP B-PP B-NP I-NP B-PP B-NP B-PP B-NP B-NP B-VP B-PP B-NP O B-VP B-NP B-VP I-VP B-NP I-NP I-NP I-NP B-PP B-NP I-NP
+B100	* * LIT( * * * * * * * * * * * LIT) * LIT( * * * * * * * * * LIT)
+C100	The shooting left Jack with a lot of resentment towards people who dealt with drugs
+C100	The shooting caused him to let an innocent man fall to his death
+
+S101	Her boyfriend , Russel Ainsworth , was acquitted of manslaughter charges in her death but sentenced to two and a half years for supplying the drug
+P101	PP$ NN , NP NP , VBD VBN IN NN NNS IN PP$ NN CC VBN TO CD CC DT JJ NNS IN VBG DT NN
+N101	B-NP I-NP O B-NP I-NP O B-VP I-VP B-PP B-NP I-NP B-PP B-NP I-NP O B-VP B-PP B-NP O B-NP I-NP I-NP B-PP B-VP B-NP I-NP
+B101	* * * RELA( RELA) * LIT( * * * * * * LIT) * LIT( * * * * * * * * * LIT)
+C101	Her boyfriend , Russel Ainsworth
+C101	Her boyfriend was acquitted of manslaughter charges in her death
+C101	Her boyfriend was sentenced to two and a half years for supplying the drug
+
+S102	The narration states that as governor of Massachusetts , Dukakis vetoed mandatory minimum sentencing for drug dealers , that he vetoed the death penalty , and that he gave weekend furlough 's to first-degree murderers
+P102	DT NN VBZ IN IN NN IN NP , NP VBD JJ JJ NN IN NN NNS , WDT PP VBD DT NN NN , CC IN PP VBD NN NN VBZ TO NN NNS
+N102	B-NP I-NP B-VP B-SBAR B-PP B-NP B-PP B-NP O B-NP B-VP B-NP I-NP I-NP B-PP B-NP I-NP O B-NP B-NP B-VP B-NP I-NP I-NP O O B-SBAR B-NP B-VP B-NP I-NP B-VP B-PP B-NP I-NP
+B102	* * * * * * * * * * LIT( * * * * * LIT) * * LIT( * * * LIT) * * * LIT( * * * * * * LIT)
+C102	The narration states that as governor of Massachusetts , Dukakis vetoed mandatory minimum sentencing for drug dealers
+C102	The narration states that as governor of Massachusetts , he vetoed the death penalty
+C102	The narration states that as governor of Massachusetts , he gave weekend furlough 's to first-degree murderers
+
+
+S103	Kofi Annan , who is the current U.N. Secretary General , has spent much of his tenure working to promote peace in the Third World
+P103	NP NP , WP VBZ DT JJ NP NP NP , VBZ VBN RB IN PP$ NN VBG TO VB NN IN DT NP NP
+N103	B-NP I-NP O B-NP B-VP B-NP I-NP I-NP I-NP I-NP O B-VP I-VP B-ADVP B-PP B-NP I-NP B-VP I-VP I-VP B-NP B-PP B-NP I-NP I-NP
+B103	* * * REL( * * * * * REL) * * * * * * * * * * * * * * *
+C103	Kofi Annan , who is the current U.N. Secretary General
+C103	Kofi Annan has spent much of his tenure working to promote peace in the Third World
+
+S104	This is Jennifer , who is my college roommate 's youngest daughter
+P104	DT VBZ NP , WP VBZ PP$ NN NN POS JJS NN
+N104	B-NP B-VP B-NP O B-NP B-VP B-NP I-NP I-NP B-NP I-NP I-NP
+B104	* * * * REL( * * * * * * REL)
+C104	Jennifer who is my college roommate 's youngest daughter
+C104	This is Jennifer
+
+S105	That book , which is the novel I was reading last week , is the one I meant for you to take to the beach with you
+P105	DT NN , WDT VBZ DT NN PP VBD VBG JJ NN , VBZ DT CD PP VBD IN PP TO VB TO DT NN IN PP
+N105	B-NP I-NP O B-NP B-VP B-NP I-NP I-NP B-VP I-VP B-NP I-NP O B-VP B-NP I-NP I-NP B-VP B-PP B-NP B-VP I-VP B-PP B-NP I-NP B-PP O
+B105	* * * REL( * * * * * * * REL) * * * * * * * * * * * * * * *
+C105	That book which is the novel I was reading last week
+C105	That book is the one I meant for you to take to the beach with you
+
+S106	My other brother , who lives in Texas , is named Sam
+P106	PP$ JJ NN , WP VBZ IN NP , VBZ VBN NP
+N106	B-NP I-NP I-NP O B-NP B-VP B-PP B-NP O B-VP I-VP O
+B106	* * * * REL( * * REL) * * * *
+C106	My other brother who lives in Texas
+C106	My other brother is named Sam
+
+S107	My youngest sister , who has three children , is named Carol
+P107	PP$ JJS NN , WP VBZ CD NNS , VBZ VBN NP
+N107	B-NP I-NP I-NP O B-NP B-VP B-NP I-NP O B-VP I-VP O
+B107	* * * * REL( * * REL) * * * *
+C107	My youngest sister who has three children
+C107	My youngest sister is named Carol
+
+S108	The diocese of Adarbaigan , which bordered on the diocese of Salakh , appears to have covered the territory included within the Sassanian province of Atropatene
+P108	DT NN IN NP , WDT VBN IN DT NN IN NP , VBZ TO VB VBN DT NN VBD IN DT NP NN IN NP
+N108	B-NP I-NP B-PP B-NP O B-NP B-VP B-PP B-NP I-NP B-PP B-NP O B-VP I-VP I-VP I-VP B-NP I-NP B-VP B-PP B-NP I-NP I-NP B-PP O
+B108	* * * * * REL( * * * * * REL) * * * * * * * * * * * * * *
+C108	The diocese of Adarbaigan which bordered on the diocese of Salakh
+C108	The diocese of Adarbaigan appears to have covered the territory included within the Sassanian province of Atropatene
+
+S109	In the anime , the main character Watanuki Kinihiro is plagued by a living black smoke , which follows him around
+P109	IN DT NN , DT JJ NN NP NP VBZ VBN IN DT JJ JJ NN , WDT VBZ PP RP
+N109	B-PP B-NP I-NP O B-NP I-NP I-NP I-NP I-NP B-VP I-VP B-PP B-NP I-NP I-NP I-NP O B-NP B-VP B-NP I-NP
+B109	* * * * * * * * * * * * * * * * * REL( * * REL)
+C109	In the anime the main character Watanuki Kinihiro is plagued by a living black smoke
+C109	a living black smoke , which follows him around
+
+S110	Prospero raises a storm , or tempest , which causes a passing ship containing his enemies to run aground
+P110	NP VBZ DT NN , CC NN , WDT VBZ DT VBG NN VBG PP$ NNS TO VB RB
+N110	B-NP B-VP B-NP I-NP O O B-NP O B-NP B-VP B-NP I-NP I-NP B-VP B-NP I-NP B-VP I-VP B-ADVP
+B110	* * * * * RELA( RELA) * REL( * * * * * * * * * REL)
+C110	Prospero raises a storm
+C110	a storm , or tempest
+C110	a storm which causes a passing ship containing his enemies to run aground
+
+S111	This is possibly a reference to the cult TV series The Prisoner , which had a balloon monster which played that role
+P111	DT VBZ RB DT NN TO DT NN NN NN DT NP , WDT VBD DT NN NN WDT VBD DT NN
+N111	B-NP B-VP B-ADVP B-NP I-NP B-PP B-NP I-NP I-NP I-NP B-NP I-NP O B-NP B-VP B-NP I-NP I-NP B-NP B-VP B-NP I-NP
+B111	* * * * * * * * * * * * * REL( * * * * * * * REL)
+C111	This is possibly a reference to the cult TV series The Prisoner
+C111	The Prisoner , which had a balloon monster which played that role
+
+S112	Locke led the group to a small cliff , which they scaled in the hope of avoiding its oncoming path
+P112	NP VBD DT NN TO DT JJ NN , WDT PP VBD IN DT NN IN VBG PP$ JJ NN
+N112	B-NP B-VP B-NP I-NP B-PP B-NP I-NP I-NP O B-NP B-NP B-VP B-PP B-NP I-NP B-PP B-VP B-NP I-NP I-NP
+B112	* * * * * * * * * REL( * * * * * * * * * REL)
+C112	Locke led the group to a small cliff
+C112	a small cliff , which they scaled in the hope of avoiding its oncoming path
+
+S113	The Man in Black then escorted Sawyer into a cave , where Jacob had apparently been making a list of candidates , which included Sawyer
+P113	DT NN IN NP RB VBD NP IN DT NN , WRB NP VBD RB VBN VBG DT NN IN NNS , WDT VBD NP
+N113	B-NP I-NP B-PP B-NP B-ADVP B-VP B-NP B-PP B-NP I-NP O B-ADVP B-NP B-VP I-VP I-VP I-VP B-NP I-NP B-PP B-NP O B-NP B-VP O
+B113	* * * * * * * * * * * REL( * * * * * * * * * * REL( * REL),REL)
+C113	The Man in Black then escorted Sawyer into a cave
+C113	a cave , where Jacob had apparently been making a list of candidates
+C113	a list of candidates , which included Sawyer
+
+S114	They were accidentally buried alive , which ultimately resulted in their deaths
+P114	PP VBD RB VBN JJ , WDT RB VBD IN PP$ NNS
+N114	B-NP B-VP I-VP I-VP B-ADJP O B-NP B-ADVP B-VP B-PP B-NP I-NP
+B114	* * * * * * REL( * * * * REL)
+C114	They were accidentally buried alive
+C114	buried alive , which ultimately resulted in their deaths
+
+S115	This is a Persian name , signifying the kings friend , which the Greeks render as Sadok
+P115	DT VBZ DT JJ NN , VBG DT NNS NN , WDT DT NPS VB IN NP
+N115	B-NP B-VP B-NP I-NP I-NP O B-VP B-NP I-NP I-NP O B-NP B-NP I-NP B-VP B-PP B-NP
+B115	* * * * * * REL( * * REL) * REL( * * * * REL)
+C115	This is a Persian name
+C115	a Persian name , signifying the kings friend
+C115	a Persian name which the Greeks render as Sadok
+
+S116	Many homeowners today live in density housing and strata blocks , which limits hardwired home security
+P116	JJ NNS NN VBP IN NN NN CC NNS NNS , WDT VBZ JJ NN NN
+N116	B-NP I-NP B-NP B-VP B-PP B-NP I-NP O B-NP I-NP O B-NP B-VP B-NP I-NP I-NP
+B116	* * * * * LIT( LIT) * LIT( LIT) * REL( * * * REL)
+C116	Many homeowners today live in density housing and strata blocks
+C116	live in density housing and strata blocks which limits hardwired home security
+
+S117	Gyulai fought well , but he had too few troops under his orders to influence the outcome of the battle , which ended in a decisive French victory
+P117	NP VBD RB , CC PP VBD RB JJ NNS IN PP$ NNS TO VB DT NN IN DT NN , WDT VBD IN DT JJ JJ NN
+N117	B-NP B-VP B-ADVP O O B-NP B-VP B-NP I-NP I-NP B-PP B-NP I-NP B-VP I-VP B-NP I-NP B-PP B-NP I-NP O B-NP B-VP B-PP B-NP I-NP I-NP I-NP
+B117	* * * * SEP * * * * * * * * * * * * * * * * REL( * * * * * REL)
+C117	Gyulai fought well
+C117	but he had too few troops under his orders to influence the outcome of the battle
+C117	the battle which ended in a decisive French victory
+
+S118	The brand ’s ambition is to be bespoke , independent and fresh , which is why it is deliberately based close to its target consumer in Monaco instead of close to some of its main competitors
+P118	DT NN NN NN VBZ TO VB JJ , JJ CC JJ , WDT VBZ WRB PP VBZ RB VBN NN TO PP$ NN NN IN NP RB IN NN TO DT IN PP$ JJ NNS
+N118	B-NP I-NP I-NP I-NP B-VP B-VP I-VP B-ADJP O B-NP I-NP I-NP O B-NP B-VP B-ADVP B-NP B-VP I-VP I-VP B-NP B-PP B-NP I-NP I-NP B-PP B-NP B-PP I-PP B-NP B-PP B-NP B-PP B-NP I-NP I-NP
+B118	* * * * * * * * * * * * * REL( * * * * * * * * * * * * * * * * * * * * * REL)
+C118	The brand ’s ambition is to be bespoke , independent and fresh
+C118	it is deliberately based close to its target consumer in Monaco instead of close to some of its main competitors
+
+S119	To prevent the risk of piracy the trade ships had to be followed by war ships , which made the journey very expensive
+P119	TO VB DT NN IN NN DT NN NNS VBD TO VB VBN IN NN NNS , WDT VBD DT NN RB JJ
+N119	B-VP I-VP B-NP I-NP B-PP B-NP B-NP I-NP I-NP B-VP I-VP I-VP I-VP B-PP B-NP I-NP O B-NP B-VP B-NP I-NP B-ADJP I-ADJP
+B119	* * * * * * * * * * * * * * * * * REL( * * * * REL)
+C119	To prevent the risk of piracy the trade ships had to be followed by war ships
+C119	trade ships had to be followed by war ships, which made the journey very expensive
+
+S120	He was from Karka dPiroz , which is today called Karkani , in the Tirhan region
+P120	PP VBD IN NP NP , WDT VBZ NN VBN NP , IN DT NP NN
+N120	B-NP B-VP B-PP B-NP I-NP O B-NP B-VP B-NP B-VP B-NP O B-PP B-NP I-NP I-NP
+B120	* * * * * * REL( * * * REL) * * * * *
+C120	He was from Karka dPiroz , which is today called Karkani
+C120	He was from Karka dPiroz in the Tirhan region
+
+S121	Ben , who had been cowering in a corner , watched the Man in Black exit through the same door it had come in through
+P121	NP , WP VBD VBN VBG IN DT NN , VBD DT NN IN NP NN IN DT JJ NN PP VBD VBN IN IN
+N121	B-NP O B-NP B-VP I-VP I-VP B-PP B-NP I-NP O B-VP B-NP I-NP B-PP B-NP I-NP B-PP B-NP I-NP I-NP B-NP B-VP I-VP B-PP B-PP
+B121	* * REL( * * * * * REL) * * * * * * * * * * * * * * * *
+C121	Ben , who had been cowering in a corner
+C121	Ben watched the Man in Black exit through the same door it had come in through
+
+S122	She gave the remaining of her rancho to her children , who bore their father ’s name , Miranda
+P122	PP VBD DT VBG IN PP$ NN TO PP$ NNS , WP VBD PP$ NN NNS NN , NP
+N122	B-NP B-VP B-NP I-NP B-PP B-NP I-NP B-PP B-NP I-NP O B-NP B-VP B-NP I-NP I-NP I-NP O O
+B122	* * * * * * * * * * * REL( * * * * REL) * RELA(,RELA)
+C122	She gave the remaining of her rancho to her children
+C122	her children , who bore their father ’s name
+C122	their father ’s name Miranda
+
+S123	Ayanna , who is heartbroken when her mother is sold as Ayanna watches across the Mississippi River , eventually escapes slavery and starts a new life
+P123	NP , WP VBZ JJ WRB PP$ NN VBZ VBN IN NP NNS IN DT NP NP , RB VBZ NN CC VBZ DT JJ NN
+N123	B-NP O B-NP B-VP B-ADJP B-ADVP B-NP I-NP B-VP I-VP B-PP B-NP I-NP B-PP B-NP I-NP I-NP O B-ADVP B-VP B-NP O B-VP B-NP I-NP I-NP
+B123	* * REL( * * * * * * * * * * * * * REL) * * LIT( LIT) * LIT( * * LIT)
+C123	Ayanna , who is heartbroken when her mother is sold as Ayanna watches across the Mississippi River
+C123	Ayanna eventually escapes slavery and starts a new life
+
+S124	In 2004 she won the release of Kenneth Marsh , who was wrongfully convicted of murdering his girlfriends two-year-old son when he fell off the couch and hit his head on the fireplace hearth
+P124	IN CD PP VBD DT NN IN NP NP , WP VBD RB VBN IN VBG PP$ NNS JJ NN WRB PP VBD RP DT NN CC VBD PP$ NN IN DT NN NN
+N124	B-PP B-NP I-NP B-VP B-NP I-NP B-PP B-NP I-NP O B-NP B-VP I-VP I-VP B-PP B-VP B-NP I-NP I-NP I-NP B-ADVP B-NP B-VP B-PRT B-NP I-NP O B-VP B-NP I-NP B-PP B-NP I-NP I-NP
+B124	* * * * * * * * * * REL( * * * * * * * * * * * LIT( * * LIT) * LIT( * * * * * REL),LIT)
+C124	In 2004 she won the release of Kenneth Marsh
+C124	Kenneth Marsh , who was wrongfully convicted of murdering his girlfriends two-year-old son when he fell off the couch and hit his head on the fireplace hearth
+
+S125	Peter is a brainiac , who does well in school , and enjoys nature
+P125	NP VBZ DT NN , WP VBZ RB IN NN , CC VBZ NN
+N125	B-NP B-VP B-NP I-NP O B-NP B-VP B-ADVP B-PP B-NP O O B-VP B-NP
+B125	* * * * * REL( * * * REL) * * * *
+C125	Peter is a brainiac
+C125	a brainiac , who does well in school
+C125	Peter enjoys nature
+
+S126	The Dale Sisters were a British vocal trio , who had limited chart success in the early 1960s
+P126	DT NP NP VBD DT JJ JJ NN , WP VBD VBN NN NN IN DT JJ NNS
+N126	B-NP I-NP I-NP B-VP B-NP I-NP I-NP I-NP O B-NP B-VP I-VP B-NP I-NP B-PP B-NP I-NP I-NP
+B126	* * * * * * * * * REL( * * * * * * * REL)
+C126	The Dale Sisters were a British vocal trio
+C126	vocal trio , who had limited chart success in the early 1960s
+
+S127	The priest , who had no knowledge of Sanskrit , was corrected but he admitted that the wrong mantra had been in use for generations
+P127	DT NN , WP VBD DT NN IN NN , VBD VBN CC PP VBD IN DT JJ NN VBD VBN IN NN IN NNS
+N127	B-NP I-NP O B-NP B-VP B-NP I-NP B-PP B-NP O B-VP I-VP O B-NP B-VP B-SBAR B-NP I-NP I-NP B-VP I-VP B-PP B-NP B-PP B-NP
+B127	* * * REL( * * * * REL) * * * SEP * * * * * * * * * * * *
+C127	The priest , who had no knowledge of Sanskrit
+C127	The priest was corrected
+C127	he admitted that the wrong mantra had been in use for generations
+
+S128	He has one older sister , Lacey , who passed away
+P128	PP VBZ CD JJR NN , NP , WP VBD RB
+N128	B-NP B-VP B-NP I-NP I-NP O B-NP O B-NP B-VP B-ADVP
+B128	* * * * * * RELA(,RELA) * REL( * REL)
+C128	He has one older sister 
+C128	older sister , Lacey
+C128	one older sister who passed away
+
+S129	Chiron , who competes in Ironman Triathlon events , coached Clarence in the 1999 TSFL season
+P129	NP , WP VBZ IN NN NP NNS , VBD NP IN DT CD NP NN
+N129	B-NP O B-NP B-VP B-PP B-NP I-NP I-NP O B-VP B-NP B-PP B-NP I-NP I-NP I-NP
+B129	* * REL( * * * * REL) * * * * * * * *
+C129	Chiron , who competes in Ironman Triathlon events
+C129	Chiron coached Clarence in the 1999 TSFL season
+
+S130	Ben Goldacre is a medical doctor and journalist , who analyses misrepresentation of science and pseudoscience
+P130	NP NP VBZ DT JJ NN CC NN , WP VBZ NN IN NN CC NN
+N130	B-NP I-NP B-VP B-NP I-NP I-NP I-NP I-NP O B-NP B-VP B-NP B-PP B-NP I-NP I-NP
+B130	* * * * * * * * * REL( * * * * * REL)
+C130	Ben Goldacre is a medical doctor and journalist
+C130	journalist who analyses misrepresentation of science and pseudoscience
+
+S131	He joined the club from 1 FC Union Berlin in the summer of 2003 , with whome he played two season in the second German division
+P131	PP VBD DT NN IN CD NP NP NP IN DT NN IN CD , IN NN PP VBD CD NN IN DT JJ JJ NN
+N131	B-NP B-VP B-NP I-NP B-PP B-NP B-NP I-NP I-NP B-PP B-NP I-NP B-PP B-NP O B-PP B-NP B-NP B-VP B-NP I-NP B-PP B-NP I-NP I-NP I-NP
+B131	* * * * * * * * * * * * * * * REL( * * * * * * * * * REL)
+C131	He joined the club from 1 FC Union Berlin in the summer of 2003
+C131	FC Union Berlin with whome he played two season in the second German division
+
+S132	Mike Gascoyne , whose previous Lotus entry with Litespeed was unsuccessful , will be the technical director
+P132	NP NP , WP$ JJ NP NN IN NP VBD JJ , MD VB DT JJ NN
+N132	B-NP I-NP O B-NP I-NP I-NP I-NP B-PP B-NP B-VP B-ADJP O B-VP I-VP B-NP I-NP I-NP
+B132	* * * REL( * * * * * * REL) * * * * * *
+C132	Mike Gascoyne , whose previous Lotus entry with Litespeed was unsuccessful
+C132	Mike Gascoyne will be the technical director
+
+S133	Villiers is a technology school , whose core subject at GCSE is Design and Technology
+P133	NP VBZ DT NN NN , WP$ JJ NN IN NP VBZ NP CC NP
+N133	B-NP B-VP B-NP I-NP I-NP O B-NP I-NP I-NP B-PP B-NP B-VP B-NP O O
+B133	* * * * * * REL( * * * * * * * REL)
+C133	technology school , whose core subject at GCSE is Design and Technology
+C133	Villiers is a technology school
+
+S134	Mole poblano , whose name comes from the Mexican state of Puebla , is a popular sauce in Mexican cuisine
+P134	NP NP , WP$ NN VBZ IN DT JJ NN IN NP , VBZ DT JJ NN IN JJ NN
+N134	B-NP I-NP O B-NP I-NP B-VP B-PP B-NP I-NP I-NP B-PP B-NP O B-VP B-NP I-NP I-NP B-PP B-NP I-NP
+B134	* * * REL( * * * * * * * REL) * * * * * * * *
+C134	Mole poblano whose name comes from the Mexican state of Puebla
+C134	Mole poblano is a popular sauce in Mexican cuisine
+
+S135	She had just rescued Jessica Lynch , whose vehicle had crashed
+P135	PP VBD RB VBD NP NP , WP$ NN VBD VBD
+N135	B-NP B-VP I-VP I-VP B-NP I-NP O B-NP I-NP B-VP I-VP
+B135	* * * * * * * REL( * * REL)
+C135	She had just rescued Jessica Lynch
+C135	Jessica Lynch whose vehicle had crashed
+
+S136	A prototypical dashboard figure later named wackelelvis ( ) ( Wobble Elvis or Wobbly Elvis ) appeared in the commercials to demonstrate the smooth ride in an Audi equipped with the multitronic transmission
+P136	DT JJ NN VBP RBR VBN NNS ( ) ( NP NP CC NP NP ) VBD IN DT NNS TO VB DT JJ NN IN DT NP VBN IN DT JJ NN
+N136	B-NP I-NP I-NP B-VP B-NP I-NP I-NP O O O B-NP I-NP O B-NP I-NP O B-VP B-PP B-NP I-NP B-VP I-VP B-NP I-NP I-NP B-PP B-NP I-NP B-VP B-PP B-NP I-NP I-NP
+B136	* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+C136	A prototypical dashboard figure later named wackelelvis ( Wobble Elvis or Wobbly Elvis ) appeared in the commercials to demonstrate the smooth ride in an Audi equipped with the multitronic transmission
+
+S137	Gardnerian Wicca , or Gardnerian Witchcraft , is a mystery culttradition or denomination in the neopagan religion of wicca , whose members can trace initiatory descent from gerald gardner
+P137	NP NP , CC NP NP , VBZ DT NN NN CC NN IN DT NN NN IN NP , WP$ NNS MD VB JJ NN IN NP NP
+N137	B-NP I-NP O O B-NP I-NP O B-VP B-NP I-NP I-NP I-NP I-NP B-PP B-NP I-NP I-NP B-PP B-NP O B-NP I-NP B-VP I-VP B-NP I-NP B-PP B-NP I-NP
+B137	* * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+C137	Gardnerian Wicca or Gardnerian Witchcraft
+C137	Gardnerian Wicca is a mystery culttradition or denomination in the neopagan religion of wicca
+C137	a mystery culttradition or denomination whose members can trace initiatory descent from gerald gardner
+
+S138	In 1876 Bertha von Suttner became Alfred Nobel 's secretary but after only a brief stay , left and married Baron Arthur Gundaccar von Suttner .
+P138	IN CD NP NP NP VBD NP NP POS NN CC IN RB DT JJ NN , VBN CC VBN NP NP NP NP NP .
+N138	B-PP B-NP I-NP I-NP I-NP B-VP B-NP I-NP B-NP I-NP O B-PP B-NP I-NP I-NP I-NP O B-VP I-VP I-VP B-NP I-NP I-NP I-NP I-NP O
+B138	* * * * * * * * * * * * * * * * * * * * * * * * * *
+C138	XX
+C138	XX
+
+S139	The new emir of Hamadan , hearing of this correspondence and discovering where Ibn Sina was hidden , incarcerated him in a fortress .
+P139	DT JJ NN IN NP , NN IN DT NN CC VBG WRB NP NP VBD VBN , VBD PP IN DT NN .
+N139	B-NP I-NP I-NP B-PP B-NP O B-NP B-PP B-NP I-NP O B-VP B-ADVP B-NP I-NP B-VP I-VP O B-VP B-NP B-PP B-NP I-NP O
+B139	* * * * * * * * * * * * * * * * * * * * * * * *
+C139	XX
+C139	XX
+
+S140	This is a test with a lot of brackets , which ( although ( in ( a ) lot ) of different levels ) should ( work ) .
+P140	DT VBZ DT NN IN DT NN IN NNS , WDT ( IN ( IN ( DT ) NN ) IN JJ NNS ) MD ( NN ) .
+N140	B-NP B-VP B-NP I-NP B-PP B-NP I-NP B-PP B-NP O B-NP O B-SBAR O B-PP O B-NP O B-NP O B-PP B-NP I-NP O B-VP O B-NP O O
+B140	* * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+C140	XX
+C140	XX
+
+S141	, or whatever constitutes the potential house , while the form of the substance is the actual house , namely 'covering for bodies and chattels ' or any other differentia ( see also predicables ) .
+P141	, CC WDT VBZ DT JJ NN , IN DT NN IN DT NN VBZ DT JJ NN , RB VBG IN NNS CC NNS '' CC DT JJ NN ( VB RB NNS ) .
+N141	O O B-NP B-VP B-NP I-NP I-NP O B-SBAR B-NP I-NP B-PP B-NP I-NP B-VP B-NP I-NP I-NP O B-ADVP B-VP B-PP B-NP I-NP I-NP I-NP O B-NP I-NP I-NP O B-VP B-ADVP B-NP O O
+B141	* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+C141	XX
+C141	XX
+
+S142	According to Aristotle , luck must involve choice ( and thus deliberation ) , and only humans are capable of deliberation and choice .
+P142	VBG TO NP , NN MD VB NN ( CC RB NN ) , CC JJ NNS VBP JJ IN NN CC NN .
+N142	B-PP B-PP B-NP O B-NP B-VP I-VP B-NP O O B-ADVP B-NP O O O B-NP I-NP B-VP B-ADJP B-PP B-NP I-NP I-NP O
+B142	* * * * * * * * * * * * * * * * * * * * * * * *
+C142	XX
+C142	XX

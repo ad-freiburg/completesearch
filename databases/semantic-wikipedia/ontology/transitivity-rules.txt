@@ -1,0 +1,7 @@
+# The is-a.entity.class relation is transitive.
+facts.is-a.Entity.Class.txt
+# The located in relation should be transitive but the way it works in yago, 
+# the relation just does not make too much sense. I.e. Berlin is located in germany, 
+# ulm is located in baden-württemberg but baden württemberg is not located in germany.
+# This is the same for ever entry. Entries on the right side never occur on the left side, too.
+# facts.locatedin.location.location.txt

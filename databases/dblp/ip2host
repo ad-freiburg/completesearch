@@ -1,0 +1,113 @@
+#!/usr/bin/perl
+
+=head1 DESCRIPTION
+
+Usage: cat <some log file> | ip2host 
+
+Reads from STDIN line by line
+
+Writes modified lines to STDOUT, where after each IP address found the
+corresponding host name is inserted in paranthesis, as in
+
+Input  line:  26.12.2007 10:43:12  ...  129.34.20.19  ...
+
+Output line:  26.12.2007 10:43:12  ...  129.34.20.19 (yktgi01e0-s5.watson.ibm.com)  ...
+
+Uses the "host" command. If it fails, inserts "(unknown host)" 
+
+OPTIONS
+
+-r : replace ip address by the looked up information, instead of appending it
+
+-c : lookup country code (using geoiplookup), instead of host name
+
+-t : truncate line to fit terminal width (currently fixed to 170)
+
+-M : filter out lines with mpino1603 or geek2 IP adress
+
+-x : leave all lines as they are --- useful for quick change of command line
+
+-o : obscure IP addresses (replace last digits by X)
+
+-s : show only lines which match given pattern
+
+=cut
+
+#print getHostName(shift) , "\n"; exit;
+
+use Getopt::Std;
+getopts("cortxMs:q:");
+our $opt_c;
+our $opt_o;
+our $opt_r;
+our $opt_t;
+our $opt_x;
+our $opt_M;
+our $opt_s;
+our $opt_q;
+
+# flush after every line of output
+$tmp = select(STDOUT); $| = 1; select($tmp);
+
+while(my $line = <>)
+{
+  # optionally filter out lines with certain IP addresses from MPI
+  next if $opt_M && $line =~ /\| 139\.19\.3\.65/;   # dude
+  next if $opt_M && $line =~ /\| 139\.19\.14\.116/; # infno1603
+  next if $opt_M && $line =~ /\| 139\.19\.3\.43/; # infno1603
+  
+  # optionally filter out lines where session does not match given pattern
+  next if $opt_s && $line !~ /\| $opt_s/;
+  
+  # optionally filter out lines where query types do not match given pattern
+  next if $opt_q && $line !~ / $opt_q/;
+  
+  # optionally print the line unmodified
+  if ($opt_x) { print $line; next; }
+
+  # replace all chars with ASCII code > 127
+  $line =~ s/[\x80-\xff]/~/g;
+
+  # replace ip
+  $line =~ s/\s*(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s*(\[P\])?\s*/sprintf(" %-35s ", $opt_r ?  lookup($1) : lookup($1) . " (" . obscure($1) . ")")/e;
+
+  # optionally truncate the various fields
+  if ($opt_t) { $line =~
+    s/^([^|]{0,20})(.*?)\|([^|]*)(.*?)\|([^|]{0,45})(.*?)\|([^|]{0,14})(.*?)\|([^|]{0,35})(.*?)\|([^|]*)(.*?)\|([ *#]{0,5}).*/$1."|".$3."|".sprintf("%-46s",$5)."|".sprintf("%-14s", $7)."|".sprintf("%-35s",$9)."|".$11."|".sprintf("%-6s", $13)/e; }
+
+  # print the modified line
+  print $line;
+
+  # flush it!
+  $tmp = select(STDOUT); $| = 1; select($tmp);
+}
+  
+
+# lookup the ip address (host name, country) 
+sub lookup()
+{
+  my $ip = $_[0];
+  if ($opt_c)
+  {
+    my $country = `geoiplookup $ip`;
+    $country =~ s/GeoIP Country Edition:\s*//;
+    $country =~ s/IP Address not found/FF, Far Far Away/;
+    chomp $country;
+    return $country;
+  }
+  else
+  {
+    my $host = `host $ip`;
+    if    ($host =~ /not found/)                    { return "unknown host"; }
+    elsif ($host =~ / ([a-zA-Z0-9\-\.]+?)\.?\s*$/m) { return $1; }
+    else                                            { return "could not parse host name"; }
+  }
+}
+
+# obscure IP address (replace last three digits by X)
+sub obscure()
+{
+  my $ip = $_[0];
+  $ip =~ s/\d+$/X/ if $opt_o;
+  return $ip;
+}

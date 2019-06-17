@@ -1,0 +1,26 @@
+div { 
+      border:solid 1px #dddddd;
+      border-style:groove;
+      background:#dddddd;
+      margin-left:25px; 
+      font-size:11px;
+      padding-left:5px;
+      padding-right:10px;
+      padding-top:10px;
+      padding-bottom:20px;
+      margin-top:10px;
+      margin-bottom:10px;
+      max-width:90%;
+      max-height:300px;
+      height:300px;
+      text-align:left;
+      overflow:auto;
+}
+
+button {
+      margin-left:25px; 
+}
+
+body {
+      background:#efd7ac;
+}

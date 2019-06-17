@@ -1,0 +1,4 @@
+# The isA.class.class relation is transitive
+facts.isA.class.class.txt
+# This is is transitive, too
+facts.testTransitiveDelete.t1.t2.txt

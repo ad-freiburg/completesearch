@@ -1,0 +1,29 @@
+body { color:#000000; background:#ffffff; }
+
+a {color:#000000;}
+a:hover {color:#ff0000;text-decoration:none;}
+
+.llogo {float: left; }
+.rlogo {float: right; }
+.clogo {text-align: center; }
+
+h1 {clear:both; color:#d0d0d0; background:#005e9c; padding:4px; }
+h1 a {text-decoration:none; color:#ffffff; } 
+h1 a:hover {color:#ff0000;text-decoration:underline; } 
+
+.footer { color:#d0d0d0; background:#005e9c; padding:4px; } 
+.footer a {text-decoration:none; color:#ffffff; background:#005e9c; } 
+.footer a:hover {color:#ff0000;text-decoration:underline; } 
+
+.rblue { color:#d0d0d0; background:#005e9c; text-align:right; 
+         padding:4px; float:right; width: 20%;}
+.rblue a {text-decoration:none; color:#ffffff; } 
+.rblue a:hover {color:#ff0000;text-decoration:underline; } 
+
+.rfl { float:right; }
+.clr { clear:both; }
+.yellow { background:#ffffcc; }
+
+h1 a.vis { font-size:small; color:#ff0000; }
+h1 a.vis hover { text-decoration:underline; }
+

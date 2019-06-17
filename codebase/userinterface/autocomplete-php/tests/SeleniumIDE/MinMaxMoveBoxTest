@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>Minimize / maximize boxes and move them to the right and back</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Minimize / maximize boxes and move them to the right and back</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>index.php?language=de</td>
+	<td></td>
+</tr>
+<tr>
+	<td>createCookie</td>
+	<td>qt=HWF</td>
+	<td></td>
+</tr>
+<tr>
+	<td>createCookie</td>
+	<td>hpp=5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>createCookie</td>
+	<td>mcsr=30</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>reset_link</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyXpathCount</td>
+	<td>//*[@id=&quot;autocomplete_F_boxes_1_body&quot;]/div</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>move_F_boxes_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>detail</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyXpathCount</td>
+	<td>//*[@id=&quot;autocomplete_F_boxes_1_body&quot;]/div</td>
+	<td>31</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='autocomplete_F_boxes_1_body']/div/span[@class='more_link']</td>
+	<td>[Top 4] [Top 50] [Top 250] [alle 278]</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='autocomplete_F_boxes_1_body']/div/span[@class='more_link']/a[1]</td>
+	<td>Top 4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='autocomplete_F_boxes_1_body']/div/span[@class='more_link']/a[2]</td>
+	<td>Top 50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='autocomplete_F_boxes_1_body']/div/span[@class='more_link']/a[3]</td>
+	<td>Top 250</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='autocomplete_F_boxes_1_body']/div/span[@class='more_link']/a[4]</td>
+	<td>alle 278</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>move_F_boxes_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotVisible</td>
+	<td>detail</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>autocomplete_query</td>
+	<td>inf</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>autocomplete_query</td>
+	<td>\</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>move_W_boxes_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyVisible</td>
+	<td>detail</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyXpathCount</td>
+	<td>//*[@id=&quot;autocomplete_W_boxes_1_body&quot;]/div</td>
+	<td>31</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='autocomplete_W_boxes_1_body']/div/span[@class='more_link']</td>
+	<td>[Top 4] [Top 50] [alle 97]</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='autocomplete_W_boxes_1_body']/div/span[@class='more_link']/a[1]</td>
+	<td>Top 4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='autocomplete_W_boxes_1_body']/div/span[@class='more_link']/a[2]</td>
+	<td>Top 50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='autocomplete_W_boxes_1_body']/div/span[@class='more_link']/a[3]</td>
+	<td>alle 97</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>toggle_W_boxes_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyNotVisible</td>
+	<td>autocomplete_W_boxes_1_body</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>toggle_W_boxes_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyVisible</td>
+	<td>autocomplete_W_boxes_1_body</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>toggle_F_boxes_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyNotVisible</td>
+	<td>autocomplete_F_boxes_1_body</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>toggle_F_boxes_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyVisible</td>
+	<td>autocomplete_F_boxes_1_body</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>toggle_F_boxes_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyNotVisible</td>
+	<td>autocomplete_F_boxes_2_body</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>toggle_F_boxes_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyVisible</td>
+	<td>autocomplete_F_boxes_2_body</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>toggle_F_boxes_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyNotVisible</td>
+	<td>autocomplete_F_boxes_3_body</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>toggle_F_boxes_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyVisible</td>
+	<td>autocomplete_F_boxes_3_body</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

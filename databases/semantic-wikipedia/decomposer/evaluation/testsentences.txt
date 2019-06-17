@@ -1,0 +1,406 @@
+S1	The house , which is green , was destroyed
+P1	DT NN , WDT VBZ JJ , VBD VBN
+N1	B-NP I-NP O B-NP B-VP B-ADJP O B-VP I-VP
+B1	* * * REL( * REL) * * *
+C1	The house which is green
+C1	The house was destroyed
+
+S2	Belt wrestling has achieved a new dynamic and is undergoing a renaissance in the 21st century
+P2	NP NN VBZ VBN DT JJ NN CC VBZ VBG DT NN IN DT JJ NN
+N2	B-NP I-NP B-VP I-VP B-NP I-NP I-NP O B-VP I-VP B-NP I-NP B-PP B-NP I-NP I-NP
+B2	* * LIT( * * * LIT) * LIT( * * * * * * LIT)
+C2	Belt wrestling has achieved a new dynamic
+C2	Belt wrestling is undergoing a renaissance in the 21st century
+
+S3	Harrison asserts the existence of female trinities , discusses the Horae as chronological symbols representing the phases of the Moon and goes on to equate the Horae with the Seasons , the Graces and the Fates
+P3	NP VBZ DT NN IN JJ NNS , VBZ DT NNS IN JJ NNS VBG DT NNS IN DT NP CC VBZ RP TO VB DT NP IN DT NPS , DT NP CC DT NP
+N3	B-NP B-VP B-NP I-NP B-PP B-NP I-NP O B-VP B-NP I-NP B-PP B-NP I-NP B-VP B-NP I-NP B-PP B-NP I-NP O B-VP B-NP B-VP I-VP B-NP I-NP B-PP B-NP I-NP O B-NP I-NP O B-NP I-NP
+B3	* LIT( * * * * LIT) * LIT( * * * * * * * * * * LIT) * LIT( * * * * * * LIT( LIT) * LIT( LIT) * LIT( LIT),LIT)
+C3	Harrison asserts the existence of female trinities
+C3	Harrison discusses the Horae as chronological symbols representing the phases of the Moon
+C3	Harrison goes on to equate the Horae with the Seasons 
+C3	Harrison goes on to equate the Horae with the the Graces 
+C3	Harrison goes on to equate the Horae with the the Fates
+
+S4	The original fortress , known as Gyel-khar-tse , was attributed to Pelkhor-tsen , son of the anti-Buddhist king Langdharma , who probably reigned from 838 to 841 CE
+P4	DT JJ NN , VBN IN NP , VBD VBN TO NP , NN IN DT NN NN NP , WP RB VBD IN CD TO CD NP
+N4	B-NP I-NP I-NP O B-VP B-PP B-NP O B-VP I-VP B-PP B-NP O B-NP B-PP B-NP I-NP I-NP I-NP O B-NP B-ADVP B-VP B-PP B-NP B-PP B-NP I-NP
+B4	* * * * REL( * REL) * * * * * * RELA( * * * * RELA) * REL( * * * * * * REL)
+C4	The original fortress , known as Gyel-khar-tse
+C4	The original fortress was attributed to Pelkhor-tsen
+C4	Pelkhor-tsen , son of the anti-Buddhist king Langdharma
+C4	Pelkhor-tsen who probably reigned from 838 to 841 CE
+
+S5	The penalty of life imprisonment is not provided for in the Revised Penal Code , although it is imposed by other penal statutes such as the Comprehensive Dangerous Drugs Act
+P5	DT NN IN NN NN VBZ RB VBN IN IN DT VBN NP NP , IN PP VBZ VBN IN JJ JJ NNS JJ IN DT NP JJ NP NP
+N5	B-NP I-NP B-PP B-NP I-NP B-VP I-VP I-VP B-PP B-PP B-NP I-NP I-NP I-NP O B-SBAR B-NP B-VP I-VP B-PP B-NP I-NP I-NP B-PP I-PP B-NP I-NP I-NP I-NP I-NP
+B5	* * * * * * * * * * * * * * * SEP * * * * * * * * * * * * * *
+C5	The penalty of life imprisonment is not provided for in the Revised Penal Code
+C5	it is imposed by other penal statutes such as the Comprehensive Dangerous Drugs Act
+
+S6	Sir Charles Spencer Chaplin , KBE ( 16 April 1889 - 25 December 1977 ) , known as Charlie Chaplin , was an English comic actor , film director and composer best-known for his work during the silent film era
+P6	NP NP NP NP , NP ( CD NP CD : CD NP CD ) , VBN IN NP NP , VBD DT JJ JJ NN , NN NN CC NN JJS IN PP$ NN IN DT JJ NN NN
+N6	B-NP I-NP I-NP I-NP O B-NP I-NP I-NP I-NP I-NP O B-NP I-NP I-NP O O B-VP B-PP B-NP I-NP O B-VP B-NP I-NP I-NP I-NP O B-NP I-NP O B-NP I-NP B-PP B-NP I-NP B-PP B-NP I-NP I-NP I-NP
+B6	* * * * * RELA( * * * * * * * * RELA) * REL( * * REL) * * LIT( * * LIT) * LIT( LIT) * LIT( * * * * * * * * LIT)
+C6	Sir Charles Spencer Chaplin KBE ( 16 April 1889 - 25 December 1977 )
+C6	Sir Charles Spencer Chaplin known as Charlie Chaplin
+C6	Sir Charles Spencer Chaplin was an English comic actor 
+C6	Sir Charles Spencer Chaplin was a film director 
+C6	Sir Charles Spencer Chaplin was a composer best-known for his work during the silent film era
+
+S7	Chaplin used mime , slapstick and other visual comedy routines , and continued well into the era of the talkies , though his films decreased in frequency from the end of the 1920s
+P7	NP VBD NN , NN CC JJ JJ NN NNS , CC VBD RB IN DT NN IN DT NNS , IN PP$ NNS VBN IN NN IN DT NN IN DT NNS
+N7	B-NP B-VP B-NP I-NP I-NP I-NP I-NP I-NP I-NP I-NP O O B-VP B-ADVP B-PP B-NP I-NP B-PP B-NP I-NP O B-SBAR B-NP I-NP B-VP B-PP B-NP B-PP B-NP I-NP B-PP B-NP I-NP
+B7	* LIT( * * * * * * * LIT) * * LIT( * * * * * * LIT) * SEP * * * * * * * * * * *
+C7	Chaplin used mime , slapstick and other visual comedy routines
+C7	Chaplin continued well into the era of the talkies
+C7	his films decreased in frequency from the end of the 1920s
+
+S8	As a small child , Chaplin also lived with his mother in various addresses in and around Kennington Road in Lambeth , including 3 Pownall Terrace , Chester Street and 39 Methley Street
+P8	IN DT JJ NN , NP RB VBD IN PP$ NN IN JJ NNS IN CC IN NP NP IN NP , VBG CD NP NP , NP NP CC CD NP NP
+N8	B-PP B-NP I-NP I-NP O B-NP B-ADVP B-VP B-PP B-NP I-NP B-PP B-NP I-NP B-PP I-PP I-PP B-NP I-NP B-PP B-NP O B-PP B-NP I-NP I-NP O B-NP I-NP O B-NP I-NP I-NP
+B8	* * * * SEP * * * * * * * * * * * * * * * * * REL( LIT( * LIT) * LIT( LIT) * LIT( * LIT),REL)
+C8	As a small child
+C8	Chaplin also lived with his mother in various addresses in and around Kennington Road in Lambeth
+C8	addresses in and around Kennington Road in Lambeth , including 3 Pownall Terrace
+C8	addresses in and around Kennington Road in Lambeth , including Chester Street
+C8	addresses in and around Kennington Road in Lambeth , including 39 Methley Street
+
+S9	However , Chaplin 's pictures were soon a success , and he became one of the biggest stars at Keystone
+P9	RB , NP POS NNS VBD RB DT NN , CC PP VBD CD IN DT JJS NNS IN NP
+N9	B-ADVP O B-NP B-NP I-NP B-VP B-ADVP B-NP I-NP O O B-NP B-VP B-NP B-PP B-NP I-NP I-NP B-PP B-NP
+B9	* SEP * * * * * * * * SEP * * * * * * * * *
+C9	However
+C9	Chaplin 's pictures were soon a success
+C9	he became one of the biggest stars at Keystone
+
+S10	Edna Purviance remained the leading lady , and Chaplin added Eric Campbell , Henry Bergman , and Albert Austin to his stock company
+P10	NP NP VBD DT VBG NN , CC NP VBD NP NP , NP NP , CC NP NP TO PP$ NN NN
+N10	B-NP I-NP B-VP B-NP I-NP I-NP O O B-NP B-VP B-NP I-NP O B-NP I-NP O O B-NP I-NP B-PP B-NP I-NP I-NP
+B10	* * * * * * * SEP * * LIT( LIT) * LIT( LIT) * * LIT( LIT) * * * *
+C10	Edna Purviance remained the leading lady
+C10	Chaplin added Eric Campbell to his stock company
+C10	Chaplin added Henry Bergman to his stock company
+C10	Chaplin added Albert Austin to his stock company
+
+S11	Although Bernard de Bury ( 1720 - 1785 ) lived after this monarch , the positions for musicians set up under the Sun King would continue well into the eighteenth century
+P11	IN NP NP NP ( CD : CD ) VBD IN DT NN , DT NNS IN NNS VBN RP IN DT NP NP MD VB RB IN DT JJ NN
+N11	B-SBAR B-NP I-NP I-NP O B-NP O B-NP O B-VP B-PP B-NP I-NP O B-NP I-NP B-PP B-NP B-VP B-PRT B-PP B-NP I-NP I-NP B-VP I-VP B-ADVP B-PP B-NP I-NP I-NP
+B11	* * * * * * * * * * * * * SEP * * * * * * * * * * * * * * * * *
+C11	Although Bernard de Bury ( 1720 - 1785 ) lived after this monarch
+C11	positions for musicians set up under the Sun King would continue well into the eighteenth century
+
+S12	Bernard de Bury resided in Versailles his entire life , and held various positions at the court
+P12	NP NP NP VBN IN NP PP$ JJ NN , CC VBD JJ NNS IN DT NN
+N12	B-NP I-NP I-NP B-VP B-PP B-NP I-NP I-NP I-NP O O B-VP B-NP I-NP B-PP B-NP I-NP
+B12	* * * LIT( * * * * LIT) * * LIT( * * * * LIT)
+C12	Bernard de Bury resided in Versailles his entire life
+C12	Bernard de Bury held various positions at the court
+
+S13	He studied music with his father , as well as with Fran�ois Collin de Blamont ( 1690 - 1760 ) , to whom he dedicated his Premier Livre de Pi�ces de Clavecin
+P13	PP VBD NN IN PP$ NN , RB RB IN IN NP NP NP NP ( CD : CD ) , TO WP PP VBD PP$ NP NP NP NP NP NP
+N13	B-NP B-VP B-NP B-PP B-NP I-NP O B-CONJP I-CONJP I-CONJP B-PP B-NP I-NP I-NP I-NP O B-NP O B-NP O O B-PP B-NP B-NP B-VP B-NP I-NP I-NP I-NP I-NP I-NP I-NP
+B13	* * * * LIT( LIT) * * * * LIT( * * * LIT) * * * * * * REL( * * * * * * * * * REL)
+C13	He studied music with his father
+C13	He studied music with Fran�ois Collin de Blamont ( 1690 - 1760 ) 
+C13	Fran�ois Collin de Blamont ( 1690 - 1760 ) to whom he dedicated his Premier Livre de Pi�ces de Clavecin
+
+S14	De Bury continued a long distinguished line of musicians who held this position , which had passed from Jacques-Champion Chambonni�res ( 1601 / 1602 - 1672 ) to Jean-Henri D'Anglebert ( 1635 - 1691 ) to Fran�ois Couperin ( 1668 - 1733 ) , to his daughter , Margu�rite-Antoinette Couperin ( 1705 - c.1778 ) , and then to Bernard de Bury
+P14	NP NP VBD DT JJ JJ NN IN NNS WP VBD DT NN , WDT VBD VBD IN NP NP ( CD SYM CD : CD ) TO NP NP ( CD : CD ) TO NP NP ( CD : CD ) , TO PP$ NN , NP NP ( CD : NN ) , CC RB TO NP NP NP
+N14	B-NP I-NP B-VP B-NP I-NP I-NP I-NP B-PP B-NP B-NP B-VP B-NP I-NP O B-NP B-VP I-VP B-PP B-NP I-NP I-NP I-NP I-NP I-NP O B-NP O B-PP B-NP I-NP I-NP I-NP O B-NP O B-PP B-NP I-NP I-NP I-NP O B-NP O O B-PP B-NP I-NP O B-NP I-NP I-NP I-NP O B-NP I-NP O O B-ADVP B-PP B-NP I-NP I-NP
+B14	* * * * * * * * * * * * * * REL( * * LIT( * * * * * * * * LIT) LIT( * * * * * * LIT) LIT( * * * * * * LIT) * LIT( * * * RELA( RELA) * * * * LIT) * * LIT( * * * LIT),REL)
+C14	De Bury continued a long distinguished line of musicians who held this position
+C14	this position which had passed from Jacques-Champion Chambonni�res ( 1601 / 1602 - 1672 )
+C14	this position which had passed to Jean-Henri D'Anglebert ( 1635 - 1691 )
+C14	this position which had passed to Fran�ois Couperin ( 1668 - 1733 )
+C14	this position which had passed to to his daughter
+C14	his daughter Margu�rite-Antoinette Couperin ( 1705 - c.1778 )
+C14	this position which had passed then to Bernard de Bury
+
+S15	A long , rich tradition of French harpsichord compositions preceded the publication of the harpsichord suites by Bernard de Bury , and he himself contributed to the legacy that would continue to be built throughout most of the century
+P15	DT JJ , JJ NN IN JJ NN NNS VBN DT NN IN DT NN NNS IN NP NP NP , CC PP PP VBD TO DT NN WDT MD VB TO VB VBN IN JJS IN DT NN
+N15	B-NP I-NP I-NP I-NP I-NP B-PP B-NP I-NP I-NP B-VP B-NP I-NP B-PP B-NP I-NP I-NP B-PP B-NP I-NP I-NP O O B-NP I-NP B-VP B-PP B-NP I-NP B-NP B-VP I-VP I-VP I-VP I-VP B-PP B-NP B-PP B-NP I-NP
+B15	* * * * * * * * * * * * * * * * * * * * * SEP * * * * * * * * * * * * * * * * *
+C15	A long , rich tradition of French harpsichord compositions preceded the publication of the harpsichord suites by Bernard de Bury
+C15	he himself contributed to the legacy that would continue to be built throughout most of the century
+
+S16	The Steelheads finished third in the WCHL North Division in 1997 - 98 , but were eliminated in the first round of the playoffs by the Anchorage Aces ( now Alaska Aces )
+P16	DT NNS VBD JJ IN DT NP NP NP IN CD : CD , CC VBD VBN IN DT JJ NN IN DT NNS IN DT NP NP ( RB NP NP )
+N16	B-NP I-NP B-VP B-ADJP B-PP B-NP I-NP I-NP I-NP B-PP B-NP I-NP I-NP O O B-VP I-VP B-PP B-NP I-NP I-NP B-PP B-NP I-NP B-PP B-NP I-NP I-NP O B-ADVP B-NP I-NP O
+B16	* * LIT( * * * * * * * * * LIT) * * LIT( * * * * * * * * * * * LIT) * * * * *
+C16	The Steelheads finished third in the WCHL North Division in 1997 - 98
+C16	The Steelheads were eliminated in the first round of the playoffs by the Anchorage Aces ( now Alaska Aces )
+
+S17	In 2000 Malarchuk was succeeded as head coach by John Olver , who had coached the Tacoma Sabercats to the WCHL championship in 1998 - 99
+P17	IN CD NP VBD VBN IN NN NN IN NP NP , WP VBD VBN DT NP NP TO DT NP NN IN CD : CD
+N17	B-PP B-NP I-NP B-VP I-VP B-PP B-NP I-NP B-PP B-NP I-NP O B-NP B-VP I-VP B-NP I-NP I-NP B-PP B-NP I-NP I-NP B-PP B-NP O B-NP
+B17	* * * * * * * * * * * * REL( * * * * * * * * * * * * REL)
+C17	In 2000 Malarchuk was succeeded as head coach by John Olver
+C17	John Olver , who had coached the Tacoma Sabercats to the WCHL championship in 1998 - 99
+
+S18	The Steelheads finished with the best record in the WCHL 's final season in 2002 - 03 , the Falcons eliminated them in the first round of the playoffs
+P18	DT NNS VBD IN DT JJS NN IN DT NP POS JJ NN IN CD : CD , DT NP VBD PP IN DT JJ NN IN DT NNS
+N18	B-NP I-NP B-VP B-PP B-NP I-NP I-NP B-PP B-NP I-NP B-NP I-NP I-NP B-PP B-NP I-NP I-NP O B-NP I-NP B-VP B-NP B-PP B-NP I-NP I-NP B-PP B-NP I-NP
+B18	* * * * * * * * * * * * * * * * * SEP * * * * * * * * * * *
+C18	The Steelheads finished with the best record in the WCHL 's final season in 2002 - 03
+C18	the Falcons eliminated them in the first round of the playoffs
+
+S19	The two center express tracks , which are not used in revenue service , are at a lower level from the local tracks , having traveled from the abandoned lower level of Bergen Street , but are visible from the platforms
+P19	DT CD NN JJ NNS , WDT VBP RB VBN IN NN NN , VBP IN DT JJR NN IN DT JJ NNS , VBG VBN IN DT JJ JJR NN IN NP NP , CC VBP JJ IN DT NNS
+N19	B-NP I-NP I-NP I-NP I-NP O B-NP B-VP I-VP I-VP B-PP B-NP I-NP O B-VP B-PP B-NP I-NP I-NP B-PP B-NP I-NP I-NP O B-VP I-VP B-PP B-NP I-NP I-NP I-NP B-PP B-NP I-NP O O B-VP B-ADJP B-PP B-NP I-NP
+B19	* * * * * * REL( * * * * * REL) * LIT( * * * * * * * LIT) * REL( * * * * * * * * REL) * * LIT( * * * LIT)
+C19	The two center express tracks , which are not used in revenue service
+C19	The two center express tracks are at a lower level from the local tracks
+C19	The two center express tracks having traveled from the abandoned lower level of Bergen Street
+C19	The two center express tracks are visible from the platforms
+
+S20	A single staircase from each platform goes up to a crossover , where a turnstile bank provides entrance / exit to the system and mosaic signs point to the platforms
+P20	DT JJ NN IN DT NN VBZ RP TO DT NN , WRB DT NN NN VBZ NN SYM NN TO DT NN CC NN NNS VBP TO DT NNS
+N20	B-NP I-NP I-NP B-PP B-NP I-NP B-VP B-PRT B-PP B-NP I-NP O B-ADVP B-NP I-NP I-NP B-VP B-NP I-NP I-NP B-PP B-NP I-NP I-NP I-NP I-NP B-VP B-PP B-NP I-NP
+B20	* * * * * * * * * * * * REL( LIT( * * * * * * * * LIT) * LIT( * * * * LIT),REL)
+C20	A single staircase from each platform goes up to a crossover
+C20	 a crossover , where a turnstile bank provides entrance / exit to the system
+C20	 a crossover , where mosaic signs point to the platforms
+
+S21	Caspary is remembered for his collection of United States stamps , which included postmaster provisionals of both the United States of America and the Confederate States of America
+P21	NP VBZ VBN IN PP$ NN IN NP NPS NNS , WDT VBD NN NNS IN CC DT NP NPS IN NP CC DT JJ NPS IN NP
+N21	B-NP B-VP I-VP B-PP B-NP I-NP B-PP B-NP I-NP I-NP O B-NP B-VP B-NP I-NP B-PP O B-NP I-NP I-NP B-PP B-NP O B-NP I-NP I-NP B-PP B-NP
+B21	* * * * * * * * * * * REL( * * * * LIT( * * * * LIT) * LIT( * * * LIT),REL)
+C21	Caspary is remembered for his collection of United States stamps
+C21	his collection of United States stamps , which included postmaster provisionals of both the United States of America
+C21	his collection of United States stamps , which included postmaster provisionals of the Confederate States of America
+
+S22	The initial lineup consisted of Colin and Jorge on vocals , Yureesh on drums , Hank on guitar , and Mark on bass
+P22	DT JJ NN VBN IN NP CC NP IN NNS , NP IN NNS , NP IN NN , CC NP IN NN
+N22	B-NP I-NP I-NP B-VP B-PP B-NP O B-NP B-PP B-NP O B-NP B-PP B-NP O B-NP B-PP B-NP O O B-NP B-PP B-NP
+B22	* * * * * LIT( * * * LIT) * LIT( * LIT) * LIT( * LIT) * * LIT( * LIT)
+C22	The initial lineup consisted of Colin and Jorge on vocals
+C22	The initial lineup consisted of Yureesh on drums
+C22	The initial lineup consisted of Hank on guitar
+C22	The initial lineup consisted of Mark on bass
+
+S23	The Disciples is a 1993 spy thriller by Joe Andrew , who was chairman of the 2000 Democratic National Convention
+P23	DT NP VBZ DT CD NN NN IN NP NP , WP VBD NN IN DT CD JJ NP NP
+N23	B-NP I-NP B-VP B-NP I-NP I-NP I-NP B-PP B-NP I-NP O B-NP B-VP B-NP B-PP B-NP I-NP I-NP I-NP I-NP
+B23	* * * * * * * * * * * REL( * * * * * * * REL)
+C23	Joe Andrew , who was chairman of the 2000 Democratic National Convention
+C23	The Disciples is a 1993 spy thriller by Joe Andrew
+
+S24	Each year , long-duration idling of truck and locomotive engines emits 11 million tons of carbon dioxide , 200,000 tons of oxides of nitrogen , and 5,000 tons of particulate matter into the air
+P24	DT NN , NN NN IN NN CC NN NNS VBZ CD CD NNS IN NN NN , CD NNS IN NNS IN NN , CC CD NNS IN JJ NN IN DT NN
+N24	B-NP I-NP O B-NP I-NP B-PP B-NP I-NP I-NP I-NP B-VP B-NP I-NP I-NP B-PP B-NP I-NP O B-NP I-NP B-PP B-NP B-PP B-NP O O B-NP I-NP B-PP B-NP I-NP B-PP B-NP I-NP
+B24	* * * * * * * * * * * LIT( * * * * LIT) * LIT( * * * * LIT) * * LIT( * * * LIT) * * *
+C24	Each year , long-duration idling of truck and locomotive engines emits 11 million tons of carbon dioxide into the air
+C24	Each year , long-duration idling of truck and locomotive engines emits 200,000 tons of oxides of nitrogen into the air
+C24	Each year , long-duration idling of truck and locomotive engines emits 5,000 tons of particulate matter into the air 
+
+S25	Most of them are paddy growers but there are coconut plantations also
+P25	JJS IN PP VBP NN NNS CC EX VBP JJ NNS RB
+N25	B-NP B-PP B-NP B-VP B-NP I-NP O B-NP B-VP B-NP I-NP B-ADVP
+B25	* * * * * * SEP * * * * *
+C25	Most of them are paddy growers
+C25	there are coconut plantations also
+
+S26	An autoclave , which uses steam under pressure , is used in microbiology laboratories and similar environments for sterilization
+P26	DT NN , WDT VBZ NN IN NN , VBZ VBN IN NN NNS CC JJ NNS IN NN
+N26	B-NP I-NP O B-NP B-VP B-NP B-PP B-NP O B-VP I-VP B-PP B-NP I-NP O B-NP I-NP B-PP B-NP
+B26	* * * REL( * * * REL) * * * LIT( * LIT) * LIT( * * LIT)
+C26	An autoclave , which uses steam under pressure
+C26	An autoclave is used in microbiology laboratories
+C26	An autoclave is used in similar environments for sterilization
+
+S27	In each case , water is heated in a boiler , and the steam carries the energy to a target object
+P27	IN DT NN , NN VBZ VBN IN DT NN , CC DT NN VBZ DT NN TO DT NN NN
+N27	B-PP B-NP I-NP O B-NP B-VP I-VP B-PP B-NP I-NP O O B-NP I-NP B-VP B-NP I-NP B-PP B-NP I-NP I-NP
+B27	* * * * * * * * * * * SEP * * * * * * * * *
+C27	In each case , water is heated in a boiler
+C27	the steam carries the energy to a target object
+
+S28	It is not just a Temple ritual , but is a grand festival for the whole town
+P28	PP VBZ RB RB DT NP NN , CC VBZ DT JJ NN IN DT JJ NN
+N28	B-NP B-VP O B-ADVP B-NP I-NP I-NP O O B-VP B-NP I-NP I-NP B-PP B-NP I-NP I-NP
+B28	* LIT( * * * * LIT) * * LIT( * * * * * * LIT)
+C28	It is not just a Temple ritual
+C28	It is a grand festival for the whole town
+
+S29	Their mother , Lady Saltoun , is the suo jure Lady Saltoun and the Chief of the name and arms of Fraser
+P29	PP$ NN , NP NP , VBZ DT NN NN NP NP CC DT NP IN DT NN CC NNS IN NP
+N29	B-NP I-NP O B-NP I-NP O B-VP B-NP I-NP I-NP I-NP I-NP O B-NP I-NP B-PP B-NP I-NP I-NP I-NP B-PP B-NP
+B29	* * * RELA( RELA) * * LIT( * * * LIT) * LIT( * * * * * * * LIT)
+C29	Their mother , Lady Saltoun
+C29	Their mother is the suo jure Lady Saltoun
+C29	Their mother is the Chief of the name and arms of Fraser
+
+S30	As the eldest daughter without any brothers , Fraser is the heiress-presumptive to the Chiefship and the Lordship held by her mother
+P30	IN DT JJ NN IN DT NNS , NP VBZ DT NN TO DT NP CC DT NN VBN IN PP$ NN
+N30	B-SBAR B-NP I-NP I-NP B-PP B-NP I-NP O B-NP B-VP B-NP I-NP B-PP B-NP I-NP O B-NP I-NP B-VP B-PP B-NP I-NP
+B30	* * * * * * * SEP * * * * * LIT( LIT) * LIT( * * * * LIT)
+C30	As the eldest daughter without any brothers
+C30	Fraser is the heiress-presumptive to the Chiefship
+C30	Fraser is the heiress-presumptive to the the Lordship held by her mother
+
+
+S31	The leaves are sometimes used as a substitute for tea in China , and the fruit are edible , though not an important crop
+P31	DT NNS VBP RB VBN IN DT NN IN NN IN NP , CC DT NN VBP JJ , RB RB DT JJ NN
+N31	B-NP I-NP B-VP I-VP I-VP B-PP B-NP I-NP B-PP B-NP B-PP B-NP O O B-NP I-NP B-VP B-ADJP O B-ADVP O B-NP I-NP I-NP
+B31	* * * * * * * * * * * * * SEP * * * LIT(,LIT) * * LIT( * * LIT)
+C31	The leaves are sometimes used as a substitute for tea in China
+C31	the fruit are edible
+C31	the fruit are not an important crop
+
+S32	Taro is a tropical plant grown primarily as a root vegetable for its edible corm , and secondarily as a leaf vegetable
+P32	NP VBZ DT JJ NN VBN RB IN DT NN NN IN PP$ JJ NN , CC RB IN DT NN NN
+N32	B-NP B-VP B-NP I-NP I-NP B-VP B-ADVP B-PP B-NP I-NP I-NP B-PP B-NP I-NP I-NP O O B-ADVP B-PP B-NP I-NP I-NP
+B32	* * * * * * LIT( * * * * * * * LIT) * * LIT( * * * LIT)
+C32	Taro is a tropical plant grown primarily as a root vegetable for its edible corm
+C32	Taro is a tropical plant grown secondarily as a leaf vegetable
+
+S33	A number of weeds , such as the dandelion Taraxacum , are edible , and their leaves and roots may be used for food or herbal medicine
+P33	DT NN IN NNS , JJ IN DT NN NN , VBP JJ , CC PP$ NNS CC NNS MD VB VBN IN NN CC JJ NN
+N33	B-NP I-NP B-PP B-NP O B-PP I-PP B-NP I-NP I-NP O B-VP B-ADJP O O B-NP I-NP I-NP I-NP B-VP I-VP I-VP B-PP B-NP I-NP I-NP I-NP
+B33	* * * * * REL( * * * REL) * * * * SEP * * * * * * * * * * * *
+C33	A number of weeds are edible
+C33	weeds , such as the dandelion Taraxacum
+C33	their leaves and roots may be used for food or herbal medicine
+
+S34	The edible part of the leek plant is a bundle of leaf sheaths which is sometimes called a stem or stalk
+P34	DT JJ NN IN DT NN NN VBZ DT NN IN NN NNS WDT VBZ RB VBN DT NN CC NN
+N34	B-NP I-NP I-NP B-PP B-NP I-NP I-NP B-VP B-NP I-NP B-PP B-NP I-NP B-NP B-VP I-VP I-VP B-NP I-NP I-NP I-NP
+B34	* * * * * * * * * * * * * * * * * * * * *
+C34	The edible part of the leek plant is a bundle of leaf sheaths which is sometimes called a stem or stalk
+
+S35	The crushed and dried leaves and edible essential oils have a strong , sweet lemon taste but contain no citric acid
+P35	DT VBN CC VBN NNS CC JJ JJ NNS VBP DT JJ , JJ JJ NN CC VB DT JJ NN
+N35	B-NP I-NP I-NP I-NP I-NP O B-NP I-NP I-NP B-VP B-NP I-NP I-NP I-NP I-NP I-NP O B-VP B-NP I-NP I-NP
+B35	LIT( * * * LIT) * LIT( * LIT) LIT( * * * * * LIT) * LIT( * * LIT)
+C35	The crushed and dried leaves have a strong , sweet lemon taste
+C35	The crushed and contain no citric acid
+C35	edible essential oils have a strong , sweet lemon taste
+C35	edible essential oils contain no citric acid
+
+S36	After he completed his secondary education in 1889 he studied with Wagners pupil Engelbert Humperdinck , but was more strongly drawn to a career as an architect and studied architecture in Berlin and Karlsruhe
+P36	IN PP VBD PP$ JJ NN IN CD PP VBD IN NP NN NP NP , CC VBD RBR RB VBN TO DT NN IN DT NN CC VBN NN IN NP CC NP
+N36	B-SBAR B-NP B-VP B-NP I-NP I-NP B-PP B-NP I-NP B-VP B-PP B-NP I-NP I-NP I-NP O O B-VP I-VP I-VP I-VP B-PP B-NP I-NP B-PP B-NP I-NP O B-VP B-NP B-PP B-NP O B-NP
+B36	* * * * * * * * * LIT( * * * * LIT) * * LIT( * * * * * * * * LIT) * LIT( * * * * LIT)
+C36	After he completed his secondary education in 1889 he studied with Wagners pupil Engelbert Humperdinck
+C36	After he completed his secondary education in 1889 he was more strongly drawn to a career as an architect
+C36	After he completed his secondary education in 1889 he studied architecture in Berlin and Karlsruhe
+
+S37	He had suffered from several illnesses , including diabetes , but the cause of death was given as complications from a concussion
+P37	NP VBD VBN IN JJ NNS , VBG NN , CC DT NN IN NN VBD VBN IN NNS IN DT NN
+N37	B-NP B-VP I-VP B-PP B-NP I-NP O B-PP B-NP O O B-NP I-NP B-PP B-NP B-VP I-VP B-PP B-NP B-PP B-NP I-NP
+B37	* * * * * * * REL( REL) * SEP * * * * * * * * * * *
+C37	He had suffered from several illnesses
+C37	illnesses , including diabetes
+C37	the cause of death was given as complications from a concussion
+
+S38	In the two years preceding his death , Muzenda had been in failing health , with problems including hypertension and diabetes
+P38	IN DT CD NNS VBG PP$ NN , NP VBD VBN IN VBG NN , IN NNS VBG NN CC NN
+N38	B-PP B-NP I-NP I-NP B-VP B-NP I-NP O B-NP B-VP I-VP B-PP B-VP B-NP O B-PP B-NP B-PP B-NP I-NP I-NP
+B38	* * * * * * * SEP * * * * * * * REL( * * * * REL)
+C38	In the two years preceding his death
+C38	Muzenda had been in failing health
+C38	failing health , with problems including hypertension and diabetes
+
+S39	Boris Karloff , who had moved on from playing the monster to playing the mad scientist , reportedly coached Strange on how to play the role
+P39	NP NP , WP VBD VBN RP IN VBG DT NN TO VBG DT JJ NN , RB VBD JJ IN WRB TO VB DT NN
+N39	B-NP I-NP O B-NP B-VP I-VP B-NP B-PP B-VP B-NP I-NP B-PP B-VP B-NP I-NP I-NP O B-ADVP B-VP B-ADJP B-PP B-ADVP B-VP I-VP B-NP I-NP
+B39	* * * REL( * * * * * * * * * * * REL) * * * * * * * * * *
+C39	Boris Karloff , who had moved on from playing the monster to playing the mad scientist
+C39	Boris Karloff reportedly coached Strange on how to play the role
+
+S40	He regarded it as the equivalent in music of Albert Einstein 's discoveries in physics , and Schoenberg announced it characteristically , during a walk with his friend Josef Rufer
+P40	PP VBD PP IN DT NN IN NN IN NP NP POS NNS IN NN , CC NP VBD PP RB , IN DT NN IN PP$ NN NP NP
+N40	B-NP B-VP B-NP B-PP B-NP I-NP B-PP B-NP B-PP B-NP I-NP B-NP I-NP B-PP B-NP O O B-NP B-VP B-NP B-ADVP O B-PP B-NP I-NP B-PP B-NP I-NP I-NP I-NP
+B40	* * * * * * * * * * * * * * * * SEP * * * * * * * * * * * * *
+C40	He regarded it as the equivalent in music of Albert Einstein 's discoveries in physics
+C40	Schoenberg announced it characteristically , during a walk with his friend Josef Rufer
+
+S41	Yoshio Nishina , a friend of Niels Bohr and a close associate of Albert Einstein
+P41	NP NP , DT NN IN NP NP CC DT JJ NN IN NP NP
+N41	B-NP I-NP O B-NP I-NP B-PP B-NP I-NP O B-NP I-NP I-NP B-PP B-NP I-NP
+B41	* * * REL(,LIT( * * * LIT) * LIT( * * * * LIT),REL)
+C41	Yoshio Nishina , a friend of Niels Bohr
+C41	Yoshio Nishina a close associate of Albert Einstein
+
+S42	Towards the end of the war , when the outcome was unmistakable , Albert Einstein , who had been a friend of Ottos father Emil , wrote Otto at the behest of friends , asking him to leave the army and return to academia
+P42	IN DT NN IN DT NN , WRB DT NN VBD JJ , NP NP , WP VBD VBN DT NN IN NP NN NP , VBD NP IN DT NN IN NNS , VBG PP TO VB DT NN CC NN TO NN
+N42	B-PP B-NP I-NP B-PP B-NP I-NP O B-ADVP B-NP I-NP B-VP B-ADJP O B-NP I-NP O B-NP B-VP I-VP B-NP I-NP B-PP B-NP I-NP I-NP O B-VP B-NP B-PP B-NP I-NP B-PP B-NP O B-VP B-NP B-VP I-VP B-NP I-NP I-NP I-NP B-PP B-NP
+B42	* * * * * * SEP * * * * * SEP * * * REL( * * * * * * * REL) * * * * * * * * * REL( * * * * * * * * REL)
+C42	Towards the end of the war
+C42	when the outcome was unmistakable
+C42	Albert Einstein , who had been a friend of Ottos father Emil
+C42	Albert Einstein wrote Otto , asking him to leave the army and return to academia
+
+S43	As longtime friend and colleague of Stephen Hawking and Carl Sagan , he was the Feynman Professor of Theoretical Physics at Caltech until 2009 and one of the world ’s leading experts on the astrophysical implications of Einstein ’s general theory of relativity
+P43	IN JJ NN CC NN IN NP NP CC NP NP , PP VBD DT NP NP IN NP NP IN NP IN CD CC CD IN DT NN NNS VBG NNS IN DT JJ NNS IN NP NP JJ NN IN NN
+N43	B-SBAR B-NP I-NP O B-NP B-PP B-NP I-NP O B-NP I-NP O B-NP B-VP B-NP I-NP I-NP B-PP B-NP I-NP B-PP B-NP B-PP B-NP O B-NP B-PP B-NP I-NP I-NP B-VP B-NP B-PP B-NP I-NP I-NP B-PP B-NP I-NP I-NP I-NP B-PP B-NP
+B43	* * * * * * * * * * * SEP * * LIT( * * * * * * * * LIT) * LIT( * * * * * * * * * * * * * * * * LIT)
+C43	As longtime friend and colleague of Stephen Hawking and Carl Sagan
+C43	he was the Feynman Professor of Theoretical Physics at Caltech until 2009
+C43	he was one of the world ’s leading experts on the astrophysical implications of Einstein ’s general theory of relativity
+
+S44	Michaels appeared briefly in one episode in the 12th season as Pamela Ewing , who had undergone plastic surgery after her near-fatal car accident
+P44	NP VBD RB IN CD NN IN DT JJ NN IN NP NP , WP VBD VBN JJ NN IN PP$ JJ NN NN
+N44	B-NP B-VP B-ADVP B-PP B-NP I-NP B-PP B-NP I-NP I-NP B-PP B-NP I-NP O B-NP B-VP I-VP B-NP I-NP B-PP B-NP I-NP I-NP I-NP
+B44	* * * * * * * * * * * * * * REL( * * * * * * * * REL)
+C44	Michaels appeared briefly in one episode in the 12th season as Pamela Ewing
+C44	Pamela Ewing , who had undergone plastic surgery after her near-fatal car accident
+
+S45	Michael Jackson called into the Los Angeles-based Steve Harvey radio show to report his displeasure with the video , which parodies Jacksons child molestation trial , plastic surgery , and an incident in which Jacksons hair caught on fire while filming a Pepsi commercial in 1984
+P45	NP NP VBD IN DT NP JJ NP NP NN NN TO VB PP$ NN IN DT NN , WDT NNS NNS NN NN NN , JJ NN , CC DT NN IN WDT NNS NN VBN IN NN IN VBG DT NP NN IN CD
+N45	B-NP I-NP B-VP B-PP B-NP I-NP I-NP I-NP I-NP I-NP I-NP B-VP I-VP B-NP I-NP B-PP B-NP I-NP O B-NP I-NP I-NP I-NP I-NP I-NP O B-NP I-NP O O B-NP I-NP B-PP B-NP B-NP B-VP I-VP B-PP B-NP B-SBAR B-VP B-NP I-NP I-NP B-PP B-NP
+B45	* * * * * * * * * * * * * * * * * * * REL( * * LIT( * LIT) * LIT( LIT) * * LIT( * * * * * * * * * * * * * * LIT),REL)
+C45	Michael Jackson called into the Los Angeles-based Steve Harvey radio show to report his displeasure with the video
+C45	the video which parodies Jacksons child molestation trial
+C45	the video which parodies plastic surgery
+C45	the video which parodies an incident in which Jacksons hair caught on fire while filming a Pepsi commercial in 1984
+
+S46	In the film noir Dark Passage , the protagonist has plastic surgery , and when his bandages are removed , he is revealed to be Humphrey Bogart
+P46	IN DT NN NP NP NP , DT NN VBZ JJ NN , CC WRB PP$ NNS VBP VBN , PP VBZ VBN TO VB NP NP
+N46	B-PP B-NP I-NP I-NP I-NP I-NP O B-NP I-NP B-VP B-NP I-NP O O B-ADVP B-NP I-NP B-VP I-VP O B-NP B-VP I-VP I-VP I-VP B-NP I-NP
+B46	* * * * * * SEP * * * * * * * * * * * * SEP * * * * * * *
+C46	In the film noir Dark Passage
+C46	the protagonist has plastic surgery
+C46	when his bandages are removed
+C46	he is revealed to be Humphrey Bogart
+
+S47	She was very happy after her movie with Kevin Smith premiered and she even got called by Bernice Vine , the agent who had made her consider plastic surgery
+P47	PP VBD RB JJ IN PP$ NN IN NP NP VBD CC PP RB VBD VBN IN NP NP , DT NN WP VBD VBN PP VBP JJ NN
+N47	B-NP B-VP B-ADJP I-ADJP B-PP B-NP I-NP B-PP B-NP I-NP B-VP O B-NP B-ADVP B-VP I-VP B-PP B-NP I-NP O B-NP I-NP B-NP B-VP I-VP B-NP B-VP B-NP I-NP
+B47	* * * * * * * * * * * SEP * * * * * * * * RELA( * * * * * * * RELA)
+C47	She was very happy after her movie with Kevin Smith premiered
+C47	she even got called by Bernice Vine
+C47	Bernice Vine , the agent who had made her consider plastic surgery
+
+S48	Four popular cocktails that require the use of a muddler are the Old-Fashioned made with whiskey , the mojito made with light rum , the caipirinha made with cachaça and the mint julep made with Bourbon whiskey
+P48	CD JJ NNS WDT VBP DT NN IN DT NN VBP DT NP VBD IN NN , DT NN VBN IN JJ NN , DT NN VBN IN NN CC DT NN NN VBN IN NN NN
+N48	B-NP I-NP I-NP B-NP B-VP B-NP I-NP B-PP B-NP I-NP B-VP B-NP I-NP B-VP B-PP B-NP O B-NP I-NP B-VP B-PP B-NP I-NP O B-NP I-NP B-VP B-PP B-NP O B-NP I-NP I-NP B-VP B-PP B-NP I-NP
+B48	* * * * * * * * * * * LIT( * * * LIT) * LIT( * * * * LIT) * LIT( * * * LIT) * LIT( * * * * * LIT)
+C48	Four popular cocktails that require the use of a muddler are the Old-Fashioned made with whiskey
+C48	Four popular cocktails that require the use of a muddler are the mojito made with light rum
+C48	Four popular cocktails that require the use of a muddler are the caipirinha made with cachaça
+C48	Four popular cocktails that require the use of a muddler are the mint julep made with Bourbon whiskey
+
+S49	They nest in mangrove or other trees and feed on aquatic life
+P49	PP NN IN NN CC JJ NNS CC NN IN JJ NN
+N49	B-NP I-NP B-PP B-NP O B-NP I-NP O B-NP B-PP B-NP I-NP
+B49	* LIT( LIT( LIT) * LIT( LIT),LIT) * LIT( * * LIT)
+C49	They nest in mangrove
+C49	They nest in other trees
+C49	They feed on aquatic life
+
+S50	To pass the time , they are playing chess and at the same time the death candidate tries to win a game of persuasion
+P50	TO VB DT NN , PP VBP VBG NN CC IN DT JJ NN DT NN NN VBZ TO VB DT NN IN NN
+N50	B-VP I-VP B-NP I-NP O B-NP B-VP I-VP B-NP B-PP B-PP B-NP I-NP I-NP B-NP I-NP I-NP B-VP I-VP I-VP B-NP I-NP B-PP B-NP
+B50	* * * * SEP * * * * SEP * * * * * * * * * * * * * *
+C50	To pass the time
+C50	they are playing chess
+C50	at the same time the death candidate tries to win a game of persuasion
+
+S51	Austria 's Johannes Eder originally finished fourth in this event , but was disqualified on November 22 , 2007 after the FIS issued a two-year doping suspension in the wake of Eder 's action during the Winter Olympics in Turin the previous year
+P51	NP POS NP NP RB VBD JJ IN DT NN , CC VBD VBN IN NP CD , CD IN DT NP VBD DT JJ VBG NN IN DT NN IN NP POS NN IN DT NP NPS IN NP DT JJ NN
+N51	B-NP B-NP I-NP I-NP B-ADVP B-VP B-ADJP B-PP B-NP I-NP O O B-VP I-VP B-PP B-NP I-NP O B-NP B-PP B-NP I-NP B-VP B-NP I-NP I-NP I-NP B-PP B-NP I-NP B-PP B-NP B-NP I-NP B-PP B-NP I-NP I-NP B-PP B-NP B-NP I-NP I-NP
+B51	* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+C51	XX
+C51	XX

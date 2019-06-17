@@ -1,0 +1,7 @@
+# Add a new tuple with values insertS and insertD to the isA.instance.class relation
+NEW	facts.isA.instance.class.txt	insertS	insertD
+# We want to delete this tuple, because we found a mistake in the ontology here
+DELETE	facts.isA.instance.class.txt	I2	C1
+REPLACE	facts.isA.instance.class.txt	I4	I5
+# Now do a global replace of x2 by x3
+REPLACE	__global	x2	x3

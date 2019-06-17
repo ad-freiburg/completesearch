@@ -1,0 +1,6 @@
+entity	stupid_class
+entity	person
+person	scientist
+stupid_class	person
+stupid_class	scientist
+stupid_class	entity_child

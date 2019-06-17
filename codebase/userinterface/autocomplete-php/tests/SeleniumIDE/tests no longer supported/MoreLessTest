@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://search.mpi-sb.mpg.de/markus.tests/index.php" />
+<title>MoreLessTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">MoreLessTest</td></tr>
+</thead><tbody>
+<!--More / less mechanism is replaced by Top X / all X mechanism-->
+<tr>
+	<td>open</td>
+	<td>index.php?language=de</td>
+	<td></td>
+</tr>
+<tr>
+	<td>createCookie</td>
+	<td>qt=WCF</td>
+	<td></td>
+</tr>
+<tr>
+	<td>createCookie</td>
+	<td>hpp=5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>createCookie</td>
+	<td>mcs=5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>reset_link</td>
+	<td></td>
+</tr>
+<tr>
+	<td>typeKeys</td>
+	<td>autocomplete_query</td>
+	<td>info</td>
+</tr>
+<tr>
+	<td>getEval</td>
+	<td>this.browserbot.getCurrentWindow().document.getElementById('autocomplete_form').submit();</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<!--Verify that W, C, F box have a more link and no less link-->
+<tr>
+	<td>verifyText</td>
+	<td>autocomplete_W_boxes_1_body</td>
+	<td>regexp:\[.*mehr.*\]</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>autocomplete_C_boxes_1_body</td>
+	<td>regexp:\[.*mehr.*\]</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>autocomplete_F_boxes_1_body</td>
+	<td>regexp:\[.*mehr.*\]</td>
+</tr>
+<tr>
+	<td>verifyNotText</td>
+	<td>autocomplete_W_boxes_1_body</td>
+	<td>regexp:\[.*weniger.*\]</td>
+</tr>
+<tr>
+	<td>verifyNotText</td>
+	<td>autocomplete_C_boxes_1_body</td>
+	<td>regexp:\[.*weniger.*\]</td>
+</tr>
+<tr>
+	<td>verifyNotText</td>
+	<td>autocomplete_F_boxes_1_body</td>
+	<td>regexp:\[.*weniger.*\]</td>
+</tr>
+<!--Click more and verify that more and less links are present, click less and verify that more is present and less is not-->
+<tr>
+	<td>click</td>
+	<td>link=mehr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>400</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>autocomplete_W_boxes_1_body</td>
+	<td>regexp:\[.*mehr.*\]</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>autocomplete_W_boxes_1_body</td>
+	<td>regexp:\[.*weniger.*\]</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=weniger</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>400</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>autocomplete_W_boxes_1_body</td>
+	<td>regexp:\[.*mehr.*\]</td>
+</tr>
+<tr>
+	<td>verifyNotText</td>
+	<td>autocomplete_W_boxes_1_body</td>
+	<td>regexp:\[.*weniger.*\]</td>
+</tr>
+<!--Now the same procedure with C box-->
+<tr>
+	<td>click</td>
+	<td>more_link_C</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>400</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>autocomplete_C_boxes_1_body</td>
+	<td>regexp:\[.*mehr.*\]</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>autocomplete_C_boxes_1_body</td>
+	<td>regexp:\[.*weniger.*\]</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=weniger</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>400</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>autocomplete_C_boxes_1_body</td>
+	<td>regexp:\[.*mehr.*\]</td>
+</tr>
+<tr>
+	<td>verifyNotText</td>
+	<td>autocomplete_C_boxes_1_body</td>
+	<td>regexp:\[.*weniger.*\]</td>
+</tr>
+<!--Now the same procedure with F box-->
+<tr>
+	<td>click</td>
+	<td>more_link_F</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>400</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>autocomplete_F_boxes_1_body</td>
+	<td>regexp:\[.*mehr.*\]</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>autocomplete_F_boxes_1_body</td>
+	<td>regexp:\[.*weniger.*\]</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=weniger</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>400</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>autocomplete_F_boxes_1_body</td>
+	<td>regexp:\[.*mehr.*\]</td>
+</tr>
+<tr>
+	<td>verifyNotText</td>
+	<td>autocomplete_F_boxes_1_body</td>
+	<td>regexp:\[.*weniger.*\]</td>
+</tr>
+<!--Now the previous test with W box, but instead of clicking more/less link use the delete/insert key-->
+<tr>
+	<td>keyUp</td>
+	<td>autocomplete_query</td>
+	<td>\46</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>400</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>autocomplete_W_boxes_1_body</td>
+	<td>regexp:\[.*mehr.*\]</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>autocomplete_W_boxes_1_body</td>
+	<td>regexp:\[.*weniger.*\]</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>autocomplete_query</td>
+	<td>\45</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>400</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>autocomplete_W_boxes_1_body</td>
+	<td>regexp:\[.*mehr.*\]</td>
+</tr>
+<tr>
+	<td>verifyNotText</td>
+	<td>autocomplete_W_boxes_1_body</td>
+	<td>regexp:\[.*weniger.*\]</td>
+</tr>
+<!--Type x and verify that W box have no more and no less link-->
+<tr>
+	<td>keyPress</td>
+	<td>autocomplete_query</td>
+	<td>x</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>autocomplete_query</td>
+	<td>x</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>400</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyNotText</td>
+	<td>autocomplete_W_boxes_1_body</td>
+	<td>regexp:\[.*mehr.*\]</td>
+</tr>
+<tr>
+	<td>verifyNotText</td>
+	<td>autocomplete_W_boxes_1_body</td>
+	<td>regexp:\[.*weniger.*\]</td>
+</tr>
+<!---->
+<tr>
+	<td>controlKeyDown</td>
+	<td>autocomplete_query</td>
+	<td></td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>autocomplete_query</td>
+	<td>\37</td>
+</tr>
+<tr>
+	<td>controlKeyUp</td>
+	<td>autocomplete_query</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>400</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>autocomplete_W_boxes_1_body</td>
+	<td>regexp:\[.*mehr.*\]</td>
+</tr>
+<tr>
+	<td>verifyNotText</td>
+	<td>autocomplete_W_boxes_1_body</td>
+	<td>regexp:\[.*weniger.*\]</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

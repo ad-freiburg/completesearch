@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>CompletionsNavigationTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">CompletionsNavigationTest</td></tr>
+</thead><tbody>
+<!--Navigating through completions using the key commands cursor down/up is no longer supported-->
+<tr>
+	<td>open</td>
+	<td>http://search.mpi-sb.mpg.de/markus.tests/index.php</td>
+	<td></td>
+</tr>
+<tr>
+	<td>createCookie</td>
+	<td>hpp=5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>createCookie</td>
+	<td>mcs=5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>createCookie</td>
+	<td>qt=HW</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>reset_link</td>
+	<td></td>
+</tr>
+<tr>
+	<td>typeKeys</td>
+	<td>autocomplete_query</td>
+	<td>info</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>autocomplete_query</td>
+	<td>\</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>800</td>
+	<td></td>
+</tr>
+<!-- Navigate through the completions using cursor down/up-->
+<tr>
+	<td>keyUp</td>
+	<td>autocomplete_query</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>800</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>hits_title</td>
+	<td>regexp:Treffer.*\b1\b.*\b4\b.*\binfox\b</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>autocomplete_query</td>
+	<td>infoxbox</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>autocomplete_query</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>800</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>autocomplete_query</td>
+	<td>infoxenios</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>autocomplete_query</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>800</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>autocomplete_query</td>
+	<td>infoxinfo</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>autocomplete_query</td>
+	<td>\40</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>800</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>autocomplete_query</td>
+	<td>infoxinfo</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>autocomplete_query</td>
+	<td>\38</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>autocomplete_query</td>
+	<td>\38</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>autocomplete_query</td>
+	<td>\38</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>autocomplete_query</td>
+	<td>infox</td>
+</tr>
+<tr>
+	<td>keyUp</td>
+	<td>autocomplete_query</td>
+	<td>\38</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>autocomplete_query</td>
+	<td>infox</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

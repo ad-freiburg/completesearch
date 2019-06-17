@@ -1,0 +1,39 @@
+<?php
+
+// Custom text blocks, overwriting those in autocomplete-php/text.php
+ 
+$welcome_message_en = 
+"<div style=\"display:block;text-align:left\">".
+"  <h2>Features</h2>".
+"  <ul>".
+"    <li><b>fast search as you type:</b> a search is triggered after each keystroke, with instant response times; if not, your network connection is lame ;-)</li>".
+"    <li><b>prefix search:</b> e.g., <a href=\"index.php?query=sig\">sig</a> matches SIGIR (the search is always case-insensitive, too); no prefix search for single letters!</li>".
+"    <li><b>error-tolerant search:</b> e.g., <a href=\"index.php?query=probabilist\">probabilist</a> will also match the misspelling \"probalistic\"</li>".
+"    <li><b>faceted search:</b> at any time, the right sidebar gives a breakdown of the current result set (initially: all entries) by various categories; click an item to refine</li>".
+"    <li><b>exact word match:</b> end word with a dollar, e.g.  <a href=\"index.php?query=graph$\">graph$</a></li>".
+"    <li><b>previous/next query:</b> just use the browser back/forward buttons; typically Alt-left/right work for this, too!</li>".
+"    <li><b>boolean or:</b> put a pipe between words, e.g., <a href=\"index.php?query=graph|network\">graph|network</a></li>".
+ "    <li><b>boolean not:</b> put a minus before a word, e.g., <a href=\"index.php?query=-venue:corr kernelization\">-venue:corr kernelization</a></li>".
+"    <li><b>phrase search:</b> put a dot between words, e.g., <a href=\"index.php?query=information.retrieval\">information.retrieval</a></li>".
+"    <li><b>specify number of authors:</b> add \"na:1\" to your query to restrict your search to single-authored papers, or \"na:2\" etc.</li>".
+"    <li><b>only first-authored papers:</b> append a 1 to the author token, as in <a href=\"index.php?query=author:michaelstonebraker:1\">author:michaelstonebraker:1</a></li>".
+"    <li><b>advanced interface:</b> the default interface is modelled after the plain and functional DBLP design, for a richer GUI with more functionality, click <a href=\"http://dblp.mpi-inf.mpg.de/new/index.php?query=\">here</a></li>".
+"  </ul>".
+"  <ul>".
+"    <li><b>publications:</b> click <a href=\"/search/index.php?query=author:hannah_bast autoc|compl|ester\">here</a>".
+"      for publications on the underlying system, data structures, algorithms.</br>".
+"    <li><b>people involved:</b> Hannah Bast, Ingmar Weber, Daniel Fischer, Markus Tetzlaff, Marjan Celikik.</br>".
+"  </ul>".
+"</div>";
+
+$AC->text["hit_box_at_beginning"] = array
+(
+  "en" => $welcome_message_en
+);
+
+$AC->text["hit_box_empty_query"] = array
+(
+  "en" => $welcome_message_en
+);
+
+?>
