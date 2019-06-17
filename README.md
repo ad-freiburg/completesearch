@@ -91,7 +91,7 @@ To start the backend by using **docker**, type:
     # Run the container.
     docker run -e DB=<DB> -v <DATA_DIR>:/data -it completesearch:backend
 
-### 4. Set up the frontend
+### 4. Setup the frontend
 
 TODO: Apache config on the host.
 
@@ -102,11 +102,9 @@ The host name of the backend. When you use *docker-compose*, this is equal to th
 The port of the backend server **inside** the backend container (which is *8181* per default).
 * *<FRONTEND_PORT\>* :
 The port under which the frontend should be available **outside** the container.
-* *<SERVER_NAME\>* :
-TODO
 
 #### docker-compose
-To start the frontend by using **docker-compose**, open `docker-compose.yml` and change the values of *<BACKEND_HOST\>*, *<BACKEND_PORT\>*, *<FRONTEND_PORT\>* and *<SERVER_NAME\>* in the *frontend-dblp* service:
+To start the frontend by using **docker-compose**, open `docker-compose.yml` and change the values of *<BACKEND_HOST\>*, *<BACKEND_PORT\>* and *<FRONTEND_PORT\>* in the *frontend-dblp* service:
 
 ```yml
 frontend-dblp:
@@ -116,7 +114,6 @@ frontend-dblp:
     args:
       - BACKEND_HOST=<BACKEND_HOST>
       - BACKEND_PORT=<BACKEND_PORT>
-      - SERVER_NAME=<SERVER_NAME>
   image: completesearch:frontend-dblp
   ports:
     - 0.0.0.0:<FRONTEND_PORT>:80
@@ -132,3 +129,51 @@ To start the frontend by using **docker**, type:
     docker build -f Dockerfile.frontend-dblp --build-arg BACKEND_HOST=<BACKEND_HOST> --build-arg BACKEND_PORT=<BACKEND_PORT> --build-arg SERVER_NAME=<SERVER_NAME> -t completesearch:frontend-dblp .
     # Run the container.
     docker run -p 0.0.0.0:<FRONTEND_PORT>:80 -it completesearch:frontend-dblp
+
+The frontend should be now available at `http://<URL_TO_HOST>:<FRONTEND_PORT>`. For example, if you setup the frontend at `filicudi` on port `8182`, it should be available at `http://filicudi:8182`).
+
+### 5. Setup a subdomain
+
+To make the frontend available to any subdomain (e.g., `http://dblp.informatik.uni-freiburg.de`) configure the webserver at the machine to which the subdomain refers as follows (the following guideline is specific to the *Apache httpd webserver*; for instructions on how to setup other webservers (e.g., *nginx*), please refer to the manual of that webserver):
+
+*(a)* Create an Apache config file:
+```
+cd /etc/apache2/sites-available
+vim dblp.conf
+```
+
+*(b)* Add the following lines to `dblp.conf`:
+
+```xml
+<VirtualHost *:80>
+  ServerName dblp.tf.uni-freiburg.de
+  ServerAlias dblp dblp.informatik.uni-freiburg.de
+  ServerAdmin webmaster@localhost
+
+  ProxyPreserveHost On
+  ProxyRequests Off
+
+  ProxyPass / http://<FRONTEND_HOST>:<FRONTEND_PORT>/
+  # For example: ProxyPass / http://filicudi:8182/
+  ProxyPassReverse / http://<FRONTEND_HOST>:<FRONTEND_PORT>/
+  # For example: ProxyPassReverse / http://filicudi:8182/
+
+  <Directory />
+    Options Indexes
+    Options FollowSymLinks
+    AllowOverride None
+    #Allow from all
+    Require all granted
+  </Directory>
+</VirtualHost>
+```
+
+where `<FRONTEND_HOST>` and `<FRONTEND_PORT>` refer to the host and the port of the frontend.
+
+*(c)* Enable the config:
+
+```
+cd ../sites-enabled
+ln -s ../sites-available/dblp.conf
+sudo /etc/init.d/apache2 reload
+```

@@ -40,21 +40,15 @@ WORKDIR /databases/dblp/www.dblp.org
 RUN sed -i 's#<?php#<?php\nif (!isset($config)) $config = new stdClass();\n#g' ./search/autocomplete_config.php
 
 # Fix the backend host wherever necessary.
-RUN sed -i "s#localhost#${BACKEND_HOST}#g" ../apache-sites/dblp.org
 RUN sed -ir -e "s#\$config->server_hostname = \"localhost\";#\$config->server_hostname = \"${BACKEND_HOST}\";\n#g" ./autocomplete-php/autocomplete_config.php
 RUN sed -ir -e "s#\$config->server_hostname = \"localhost\";#\$config->server_hostname = \"${BACKEND_HOST}\";\n#g" ./search/autocomplete_config.php
 
 # Fix the backend port wherever necessary.
-RUN sed -i "s#8181#${BACKEND_PORT}#g" ../apache-sites/dblp.org
 RUN sed -i "s#\$config->server_port = 8181;#\$config->server_port = ${BACKEND_PORT};\n#g" ./autocomplete-php/autocomplete_config.php
 RUN sed -i "s#\$config->server_port = 8181;#\$config->server_port = ${BACKEND_PORT};\n#g" ./search/autocomplete_config.php
 
-# Change the document root in the config from "/var/www" to "/var/www/html".
-RUN sed -i 's#/var/www#/var/www/html#g' ../apache-sites/dblp.org
-
-# Fix the server name in the Apache config and delete all aliases.
-RUN sed -i "s#ServerName.*#ServerName ${SERVER_NAME}#g" ../apache-sites/dblp.org
-RUN sed -i "s#ServerAlias.*##g" ../apache-sites/dblp.org
+# Fix the backend host and port in the Apache config.
+RUN sed -i "s#http://localhost:8181#http://${BACKEND_HOST}:${BACKEND_PORT}#g" ../apache-sites/dblp-docker.conf
 
 # =================================================================================================
 # Deploy the files to the Apache webserver.
@@ -66,4 +60,4 @@ RUN ln -s /databases/dblp/www.dblp.org /var/www/html/www.dblp.org
 
 # Delete the default Apache config and replace it by the config required by the frontend.
 RUN rm -f /etc/apache2/sites-enabled/000-default.conf
-RUN ln -s /databases/dblp/apache-sites/dblp.org /etc/apache2/sites-enabled/dblp-org.conf
+RUN ln -s /databases/dblp/apache-sites/dblp-docker.conf /etc/apache2/sites-enabled/dblp-docker.conf
