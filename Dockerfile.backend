@@ -14,22 +14,22 @@ ARG DB=dblp
 # Install some dependencies from the standard package manager.
 
 RUN apk add --no-cache \
-		# Bash (needed for console output etc.).
-		bash \
-	  # Meta-package with gcc, libc-dev, etc. (needed for compiling the code).
+    # Bash (needed for console output etc.).
+    bash \
+    # Meta-package with gcc, libc-dev, etc. (needed for compiling the code).
     build-base \
-		# Git (needed to download the source code of STXXL below).
-	  git \
-	  # Expat library (needed to parse XML files, e.g., dblp.xml).
-		expat-dev \
-		# Linux headers (needed for installing Boost below).
-	  linux-headers \
-		# Perl (needed for e.g., producing console output).
-		perl \
-	  # Google Hash Map (needed for the index).
-	  sparsehash \
-	  # Compression library.
-	  zlib-dev
+    # Git (needed to download the source code of STXXL below).
+    git \
+    # Expat library (needed to parse XML files, e.g., dblp.xml).
+    expat-dev \
+    # Linux headers (needed for installing Boost below).
+    linux-headers \
+    # Perl (needed for e.g., producing console output).
+    perl \
+    # Google Hash Map (needed for the index).
+    sparsehash \
+    # Compression library.
+    zlib-dev
 
 # =================================================================================================
 # Install some (specific) dependencies from scratch.
@@ -41,11 +41,11 @@ WORKDIR /opt
 RUN git clone --branch 1.3.1 https://github.com/stxxl/stxxl.git
 RUN cd stxxl && \
     make config_gnu && \
-	  # Edit /utils/mlock.cpp so the code compiles with the latest version of gcc.
-	  sed -i '20 i #include <ctime>' utils/mlock.cpp \
-		&& sed -i '20 i #include <cerrno>' utils/mlock.cpp \
-		&& sed -i 's/sleep(86400);/nanosleep((const struct timespec[]){{0, 864000L}}, NULL);/g' utils/mlock.cpp \
-		&& make library_g++
+    # Edit /utils/mlock.cpp so the code compiles with the latest version of gcc.
+    sed -i '20 i #include <ctime>' utils/mlock.cpp \
+    && sed -i '20 i #include <cerrno>' utils/mlock.cpp \
+    && sed -i 's/sleep(86400);/nanosleep((const struct timespec[]){{0, 864000L}}, NULL);/g' utils/mlock.cpp \
+    && make library_g++
 
 # Install the Boost components 'system' and 'regex'.
 RUN wget -q http://freefr.dl.sourceforge.net/project/boost/boost/1.66.0/boost_1_66_0.tar.gz

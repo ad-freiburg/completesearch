@@ -173,8 +173,6 @@ where `<FRONTEND_HOST>` and `<FRONTEND_PORT>` refer to the host and the port of 
 *(c)* Enable the config:
 
 ```
-cd ../sites-enabled
-ln -s ../sites-available/dblp.conf
+sudo a2ensite dblp.conf
 sudo /etc/init.d/apache2 reload
 ```
-
