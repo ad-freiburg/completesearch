@@ -29,7 +29,6 @@ services:
       args:
         - BACKEND_HOST=backend
         - BACKEND_PORT=8181
-        - SERVER_NAME=dblp-test.informatik.uni-freiburg.de
     image: completesearch:frontend-dblp
     ports:
       - 0.0.0.0:8182:80

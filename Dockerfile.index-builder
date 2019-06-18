@@ -20,7 +20,7 @@ RUN apk add --no-cache \
     build-base \
     # Git (needed to download the source code of STXXL below).
     git \
-    # Expat library (needed to parse XML files).
+    # Expat library (needed to parse XML files, e.g., dblp.xml).
     expat-dev \
     # Linux headers (needed for installing Boost below).
     linux-headers \
@@ -57,14 +57,14 @@ RUN cd boost_1_66_0 \
 
 # =================================================================================================
 
-# Copy all required files into the container.
+# Copy the required files into the container.
 COPY ./codebase /codebase
 COPY ./databases /databases
 
 # The Makefile of CompleteSearch expects the bash under '/usr/local/bin/bash'.
 RUN ln -s /bin/bash /usr/local/bin/bash
 
-# Build all.
+# Build the backend.
 WORKDIR /codebase
 RUN make clean-all build-all
 

@@ -1,16 +1,22 @@
+# A docker image for starting a frontend that can be used to search the literature database DBLP.
+#
+# Build a container with: docker build -f Dockerfile.frontend-dblp --build-arg BACKEND_HOST=<BACKEND_HOST> --build-arg BACKEND_PORT=<BACKEND_PORT> -t completesearch:frontend-dblp .
+# Run the container with: docker run -p 0.0.0.0:<FRONTEND_PORT>:80 -it completesearch:frontend-dblp
+#
+# =================================================================================================
+
 FROM php:7.3.6-apache
 
 ARG BACKEND_HOST=localhost
 ARG BACKEND_PORT=8181
-ARG SERVER_NAME
 
 # =================================================================================================
 
 # Install some extra Apache modules.
 RUN a2enmod proxy \
- && a2enmod proxy_http \
- && a2enmod rewrite \
- && a2enmod headers
+  && a2enmod proxy_http \
+  && a2enmod rewrite \
+  && a2enmod headers
 
 # =================================================================================================
 
@@ -57,7 +63,8 @@ WORKDIR /
 
 # Make the frontend files available to Apache.
 RUN ln -s /databases/dblp/www.dblp.org /var/www/html/www.dblp.org
+RUN ln -s /databases/dblp/apache-sites/dblp-docker.conf /etc/apache2/sites-available/dblp-docker.conf
 
-# Delete the default Apache config and replace it by the config required by the frontend.
-RUN rm -f /etc/apache2/sites-enabled/000-default.conf
-RUN ln -s /databases/dblp/apache-sites/dblp-docker.conf /etc/apache2/sites-enabled/dblp-docker.conf
+# Disable the default Apache config and enable the config required by the frontend.
+RUN a2dissite 000-default.conf
+RUN a2ensite dblp-docker.conf

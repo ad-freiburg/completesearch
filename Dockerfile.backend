@@ -1,7 +1,7 @@
 # A docker image for starting a CompleteSearch backend.
 #
 # Build a container with: docker build -f Dockerfile.backend -t completesearch:backend .
-# Run the container with: docker run -e DB=<DB> -p 0.0.0.0:<PORT>:8181 -v <DATA_DIR>:/data -it completesearch:backend
+# Run the container with: docker run -e DB=<DB> -v <DATA_DIR>:/data -it completesearch:backend
 #
 # =================================================================================================
 
@@ -57,14 +57,14 @@ RUN cd boost_1_66_0 \
 
 # =================================================================================================
 
-# Copy all files into the container.
+# Copy the required files into the container.
 COPY ./codebase /codebase
 COPY ./databases /databases
 
 # The Makefile of CompleteSearch expects the bash under '/usr/local/bin/bash'.
 RUN ln -s /bin/bash /usr/local/bin/bash
 
-# Build all.
+# Build the backend.
 WORKDIR /codebase
 RUN make clean-all build-all
 

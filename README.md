@@ -78,6 +78,7 @@ backend:
     - DB=<DB>
   volumes:
     - <DATA_DIR>:/data:rw
+  restart: unless-stopped
 ```
 Afterwards, type:
 
@@ -92,8 +93,6 @@ To start the backend by using **docker**, type:
     docker run -e DB=<DB> -v <DATA_DIR>:/data -it completesearch:backend
 
 ### 4. Setup the frontend
-
-TODO: Apache config on the host.
 
 Setting up the frontend for searching DBLP requires the following four arguments:
 * *<BACKEND_HOST\>* :
@@ -126,7 +125,7 @@ Afterwards, type:
 To start the frontend by using **docker**, type:
 
     # Build a container.
-    docker build -f Dockerfile.frontend-dblp --build-arg BACKEND_HOST=<BACKEND_HOST> --build-arg BACKEND_PORT=<BACKEND_PORT> --build-arg SERVER_NAME=<SERVER_NAME> -t completesearch:frontend-dblp .
+    docker build -f Dockerfile.frontend-dblp --build-arg BACKEND_HOST=<BACKEND_HOST> --build-arg BACKEND_PORT=<BACKEND_PORT> -t completesearch:frontend-dblp .
     # Run the container.
     docker run -p 0.0.0.0:<FRONTEND_PORT>:80 -it completesearch:frontend-dblp
 
