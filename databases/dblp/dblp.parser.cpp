@@ -262,6 +262,7 @@ void DblpParser::outputDocAndWords()
 
   // NEW 31Jan08 (Hannah): Correct ee if it doesn't start with http:// or ftp://
   if (ee.size() > 0 &&
+      ee.compare(0, 8, "https://") != 0 &&
       ee.compare(0, 7, "http://") != 0 &&
       ee.compare(0, 6, "ftp://") != 0)
   {
