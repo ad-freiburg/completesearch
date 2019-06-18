@@ -8,8 +8,8 @@ This repository provides a very easy to use installation setup for CompleteSearc
 
 ## Quickstart
 
-We now show how this Docker setup can be used to install an instance of CompleteSearch using DBLP as the document collection.
-The information given are not specific to DBLP and can be also used, in principle, to install other CompleteSearch instances based on other document collections (e.g., Wikipedia or the [Vorlesungsverzeichnis of the University of Freiburg](http://vvz.tf.uni-freiburg.de/)).  
+This Quickstart shows how the Docker setup can be used to install an instance of CompleteSearch using DBLP as the document collection.
+The information given below are not specific to DBLP and can be also used, in principle, to install other CompleteSearch instances based on other document collections (e.g., Wikipedia or the [Vorlesungsverzeichnis of the University of Freiburg](http://vvz.tf.uni-freiburg.de/)).  
 
 ### 1. Checkout
 Checkout the repository
@@ -100,7 +100,7 @@ The host name of the backend. When you use *docker-compose*, this is equal to th
 * *<BACKEND_PORT\>* :
 The port of the backend server **inside** the backend container (which is *8181* per default).
 * *<FRONTEND_PORT\>* :
-The port under which the frontend should be available **outside** the container.
+The port under which the frontend should be available **outside** the container on the host.
 
 #### docker-compose
 To start the frontend by using **docker-compose**, open `docker-compose.yml` and change the values of *<BACKEND_HOST\>*, *<BACKEND_PORT\>* and *<FRONTEND_PORT\>* in the *frontend-dblp* service:
@@ -129,9 +129,9 @@ To start the frontend by using **docker**, type:
     # Run the container.
     docker run -p 0.0.0.0:<FRONTEND_PORT>:80 -it completesearch:frontend-dblp
 
-The frontend should be now available at `http://<URL_TO_HOST>:<FRONTEND_PORT>`. For example, if you setup the frontend at `filicudi` on port `8182`, it should be available at `http://filicudi:8182`).
+The frontend should be now available at `http://<URL_TO_HOST>:<FRONTEND_PORT>`. For example, if you setup the frontend at `filicudi` on port `8182`, it should be available at `http://filicudi:8182`.
 
-### 5. Setup a subdomain
+### 5. (Optional) Setup a subdomain
 
 To make the frontend available to any subdomain (e.g., `http://dblp.informatik.uni-freiburg.de`) configure the webserver at the machine to which the subdomain refers as follows (the following guideline is specific to the *Apache httpd webserver*; for instructions on how to setup other webservers (e.g., *nginx*), please refer to the manual of that webserver):
 
