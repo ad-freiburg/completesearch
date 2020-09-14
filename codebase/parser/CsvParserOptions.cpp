@@ -277,12 +277,12 @@ void CsvParserOptions::parseFromCommandLine(int argc, char** argv,
       {"facetids",               1, NULL, 'i'},
       {"no-show-prefix",         1, NULL, 'x'},
       {"ordering",               1, NULL, 'o'},
-      {"old-words-format",       1, NULL, 'w'},
+      {"old-words-format",       0, NULL, 'w'},
       {"field-format",           1, NULL, 't'},
       {"allow-multiple-items"  , 1, NULL, 'M'},
       { NULL,                    0, NULL,  0 }
     };
-    int c = getopt_long(argc, argv, "hn:f:s:C:e:c:S:p:F:P:a:i:x:o:m:t:w:M",
+    int c = getopt_long(argc, argv, "hn:f:s:C:e:c:S:p:F:P:a:i:x:o:m:t:wM:",
                         longOptions, NULL);
     // cout << "CsvParserOptions::parseCommendLineOptions ["
     //      << c << "|" << (char)(c) << "]" << endl;

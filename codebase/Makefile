@@ -90,7 +90,7 @@ EXE_COMMAND 	      =
 CXX_OPTIONS  = --std=c++11 -Wall# -Wno-uninitialized -Wno-deprecated -Wno-unused-function -fexceptions
 # CXX_OPTIONS  = -Wall -Wno-uninitialized -Wno-deprecated -Wno-unused-function -fexceptions --std=gnu++0x
 CXX_DEFINES  = -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_REENTRANT -DSTL_VECTOR -DDEBUG_PTHREAD_CREATE_TIME
-CXX_DEBUG    = -O3# -g #-DNDEBUG
+CXX_DEBUG    = -g # -O3# -g #-DNDEBUG
 CXX_INCLUDES = -I$(CS_CODE_DIR) -I$(CS_CODE_DIR)/gtest/include
 # NOTE(Hannah, 26-01-2017): gtest uses tuple from different dir than sparsehash.
 CXX_FIXES = -DGTEST_HAS_TR1_TUPLE=0 -DGTEST_USE_OWN_TR1_TUPLE=0
@@ -259,29 +259,6 @@ sort:
 vocabulary:
 	$(LOCALE_POSIX); cut -f1 $(DB).words-sorted.ascii | $(SORT) -u > $(DB).vocabulary
 
-phrases:
-	/KM/ir/autocomplete/diplomarbeit-chrklein/AddPhrasesHash -q /var/tmp -s $(DB).stopwords $(DB).words > .AddPhrasesHash.log
-	rm -f $(DB).added_phrases_unsorted
-	mv -f $(DB).added_phrases $(DB).words.enhancing.phrases
-
-spell:
-	$(MAKE) spell1
-	$(MAKE) spell2
-
-spell1:
-	@export IN=$(PWD)/$(DB).vocabulary; \
-	export OUT=$(PWD)/$(DB).vocabulary.clusters; \
-	make -C /KM/ir/autocomplete/mastersthesis-marjancelikik spelling_clusters IN=$$IN OUT=$$OUT
-
-spell2:
-	$(LOCALE_POSIX); $(SORT) -t ":" -k1,1n -u $(DB).vocabulary.clusters > $(DB).vocabulary.correct_words
-	$(LOCALE_POSIX); join -t "$(WORD_SEPARATOR_BACKEND)" $(DB).vocabulary.clusters -1 1 $(DB).vocabulary.correct_words -2 1 -o "1.2 2.2 1.2" \
-	  | $(PERL) -ne 'chomp; split "$(WORD_SEPARATOR_BACKEND)"; print "$$_[0]\t$$_[1]$(WORD_SEPARATOR_BACKEND)$(WORD_SEPARATOR_BACKEND)$$_[2]\n" if $$_[1] ne substr($$_[2],0,length($$_[1]));' \
-	  | $(SORT) -k1,1 \
-	  | join -t "	" $(DB).words -1 1 - -2 1 -o "2.2 1.2 1.3 1.4" \
-	  | $(SORT) -k2,2n -k4,4n -u \
-	  > $(DB).words.enhancing.spell
-
 # Build fuzzy search data structure + clustering. MARJAN'S NEW METHOD.
 fuzzysearch:
 	# Remove all : words from the vocabulary (but save it, so that we have
@@ -329,11 +306,8 @@ index:
 	  else $(MAKE) $(DB).hybrid.from-binary; fi
 	$(MAKE) $(DB).docs.DB
 
-server:
-	$(MAKE) $(DB).server
-
 start::
-	$(MAKE) $(DB).server
+	$(MAKE) $(DB).start
 
 stop::
 	$(CS_BIN_DIR)/startCompletionServer --kill $(PORT)
@@ -380,7 +354,7 @@ freqranks:
 %.parser: %.parser.cpp $(CS_CODE_DIR)/parser/XmlParser.cpp $(CS_CODE_DIR)/synonymsearch/libsynonymsearch.a
 	g++ -O6 -I $(CS_CODE_DIR) -o $@ $^ -lexpat
 
-%.server: %.hybrid %.vocabulary %.docs.DB
+%.start: %.hybrid %.vocabulary %.docs.DB
 	$(CS_BIN_DIR)/startCompletionServer \
 		$(SERVER_OPTIONS_SHORT) \
 	  --locale=$(LOCALE) \
@@ -504,37 +478,3 @@ freqranks:
 	  --stxxl-path=$(shell pwd) \
 	  --stxxl-disk-file=$(dir $(DB))stxxl.disk \
 	  --binary-words-file=$@
-
-%.docs %.words: %.htdig-docs %.htdig-words
-	$(PERL) $(TOOLDIR)/renumber+rewrite.pl $* $*.htdig-docs $*.htdig-words
-
-%.crawl:
-	$(TOOLDIR)/htdig -isvc $*.conf | tee .$*.htdig-log
-	$(TOOLDIR)/htpurge -vc $*.conf | tee .$*.htpurge-log
-	$(TOOLDIR)/htdump -vc $*.conf | tee .$*.htdump-log
-	rm -f db.words.db_weakcmpr
-	rm -f db.words.db
-	rm -f db.docs.index
-	rm -f db.excerpts
-	rm -f db.htdig.docdb
-	mv -f db.docs $*.htdig-docs
-	mv -f db.worddump $*.htdig-words
-
-%.urls-all: ARCHIVE
-	find $(shell pwd)/ARCHIVE -follow -name "*.html" \
-	  | $(PERL) -ne 's/ /%20/g; print "file://$$_";' > $*.urls
-	wc -l $*.urls
-	#$(PERL) $*.urls.pl > $*.urls
-
-%.urls-test:
-	$(MAKE) $*.urls-all
-	head -100 $*.urls > $*.urls.tmp
-	mv -f $*.urls.tmp $*.urls
-	wc -l $*.urls
-
-fill-history: N = 1000
-fill-history:
-	grep -v "$(WORD_SEPARATOR_BACKEND)" $(DB).vocabulary \
-	  | perl -ne 'chomp; /^(...)/ and print "curl http://localhost:$(PORT)/?q=$$1*\n";' \
-          | head -$(N) \
-          | while read CURL_CMD; do $$CURL_CMD 2>/dev/null | \grep ".query"; done

@@ -22,13 +22,13 @@ $config->use_own_error_handling = true;
 // $config->path = "/dblp/";
 
 // The path to the autocomplete folder (relative to web server's document root, with leading and trailing slash!)
-$config->autocomplete_path = "/autocomplete-php/autocomplete/";
+$config->autocomplete_path = "/autocomplete/";
 
 // *Full* path name of log files (replace by your own)
 //$config->access_log = $_SERVER['DOCUMENT_ROOT'] . $config->path . "access.log";
 //$config->error_log = $_SERVER['DOCUMENT_ROOT'] . $config->path . "error.log";
-$config->access_log = "/var/opt/completesearch/log/completesearch.access_log";
-$config->error_log = "/var/opt/completesearch/log/completesearch.error_log";
+$config->access_log = "/log/example.access_log";
+$config->error_log = "/log/example.error_log";
 
 // Base URL of the DBLP page; specific for the DBLP collection
 $config->dblp_url = "http://www.informatik.uni-trier.de/~ley/db/";
@@ -62,12 +62,12 @@ $config->custom_text_file_name = "custom_text.php";
 //
 
 // Host name of completion server
-$config->server_hostname = "localhost";
+$config->server_hostname = "vulcano";
 
 // Port of the completion server to which to talk to
 // For example:
 // $config->server_port = rtrim(file_get_contents("/var/opt/completesearch/ports/dblp.port"));
-// $config->server_port = 8000;
+$config->server_port = 5001;
 
 // Timeout for connecting to the completion server via socket (in seconds)
 $config->server_timeout = 15;
@@ -93,18 +93,18 @@ $config->min_query_size = 2;
 $config->min_prefix_size = 1;
 
 // Append star only if prefix longer than this
-$config->min_prefix_size_to_append_star = 2;
+$config->min_prefix_size_to_append_star = 1;
 
 // Assume implicit * after every word if non-zero
 $config->always_prefix = 1;
 
 // Delays after each keystroke before launching query (for prefixes of size 0, 1, 2, 3, ...)
-$config->delays = array(1000, 1000, 1000, 500, 200);
+$config->delays = array(50, 0);
 
 // Show only selected facets (in the specified order), if array("") show all facets in alphabetical order
 // ATTENTION: the second mode - array("") for all facets - is no longer supported
 // (because of the new URL parameter concept "#query=info&qp=H1.20:W1.4:F1.4", for example)
-$config->facets_to_show = array("author", "venue", "year");
+$config->facets_to_show = array("autor", "jahr", "verlag");
 
 // Show facets for empty query
 $config->show_facets_for_empty_query = true;
@@ -234,9 +234,9 @@ $config->user_preferences = array("max_completions_show_right",
 //
 // To apply additional transformations to the %ENTITY% constructs below add transformation functions in "transformations.php"
 
-// DBLP
-$config->hit_template = "<a href='%URL%'><p class='title'>%TITLE% (%YEAR)</p></a><div class='authors'><font>%AUTHORS%</font></div>"
-        . "<br><div class='excerpts'>%EXCERPTS%</div>";
+$config->hit_template = "<a href='%URL%'><p class='title'>%TITEL% (%JAHR%)</p></a>"
+                         . "<div class='authors'><font>%AUTOR%</font></div>"
+                         . "<div class='excerpts'>%EXCERPTS%</div>";
 
 // This is to embed the hits in an "envelope", e.g. surround by the following string; "%TEMPLATES%" is replaced by the hits
 // For example: $config->hits_envelope = "<table border=\"1\">%TEMPLATES%</table>";

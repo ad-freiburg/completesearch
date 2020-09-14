@@ -1,14 +1,10 @@
-# A docker image for starting a CompleteSearch backend.
+# A docker image for building a CompleteSearch index.
 #
-# Build a container with: docker build -f Dockerfile.backend -t completesearch:backend .
-# Run the container with: docker run -e DB=<DB> -v <DATA_DIR>:/data -it completesearch:backend
+# See the end of the file for how to build and run.
 #
 # =================================================================================================
 
 FROM alpine:3.9.4
-
-# The name of the database to start the backend for (must correspond to a folder in ./databases).
-ARG DB=dblp
 
 # =================================================================================================
 # Install some dependencies from the standard package manager.
@@ -29,7 +25,9 @@ RUN apk add --no-cache \
     # Google Hash Map (needed for the index).
     sparsehash \
     # Compression library.
-    zlib-dev
+    zlib-dev \
+    # Debugging
+    gdb
 
 # =================================================================================================
 # Install some (specific) dependencies from scratch.
@@ -59,20 +57,34 @@ RUN cd boost_1_66_0 \
 
 # Copy the required files into the container.
 COPY ./codebase /codebase
-COPY ./databases /databases
-
-# The Makefile of CompleteSearch expects the bash under '/usr/local/bin/bash'.
-RUN ln -s /bin/bash /usr/local/bin/bash
 
 # Build the backend.
 WORKDIR /codebase
 RUN make clean-all build-all
 
+# The Makefile of CompleteSearch expects bash under '/usr/local/bin/bash'.
+RUN ln -s /bin/bash /usr/local/bin/bash
+
+# The name of the database to parse.
+ENV DB=example
+WORKDIR /configuration
+EXPOSE 8080
+
 # =================================================================================================
 
-WORKDIR /databases
+# Link /data (where to find the database files to parse and where to store the index files),
+# and /codebase (where to find the compiled source code files of CompleteSearch)
+# in the /databases/${DB} directory, compile the ${DB}-specific parser and build the index.
+ENTRYPOINT ["/bin/bash"]
 
-# Start the server. The "-Z" option is required so that the server is running in the foreground.
-CMD ["/bin/sh", "-c", "ln -sfn /data ./${DB}/data && ln -sfn /codebase ./${DB}/codebase && make -C ./${DB} DB=data/${DB} PORT=8181 SERVER_OPTIONS_SHORT='-Z' start"]
-
-EXPOSE 8181
+# Build and run the docker container as follows.
+#
+# docker build -f Dockerfile.index-builder completesearch:index-builder .
+#
+# Building an index:
+#
+# export DB=example && docker run -it --rm -v $(pwd)/applications/${DB}:/configuration -v $(pwd)/data/${DB}:/data --name completesarch.${DB} completesearch.${DB} -c "make pall"
+#
+# Running a server:
+#
+# export DB=example && docker run -it --rm -v $(pwd)/applications/${DB}:/configuration -v $(pwd)/data/${DB}:/data --name completesarch.${DB} completesearch.${DB} -c "make start"

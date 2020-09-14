@@ -126,7 +126,7 @@ if (array_key_exists("AC", $_SESSION))
     
     // TODO Markus / 29-06-09
     $AC->log = & $log;
-//    $log->level = & $AC->settings->log_level;
+    // $log->level = & $AC->settings->log_level;
     
 		// Commit session
 		session_commit();
@@ -134,23 +134,23 @@ if (array_key_exists("AC", $_SESSION))
 		saveTimestamp('after: first session_start/commit()');
 	
 		// Check whether the version of the appication changed (mean that it's version is newer than the version of the saved session)
-	//	if (version_compare($AC->version, VERSION) == -1) {
-	//	  echo "Your saved session ($AC->version) is obsolete, because a newer version (" . VERSION . ") of this application is released";
-	//	  echo "<br>Sorry, but we have to reset your application ...";
-	//	  session_name($session_name);
-	//	  session_start();
-	//	  session_unset();
-	//	  session_destroy();
-	//
-	//	  echo "<br><a href='$index_url'>Back to search page</a>";
-	//	  exit;
-	//	}
+	  //	if (version_compare($AC->version, VERSION) == -1) {
+	  //	  echo "Your saved session ($AC->version) is obsolete, because a newer version (" . VERSION . ") of this application is released";
+	  //	  echo "<br>Sorry, but we have to reset your application ...";
+	  //	  session_name($session_name);
+	  //	  session_start();
+	  //	  session_unset();
+	  //	  session_destroy();
+	  //
+	  //	  echo "<br><a href='$index_url'>Back to search page</a>";
+	  //	  exit;
+	  //	}
 	
 		// Open the log files and store their handles.
 		// This have to be done every time (even if we can continue the current session because the handles are closed with end of the script)
-		$AC->log->error_log_file = fopen($AC->settings->error_log, "a+")
+		$AC->log->error_log_file = fopen($AC->settings->error_log, "a")
 			or print "ERROR opening error log " . $AC->default_settings->error_log . " while resum session" and exit;
-		$AC->log->access_log_file = fopen($AC->settings->access_log, "a+")
+		$AC->log->access_log_file = fopen($AC->settings->access_log, "a")
 			or $AC->log->write("ERROR opening " . $AC->settings->access_log . " while resume session", $AC->log->levels['ERROR'], SCRIPT_AC_INIT, "", __FUNCTION__, __LINE__);
 	
 	

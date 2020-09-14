@@ -8,7 +8,8 @@
 FROM php:7.3.6-apache
 
 ARG BACKEND_HOST=localhost
-ARG BACKEND_PORT=8181
+ARG BACKEND_PORT=8080
+ARG DB=example
 
 # =================================================================================================
 
@@ -18,23 +19,28 @@ RUN a2enmod proxy \
   && a2enmod rewrite \
   && a2enmod headers
 
+RUN apt update && apt install -y vim
+
 # =================================================================================================
 
 # Copy the required files into the container.
-COPY ./codebase /codebase
-COPY ./databases /databases
+COPY ./codebase/userinterface/autocomplete-php /userinterface
 
-# TODO Make some directories and files needed for logging.
-RUN mkdir -m 777 /var/log/dblp
-RUN touch /var/log/dblp/access.log
-RUN chmod 777 /var/log/dblp/access.log
-RUN touch /var/log/dblp/error.log
-RUN chmod 777 /var/log/dblp/error.log
+# Copy configuration files for UI and Apache to the right locations.
+COPY ./applications/${DB}/config.php /userinterface/autocomplete_config.php
+COPY ./applications/${DB}/apache.conf /etc/apache2/sites-available/apache.conf
+
+# Create log files (the PHP code crashes otherwise)
+# RUN touch /log/${DB}.access_log
+# RUN chmod 777 /log/${DB}.access_log
+# RUN touch /log/${DB}.error_log
+# RUN chmod 777 /log/${DB}.error_log
 
 # =================================================================================================
-# Patch some file.
-
-WORKDIR /databases/dblp/www.dblp.org
+# Patch configuration files
+#
+# NOTE: The configuration files are currently all mounted via -v, so can be
+# edited outside the docker container.
 
 # In PHP 5.4., the handling of warnings has changed. So now, there is an warning if you try to
 # access an object which wasn't initialized yet, see
@@ -43,18 +49,10 @@ WORKDIR /databases/dblp/www.dblp.org
 # "$config" is correctly initialized.
 # NOTE: The single quotes (instead of double quotes) are important because otherwise, "$php" and
 # "$config" is interpreted as a Docker argument.
-RUN sed -i 's#<?php#<?php\nif (!isset($config)) $config = new stdClass();\n#g' ./search/autocomplete_config.php
-
-# Fix the backend host wherever necessary.
-RUN sed -ir -e "s#\$config->server_hostname = \"localhost\";#\$config->server_hostname = \"${BACKEND_HOST}\";\n#g" ./autocomplete-php/autocomplete_config.php
-RUN sed -ir -e "s#\$config->server_hostname = \"localhost\";#\$config->server_hostname = \"${BACKEND_HOST}\";\n#g" ./search/autocomplete_config.php
-
-# Fix the backend port wherever necessary.
-RUN sed -i "s#\$config->server_port = 8181;#\$config->server_port = ${BACKEND_PORT};\n#g" ./autocomplete-php/autocomplete_config.php
-RUN sed -i "s#\$config->server_port = 8181;#\$config->server_port = ${BACKEND_PORT};\n#g" ./search/autocomplete_config.php
+# RUN sed -i 's#<?php#<?php\nif (!isset($config)) $config = new stdClass();\n#g' ./search/autocomplete_config.php
 
 # Fix the backend host and port in the Apache config.
-RUN sed -i "s#http://localhost:8181#http://${BACKEND_HOST}:${BACKEND_PORT}#g" ../apache-sites/dblp-docker.conf
+# RUN sed -i "s#http://localhost:8181#http://${BACKEND_HOST}:${BACKEND_PORT}#g" /configuration/apache.conf
 
 # =================================================================================================
 # Deploy the files to the Apache webserver.
@@ -62,9 +60,10 @@ RUN sed -i "s#http://localhost:8181#http://${BACKEND_HOST}:${BACKEND_PORT}#g" ..
 WORKDIR /
 
 # Make the frontend files available to Apache.
-RUN ln -s /databases/dblp/www.dblp.org /var/www/html/www.dblp.org
-RUN ln -s /databases/dblp/apache-sites/dblp-docker.conf /etc/apache2/sites-available/dblp-docker.conf
+RUN ln -s /userinterface /var/www/html/completesearch-ui
 
 # Disable the default Apache config and enable the config required by the frontend.
 RUN a2dissite 000-default.conf
-RUN a2ensite dblp-docker.conf
+RUN a2ensite apache.conf
+
+CMD ["/bin/bash", "-c", "service apache2 start && bash"]
