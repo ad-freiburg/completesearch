@@ -7,10 +7,6 @@
 
 FROM php:7.3.6-apache
 
-ARG BACKEND_HOST=localhost
-ARG BACKEND_PORT=8080
-ARG DB=example
-
 # =================================================================================================
 
 # Install some extra Apache modules.
@@ -22,6 +18,8 @@ RUN a2enmod proxy \
 RUN apt update && apt install -y vim
 
 # =================================================================================================
+
+ARG DB=enquete
 
 # Copy the required files into the container.
 COPY ./codebase/userinterface/autocomplete-php /userinterface

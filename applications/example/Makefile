@@ -8,7 +8,6 @@ WORD_SEPARATOR_FRONTEND = :
 WORD_SEPARATOR_BACKEND  = :
 
 LOCALE = de_DE.iso88591
-SORT = sort -T sort-tmp -S 1G
 WORDS_FORMAT = ASCII
 SHELL = /usr/local/bin/bash
 ENCODING = iso88591
@@ -26,8 +25,6 @@ SORT = sort -T data -S 1G
 SERVER_OPTIONS_SHORT = -Z
 PARSER=$(CS_CODE_DIR)/parser/CsvParserMain
 PORT = 8080
-DB = example
-
 
 PARSER_OPTIONS = \
         --old-words-format \

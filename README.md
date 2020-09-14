@@ -120,7 +120,7 @@ the frontend will be available under `<hostname>:<port>`, where `<hostname>` is
 the name of the machine on which you are running and `<port>` is the port
 specified in the command line.
 
-       export DB=example && export PORT=5000 && docker build -f Dockerfile.frontend -t completesearch-ui . && docker run -it --rm -v $(pwd)/applications/${DB}:/configuration -v $(pwd)/data/${DB}:/log -p 0.0.0.0:${PORT}:80 --name completesearch-ui completesearch-ui
+       export DB=example && export PORT=5000 && docker build -f Dockerfile.frontend --build-arg DB=${DB} -t completesearch-ui . && docker run -it --rm -v $(pwd)/applications/${DB}:/configuration -v $(pwd)/data/${DB}:/log -p 0.0.0.0:${PORT}:80 --name completesearch-ui completesearch-ui
 
 ### docker-compose
 
