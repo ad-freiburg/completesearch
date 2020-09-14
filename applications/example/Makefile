@@ -2,6 +2,7 @@ include codebase/Makefile
 
 # NOTE: For the old Completesearch UI, must parse with --old-words-format
 # NOTE: and set the separators to : (both frontend and backend)
+# NOTE: Outside of docker, remove the symbolic link to /completesearch
 
 WORD_SEPARATOR_FRONTEND = :
 WORD_SEPARATOR_BACKEND  = :
