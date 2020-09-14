@@ -450,28 +450,33 @@ AC_Class.prototype.processInput = function (event)
 		break;
 /*
 		UNCOMMENTED 09-04-08 (Markus): ALT + l/m are shortcuts of Firefox and IE
-		case (76 | ALT_KEYCODE): // 'l+ALT'
-		positionCursorAtEnd();
-		if (this.excerpt_radius >= 6)
-		{
-			this.excerpt_radius = Math.round(this.excerpt_radius/2);
-			// NEW 16-04-07 (Markus): new third parameter 'force': true force a request even if query string is unchanged
-    	// NEW 14-01-07 (Markus)
-			this.launchQuery(words, "H", "", true);
-		}
-		break;
-
-		case (77 | ALT_KEYCODE): // 'm+ALT'
-		positionCursorAtEnd();
-		if (this.excerpt_radius <= 1000)
-		{
-			this.excerpt_radius *= 2
-			// NEW 16-04-07 (Markus): new third parameter 'force': true force a request even if query string is unchanged
-    	// NEW 14-01-07 (Markus)
-			this.launchQuery(words, "H", "", true);
-		}
-		break;
 */
+		case (76 | ALT_KEYCODE): // 'ALT+l'
+			console.log("USER ACTION: Alt+l -> decrease excerpt radius")
+		  positionCursorAtEnd();
+		  if (this.excerpt_radius >= 6)
+		  {
+		  	this.excerpt_radius = Math.round(this.excerpt_radius/2);
+  			// NEW 16-04-07 (Markus): new third parameter 'force': true force a request even if query string is unchanged
+  		  // NEW 09-04-08 (Markus): now we use an array for the query parameters instead of only the query type
+  		  this.launchQuery(words, new Array(new Query("H", 1, this.hits_per_page_while_typing, this.first_hit, this.first_hit)), true);
+		  }
+		  break;
+
+		case (77 | ALT_KEYCODE): // 'ALT+m'
+			console.log("USER ACTION: Alt+m -> increase excerpt radius")
+		  positionCursorAtEnd();
+		  if (this.excerpt_radius <= 1000)
+		  {
+		  	this.excerpt_radius *= 2
+  			// NEW 16-04-07 (Markus): new third parameter 'force': true force a request even if query string is unchanged
+  		  // NEW 09-04-08 (Markus): now we use an array for the query parameters instead of only the query type
+  		  this.launchQuery(words, new Array(new Query("H", 1, this.hits_per_page_while_typing, this.first_hit, this.first_hit)), true);
+		  }
+		  break;
+
+// */
+
 		case 38: // arrow up
   //		positionCursorAtEnd();
   		setFocusAndMoveCursorToEnd(document.getElementById('autocomplete_query'));

@@ -34,7 +34,8 @@ PARSER_OPTIONS = \
 	--excerpts=autor,titel,jahr,beschreibung \
 	--within-field-separator=\; \
 	--allow-multiple-items=autor \
-	--base-name=$(DB) encoding=$(ENCODING) \
+	--base-name=$(DB) \
+        --encoding=$(ENCODING) \
 	--maps-directory=$(CS_CODE_DIR)/utility \
 	$(shell perl -e 'print $(ENABLE_SYNONYM_SEARCH) ? "--read-synonym-groups" : "";') \
   	$(shell perl -e 'print $(NORMALIZE_WORDS) ? "--normalize-words" : "";') \

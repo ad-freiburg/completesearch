@@ -26,6 +26,7 @@ COPY ./codebase/userinterface/autocomplete-php /userinterface
 
 # Copy configuration files for UI and Apache to the right locations.
 COPY ./applications/${DB}/config.php /userinterface/autocomplete_config.php
+COPY ./applications/${DB}/style.css /userinterface/autocomplete.css
 COPY ./applications/${DB}/apache.conf /etc/apache2/sites-available/apache.conf
 
 # Create log files (the PHP code crashes otherwise)
