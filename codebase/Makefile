@@ -90,7 +90,7 @@ EXE_COMMAND 	      =
 CXX_OPTIONS  = --std=c++11 -Wall# -Wno-uninitialized -Wno-deprecated -Wno-unused-function -fexceptions
 # CXX_OPTIONS  = -Wall -Wno-uninitialized -Wno-deprecated -Wno-unused-function -fexceptions --std=gnu++0x
 CXX_DEFINES  = -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_REENTRANT -DSTL_VECTOR -DDEBUG_PTHREAD_CREATE_TIME
-CXX_DEBUG    = -g # -O3# -g #-DNDEBUG
+CXX_DEBUG    = -O3# -g #-DNDEBUG
 CXX_INCLUDES = -I$(CS_CODE_DIR) -I$(CS_CODE_DIR)/gtest/include
 # NOTE(Hannah, 26-01-2017): gtest uses tuple from different dir than sparsehash.
 CXX_FIXES = -DGTEST_HAS_TR1_TUPLE=0 -DGTEST_USE_OWN_TR1_TUPLE=0
