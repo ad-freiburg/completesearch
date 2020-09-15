@@ -1,0 +1,1126 @@
+@charset "utf-8";
+
+html
+{
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+body
+{
+	font-family: Arial, Helvetica, Geneva, Swiss, sunsans-regular;
+	font-size: 100%;
+	/* font-size: normal; */
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+#page
+{
+  font-size: 90%;
+	/*height: 100%;*/
+	min-height: 100%;
+	margin: 0px;
+	padding: 0px;
+	background: transparent;
+}
+
+
+#left
+{
+	/* The width of the left column is given by the following width declaration */
+  position: relative;
+  z-index: 10;
+/*	min-height: 100%;*/
+	width: 400px;
+	float: left;
+	vertical-align: top;
+	padding: 0px 16px 0px 16px;
+	margin: 0px;
+	background: transparent;
+	/*background: rgb(229,228,229);*/
+}
+
+
+#left_bg
+{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 432px;
+  height: 100%;
+/*  z-index: 6;*/
+	background: rgb(229,228,229);
+}
+
+
+#right
+{
+  position: relative;
+  z-index: 5;
+/*	min-height: 100%;*/
+  font-size: 115%;
+	vertical-align: top;
+/*	padding: 0px 16px 0px 16px;*/
+	padding: 0px 16px 0px 448px;
+	margin: 0px 0px 0px 0px;
+/*	background: rgb(255,255,255);*/
+	background: transparent;
+}
+
+
+#detail
+{
+  position: relative;
+/*  top: 0px;*/
+  z-index: 10;
+/*	min-height: 100%;*/
+	width: 370px;
+	float: right;
+  display: none;
+	vertical-align: top;
+	padding: 0px 16px 0px 16px;
+	margin: 0px 0px 0px 0px;
+/*	background: rgb(229,228,229);*/
+	background: transparent;
+}
+
+
+#detail_bg
+{
+  position: fixed;
+  top: 0px;
+  right: 0px;
+/*  width: 402px;*/
+  height: 100%;
+  display: none;
+  z-index: 6;
+	background: rgb(229,228,229);
+}
+
+
+#logo
+{
+	margin: 0.4em 0em 0em 0em;
+	padding: 0em;
+}
+
+
+.toggle_box_image
+{
+	float: left;
+	margin: 6px 3px 1px 0px;
+	padding: 3px 3px 3px 3px;
+	cursor: pointer;
+	display: none;
+}
+
+
+.move_box_image
+{
+	float: left;
+	margin: 10px 1px 1px 0px;
+	padding: 3px 3px 3px 3px;
+	cursor: pointer;
+	display: none;
+}
+
+
+.progress_image
+{
+	margin: 0px 0px 2px 4px;
+	border: 0px solid;
+}
+
+
+#option
+{
+	float: left;
+	padding: 16px 0px 0px 0px;
+	border: 0px solid;
+}
+
+
+#reset
+{
+	float: right;
+	margin: 16px 16px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+
+#note
+{
+	float: left;
+	padding: 10px 0px 0px 10px;
+}
+
+
+#clear_infobox
+{
+  float: right; 
+  padding-top: 7px; 
+  color: gray; cursor: 
+  pointer;
+}
+
+
+#reset_link
+{
+	color: rgb(208,208,208);
+	font-weight: bold;
+  font-size: 100%;
+}
+
+
+#autocomplete_form
+{
+	clear: both;
+  width: 100%;
+	margin: 7px 0px 0px 0px;
+	padding: 5px 0px 0px 0px;
+}
+
+
+#autocomplete_query
+{
+	color: black;
+	line-height: 110%; /* NEW 17-09-08 / Markus: fix uncomplete character "g" in IE */
+  font-size: 110%; /* übernimmt (warum?) nicht die Fontgröße der übergeordneten body bzw. page (90%) */
+	width: 100%;
+	vertical-align: bottom;
+	padding: 4px 1px 0px 2px;	/* padding-right have to be 1px at minimum, otherwise the IE don't show the input box! */
+	border: 0px;
+	background: transparent ;
+}
+
+
+/* To prevent outline of the inner input element in Safari and Google Chrome */
+#autocomplete_query:focus {
+ outline: none;
+}
+
+
+#input
+{
+	padding: 0px;
+	margin: 0px;
+	border-spacing: 0px;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+
+#input_1_1
+{
+	width: 6px;
+	padding:0px;
+	margin:0px;
+	background: url(images/input_1_1.gif) no-repeat;
+}
+
+
+#input_1_2
+{
+	padding:0px;
+	margin:0px;
+	background: url(images/input_1_2.gif) repeat;
+}
+
+
+#input_1_3
+{
+	width: 28px;
+	padding:0px;
+	margin:0px;
+	background: url(images/input_1_3.gif) no-repeat ;
+}
+
+
+#input_2_1
+{
+	width: 6px;
+	height: 3px;
+	padding: 0px;
+	margin: 0px;
+	background: url(images/input_2_1.gif) no-repeat ;
+}
+
+
+#input_2_2
+{
+	padding:0px;
+	margin:0px;
+	background: url(images/input_2_2.gif) repeat-x;
+}
+
+
+#input_2_3
+{
+	width: 28px;
+	padding: 0px;
+	margin: 0px;
+	background: url(images/input_2_3.gif) no-repeat ;
+}
+
+
+#submit_button
+{
+	padding-bottom: 10px;
+}
+
+
+#history_back
+{
+	width: 43px;
+	height: 22px;
+	padding: 0px;
+	margin: 0px;
+	background: url(images/history_back.gif) no-repeat;
+}
+
+
+#history_forward
+{
+	width: 43px;
+	height: 22px;
+	padding: 0px;
+	margin: 0px;
+	background: url(images/history_forward.gif) no-repeat;
+}
+
+
+#submit_button_1 {
+	height: 26px;
+	width: 8px;
+	padding: 0px;
+	margin: 0px;
+	background: url(images/submit_button_1.gif) no-repeat;
+	}
+
+
+#submit_button_2
+{
+	height: 26px;
+	padding: 0px;
+	margin: 0px;
+	vertical-align: middle;
+	border: 0px dotted;
+	background: url(images/submit_button_2.gif) repeat-x;
+	cursor: pointer;
+}
+
+
+#submit_button_3
+{
+	height: 26px;
+	width: 8px;
+	margin: 0px;
+	padding: 0px;
+	background: url(images/submit_button_3.gif) no-repeat;
+}
+
+
+input.submit
+{
+	padding:0px 0px;
+	margin:0px;
+	border: 0px solid;
+	vertical-align: middle;
+	background: transparent;
+/*	background: url(images/submit_button_2.gif) repeat-x transparent;*/
+	cursor: pointer;
+}
+
+
+
+#autocomplete_H_boxes_1_subtitle
+{
+	min-height: 24px;
+	vertical-align: middle;
+	padding: 6px 0px 10px 0px;
+	margin: 3px 0px 0px 0px;
+}
+
+
+#hit_box_at_beginning
+{
+	font-style: italic;
+	font-size: 1.4em;
+	color: rgb(200,200,200);
+	margin: 0.4em;
+}
+
+
+#autocomplete_H_boxes_1_title
+{
+/*	font-size: 90%;*/
+	font-weight: normal;
+	vertical-align: bottom;
+	padding: 10px 0 0 0;
+	margin: 0px;
+	background: scroll;
+}
+
+
+#autocomplete_H_boxes_1_body
+{
+	font-size: 100%;
+	margin: 0px;
+  margin-top: 20px;
+/*  overflow: auto;*/
+}
+
+
+#autocomplete_H_boxes_1_footer
+{
+	font-size: 100%;
+  margin-top: 20px;
+}
+
+
+#autocomplete_H_boxes_1_body .title
+{
+  font-size: 110%; 
+  color: rgb(32, 0, 170);
+  margin-bottom: 6px;
+  text-decoration: underline;
+}
+
+
+#autocomplete_H_boxes_1_body .authors
+{
+  font-size: 100%; 
+  font-weight: normal; 
+  color: green;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+
+#autocomplete_H_boxes_1_body .excerpts
+{
+  color: black; 
+  font-size: normal;
+}
+
+
+#autocomplete_H_boxes_1_body .venue
+{
+  color: darkred; 
+  font-weight: bold;
+}
+
+
+#autocomplete_H_boxes_1_body .type
+{
+  color: orange;
+}
+
+
+#autocomplete_H_boxes_1_body .year
+{
+  color: blue;
+}
+
+
+#hits_title
+{
+  border-bottom: 1px dotted black;
+}
+
+
+#autocomplete_error_message_title
+{
+	color: white;
+  font-size: 90%;
+	padding: 8px 0px 3px 0px;
+	min-height: 20px;	  /* does not work for IE */;
+}
+
+
+#autocomplete_error_message
+{
+  font-size: 90%;
+  padding: 8px 0px 8px 0px;
+	min-height: 70px;	  /* does not work for IE */;
+}
+
+
+#autocomplete_notes_title
+{
+  font-size: 90%;
+	padding: 8px 0px 3px 0px;
+}
+
+
+#autocomplete_info_boxes_1_body
+{
+  font-size: 90%;
+	padding: 0px 0px 0px 6px;
+}
+
+
+.notes_table
+{
+  border-spacing: 10px 0px;
+  font-size: 90%;
+}
+
+
+/*	The next both classes define the layout of the completion boxes
+    For example, the last value of padding defines the left indend of the title or the entries
+*/
+.ac_completions {
+	font-size: 100%;
+	/* ATTENTION: padding-right must be 1px less than the one of .ac_completions_title;
+	   because box elements like .box_1w_2 have a padding-right of 1px due to a IE bug */
+	padding: 1px 0;
+	margin: 0;
+	/* Each line needs 1.3em (line-height) + 0.1em for the bottom-line of # --> for 6 lines = 8.4em
+	   Add 0.1em for padding-top + 0.1 for rounding --> 8.6em */
+	/* NEW 23Jul07 (Holger): 5 slots are enough by default */
+	height: 10em; /* 7.4em; */ /* 8.6em; */
+	line-height: 1.3;
+	border-left: 1px solid rgb(181,181,181);
+	border-bottom: 1px solid rgb(181,181,181);
+	border-right: 1px solid rgb(181,181,181);
+	border-top: 0px;
+	display: block;
+	overflow: auto;
+/*  overflow-x: hidden;*/
+	background: white;
+	}
+
+/*
+.footer {
+  height: 17px;
+	font-size: 90%;
+	padding: 1px 0px 1px 6px;
+	margin: 0;
+	border-left: 1px solid rgb(181,181,181);
+	border-bottom: 1px solid rgb(181,181,181);
+	border-right: 1px solid rgb(181,181,181);
+	border-top: 0px;
+	display: block;
+	background: rgb(210,218,216);
+	}
+*/
+
+.ac_completions_title
+{
+  float: left;
+  font-size: 100%; /* übernimmt (warum?) nicht die Fontgröße der übergeordneten body bzw. page (90%) */
+  margin: 0px;
+	padding: 6px 1px 0px 2px;
+}
+
+
+.arrow_img
+{
+/*	 position: relative;*/
+	 padding-bottom: 0px;
+}
+
+
+.box
+{
+  width: 100%;
+	margin: 0px 0px 6px 0px;
+	padding: 0px;
+}
+
+
+.box_line
+{
+/*	font-size: 90%;*/
+	margin: 0px;
+	padding: 0px;
+}
+
+
+.box_line .hits_number
+{
+  float: right;
+	margin: 0px;
+	padding: 0px;
+  padding-right: 6px;
+}
+
+
+.box_line .completion,
+.box_line .more_link
+{
+  clear: both;
+  float: left;
+	margin: 0px;
+	padding: 0px;
+  padding-left: 6px;
+}
+
+
+/* The horizontal rule between two box entries */
+.box_line .rule
+{
+  clear: both;
+  height: 1px;
+  width: 100%;
+  border-top: 1px solid rgb(235,235,235);
+  margin: 0;
+  padding: 0;
+  font-size: 0%;
+}
+
+
+a.completion_link:link
+{
+	color: black;
+}
+
+
+/* The table for the box constructions */
+.caption
+{
+	padding: 0px;
+	margin: 0px;
+	border-spacing: 0px;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+
+.box_alert_1_1 	{
+	/* NEW 15.01.07 (Markus): box needs an explicit height to get a minimum height for the progress image */
+	height: 27px;
+	width: 6px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_alert_1_1.gif) no-repeat;
+	}
+
+
+.box_alert_1_2 	{
+	padding: 0px 1px 0px 0px;	/* padding-right have to be 1px at minimum, otherwise the IE don't show this div! */
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_alert_1_2.gif) repeat-x;
+	}
+
+
+.box_alert_1_3 	{
+	width: 28px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	vertical-align: bottom;
+	background: url(images/box_alert_1_3.gif) no-repeat;
+	}
+
+
+.box_1w_1 	{
+	/* NEW 15.01.07 (Markus): box needs an explicit height to get a minimum height for the progress image */
+	height: 27px;
+	height: 20px;
+	width: 6px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_1w_1.gif) no-repeat;
+	}
+
+
+.box_1w_2 	{
+	padding: 0px 1px 0px 0px;	/* padding-right have to be 1px at minimum, otherwise the IE don't show this div! */
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_1w_2.gif) repeat-x;
+	}
+
+
+.box_1w_3 	{
+	width: 25px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	vertical-align: bottom;
+	background: url(images/box_1w_3.gif) no-repeat;
+	}
+
+
+.box_1f_1 	{
+	/* NEW 15.01.07 (Markus): box needs an explicit height to get a minimum height for the progress image */
+	height: 27px;
+	width: 6px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_1f_1.gif) no-repeat;
+	}
+
+
+.box_1f_2 	{
+	padding: 0px 1px 0px 0px;	/* padding-right have to be 1px at minimum, otherwise the IE don't show this div! */
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_1f_2.gif) repeat-x;
+	}
+
+
+.box_1f_3 	{
+	width: 25px;
+	padding: 0px;
+	margin: 0px;
+/*	border: 1px solid;*/
+	vertical-align: bottom;
+	background: url(images/box_1f_3.gif) no-repeat;
+	}
+
+
+.box_alert_3_1 {
+	height: 6px;
+	width: 6px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_alert_3_1.gif) no-repeat;
+	}
+
+
+.box_alert_3_2 {
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_alert_3_2.gif) repeat-x;
+	}
+
+
+.box_alert_3_3 {
+	width: 28px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_alert_3_3.gif) no-repeat;
+	}
+
+
+.box_3w_1 {
+	height: 4px;
+	width: 6px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_3w_1.gif) no-repeat;
+	}
+
+
+.box_3w_2 {
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_3w_2.gif) repeat-x;
+	}
+
+
+.box_3w_3 {
+	width: 25px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_3w_3.gif) no-repeat;
+	}
+
+
+.box_3f_1 {
+	height: 4px;
+	width: 6px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_3f_1.gif) no-repeat;
+	}
+
+
+.box_3f_2 {
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_3f_2.gif) repeat-x;
+	}
+
+
+.box_3f_3 {
+	width: 25px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_3f_3.gif) no-repeat;
+	}
+
+
+/* height should be 1.2 times of ($max_completions_show + 1); 7.2em for mcs=5 for example */
+/*
+.box_alert_4_1 {
+	width: 6px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_alert_4_1.gif) repeat-y;
+	}
+
+
+.box_alert_4_2 {
+	height: 7.2em;
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	vertical-align: top;
+	background: url(images/box_alert_4_2.gif) repeat;
+	}
+
+
+.box_alert_4_3 {
+	width: 28px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_alert_4_3.gif) repeat-y;
+	}
+*/
+
+/* height should be 1.2 times of ($max_completions_show + 1); 7.2em for mcs=5 for example */
+/*
+.box_4w_1 {
+	height: 7.2em;
+	width: 6px;
+	padding: 0px;
+	margin: 0px;
+	background: url(images/box_4w_1.gif) repeat-y;
+	}
+
+
+.box_4w_2 {
+	padding: 0px;
+	margin: 0px;
+	vertical-align: top;
+	border: 0px dotted;
+	background: url(images/box_4w_2.gif) repeat;
+	}
+
+
+.box_4w_3 {
+	width: 25px;
+	padding: 0px;
+	margin: 0px;
+	background: url(images/box_4w_3.gif) repeat-y;
+	}
+*/
+
+/* height should be 1.2 times of ($max_completions_show + 1); 7.2em for mcs=5 for example */
+/*
+.box_4f_1 {
+	height: 7.2em;
+	width: 6px;
+	padding: 0px;
+	margin: 0px;
+	background: url(images/box_4f_1.gif) repeat-y;
+	}
+
+
+.box_4f_2 {
+	padding: 0px;
+	margin: 0px;
+	vertical-align: top;
+	background: url(images/box_4f_2.gif) repeat;
+	}
+
+
+.box_4f_3 {
+	width: 25px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_4f_3.gif) repeat-y;
+	}
+
+
+.box_alert_5_1 {
+	height: 6px;
+	width: 6px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_alert_5_1.gif) no-repeat;
+	}
+
+
+.box_alert_5_2 {
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_alert_5_2.gif) repeat-x;
+	}
+
+
+.box_alert_5_3 {
+	width: 28px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_alert_5_3.gif) no-repeat;
+	}
+
+
+.box_5w_1 {
+	height: 4px;
+	width: 6px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_5w_1.gif) no-repeat;
+	}
+
+
+.box_5w_2 {
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_5w_2.gif) repeat-x;
+	}
+
+
+.box_5w_3 {
+	width: 25px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_5w_3.gif) no-repeat;
+	}
+
+
+.box_5f_1 {
+	height: 4px;
+	width: 6px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_5f_1.gif) no-repeat;
+	}
+
+
+.box_5f_2 {
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_5f_2.gif) repeat-x;
+	}
+
+
+.box_5f_3 {
+	width: 25px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid;
+	background: url(images/box_5f_3.gif) no-repeat;
+	}
+*/
+
+
+a.completion_link:hover,
+a.completion_link:focus,
+a.completion_link:active
+{
+	text-decoration:underline;
+}
+
+
+a.completion_link:visited
+{
+	color: black;
+}
+
+/*
+a.hits_title:link,
+a.hits_title:visited,
+a.hits_title:hover {
+	 color: black;
+	 }
+*/
+
+a:hover,
+a:focus,
+a:active
+{
+	text-decoration:underline;
+}
+
+
+a:link
+{
+	color: #2000aa;
+	text-decoration:none;
+}
+
+
+a:visited
+{
+	color: #2000dd;
+	text-decoration:none;
+}
+
+
+/*	Layout for other pages than the start page, for example the options page
+*/
+
+#top {
+	padding: 12px 0px 10px 16px;
+}
+
+
+#middle {
+	padding: 10px 80px 0px 100px;
+}
+
+
+#title {
+	color: rgb(185, 182, 181);
+	color: rgb(249, 152, 38);	/* orange */
+	color: rgb(178, 196, 191);
+	margin: 6px 0px 20px 0px;
+	padding: 0px;
+}
+
+
+h1 {
+    font-size: 200%;
+/*	font-size: 32pt;*/
+	text-decoration: none;
+}
+
+
+/* Elements of the options page */
+.option {
+	padding: 4px 80px 4px 4px;
+	height: 24pt;
+	border: 1px solid rgb(185, 185, 185);
+  font-size: 90%;
+	}
+
+
+.input {
+	position: relative;
+	right: 60px;
+	padding: 0px;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 110%;
+	color: rgb(85, 85, 85);
+}
+
+
+a.more_link_W,
+a.less_link_W,
+a.more_link_F,
+a.less_link_F,
+a.more_link_C,
+a.less_link_C,
+a.more_link_J,
+a.less_link_J,
+a.more_link_R,
+a.less_link_R,
+a.more_link_Y,
+a.less_link_Y
+{
+	color: black;
+  clear: both;
+}
+
+
+a.more_link_W:hover,
+a.more_link_W:focus,
+a.more_link_W:active,
+a.less_link_W:hover,
+a.less_link_W:focus,
+a.less_link_W:active,
+a.more_link_F:hover,
+a.more_link_F:focus,
+a.more_link_F:active,
+a.less_link_F:hover,
+a.less_link_F:focus,
+a.less_link_F:active,
+a.more_link_C:hover,
+a.more_link_C:focus,
+a.more_link_C:active,
+a.less_link_C:hover,
+a.less_link_C:focus,
+a.less_link_C:active,
+a.more_link_J:hover,
+a.more_link_J:focus,
+a.more_link_J:active,
+a.less_link_J:hover,
+a.less_link_J:focus,
+a.less_link_J:active,
+a.more_link_R:hover,
+a.more_link_R:focus,
+a.more_link_R:active,
+a.less_link_R:hover,
+a.less_link_R:focus,
+a.less_link_R:active,
+a.more_link_Y:hover,
+a.more_link_Y:focus,
+a.more_link_Y:active,
+a.less_link_Y:hover,
+a.less_link_Y:focus,
+a.less_link_Y:active
+{
+	color: black;
+	text-decoration: underline;
+}
+
+
+.more_link_disabled
+{
+  color: gray;
+}
+
+
+/* NEW Markus / 17-11-08: classes for hit highlighting */
+hl[idx="0"]
+{ 
+  color: black; 
+  background-color: rgb(255, 255, 102); 
+}
+
+hl[idx="1"]
+{ 
+  color: black; 
+  background-color: rgb(160, 255, 255); 
+}
+
+hl[idx="2"]
+{ 
+  color: black; 
+  background-color: rgb(153, 255, 153); 
+}
+
+hl[idx="3"]
+{ 
+  color: black; 
+  background-color: rgb(255, 153, 153); 
+}
+
+hl[idx="4"]
+{ 
+  color: black; 
+  background-color: rgb(255, 102, 255); 
+}
+
+hl[idx="5"]
+{ 
+  color: black; 
+  background-color: rgb(136, 0, 0); 
+}

@@ -11,7 +11,7 @@ SHELL = /usr/local/bin/bash
 WORDS_FORMAT = ASCII
 ENCODING = utf8
 LOCALE = en_US.utf8
-ENABLE_FUZZY_SEARCH = 1
+ENABLE_FUZZY_SEARCH = 0
 FUZZY_SEARCH_ALGORITHM = simple
 FUZZY_USE_BASELINE = 1
 HYB_PREFIX_LENGTH = 2
@@ -28,9 +28,9 @@ PORT = 8080
 
 PARSER_OPTIONS = \
         --old-words-format \
-	--full-text=text \
-	--facets=zeile \
-	--show=zeile \
+	--full-text=abschnitt,text \
+	--facets=berichtsteil \
+	--show=berichtsteil,abschnitt \
 	--excerpts=text \
 	--base-name=$(DB) \
 	--encoding=$(ENCODING) \
