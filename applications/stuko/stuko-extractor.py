@@ -80,11 +80,14 @@ if __name__ == "__main__":
         print()
 
 
-    column_headers = ("titel", "stuko", "year", "top", "text", "typ", "url")
+    # BUG BUG BUG in CsvParser: the parser sometimes (not alawys) segfaults. The
+    # seg fault goes away when adding a dummy column in the end, which is not
+    # used for anything. SUPER ANNOYING.
+    column_headers = ("titel", "stuko", "year", "top", "text", "typ", "url", "bla")
     print("\t".join(["%s"] * len(column_headers)) % column_headers)
 
     base_path = "applications/stuko/documents"
-    for filename in sorted(os.listdir(base_path)):
+    for filename in reversed(sorted(os.listdir(base_path))):
         # Only files ending with Protokoll.pdf
         if not filename.endswith("Protokoll.docx"):
             continue
@@ -98,6 +101,13 @@ if __name__ == "__main__":
         title = match.group(1)
         stuko = match.group(2)
         year = match.group(3)
+        # We need to escape the # TWICE here. Escaping it once gives %25.
+        # Escaping the % in front of the %25 again gives %2525. It's weird, but
+        # it's the only thing that actually worked. Apparently the URL is
+        # urldecoded three times! The first decoding of %252523 gives %25%23.
+        # The second decoding give %23. And this is then decoded by the browser
+        # as the character # (instead of as as the address operator of a URL).
+        url = re.sub("#", "%252523", re.sub("\.docx", ".pdf", filename))
 
         # No need to use SectionCounter as in enquete-extractor.py . Instead,
         # just remember the last header (= paragraph with style "Heading ?")
@@ -143,9 +153,8 @@ if __name__ == "__main__":
                   not re.match("^\s*$", text) and \
                   current_heading != "":
                 text_type = "Text" if style_name != "BESCHLUSS" else "Beschluss"
-                # Print  columns:
-                columns = (title, stuko, year, current_heading, text, text_type,
-                           re.sub(".docx", ".pdf", filename))
+                # Print the columns:
+                columns = (title, stuko, year, current_heading, text, text_type, url, "bla")
                 print("\t".join(["%s"] * len(columns)) % columns)
             else:
                 pass

@@ -30,8 +30,8 @@ PORT = 8080
 PARSER_OPTIONS = \
         --old-words-format \
 	--full-text=titel,top,text,typ \
-	--facets=typ \
-	--show=titel,top \
+	--facets=stuko,year,typ \
+	--show=titel,top,url \
 	--excerpts=text \
 	--base-name=$(DB) \
 	--encoding=$(ENCODING) \
