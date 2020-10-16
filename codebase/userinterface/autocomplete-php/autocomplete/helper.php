@@ -27,7 +27,10 @@
 	 */
 	function get_full_url ($relative_path)
 	{
-		return "http://" . $_SERVER['HTTP_HOST'] . $relative_path;
+		return $AC->settings->http_host . $relative_path;
+		// return "http://ad-research.cs.uni-freiburg.de:17385" . $relative_path;
+		// return "http://" . $_SERVER['SERVER_NAME'] . ":" . $_SERVER['SERVER_PORT'] . $relative_path;
+		// return "http://" . $_SERVER['HTTP_HOST'] . $relative_path;
 	}
 
 	

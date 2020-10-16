@@ -19,7 +19,7 @@ $config->use_own_error_handling = true;
 
 // The HTTP host (used in helper.php because $_SERVER['HTTP_HOST'] returns the
 // internal host when the site is reached from the outside via a proxy)
-$config->http_host = "http://ad-research.cs.uni-freiburg.de:17384";
+$config->http_host = "http://ad-research.cs.uni-freiburg.de:17385";
 
 // The path to the autocomplete folder (relative to web server's document root, with leading and trailing slash!)
 $config->autocomplete_path = "/autocomplete/";
@@ -27,8 +27,8 @@ $config->autocomplete_path = "/autocomplete/";
 // *Full* path name of log files (replace by your own)
 //$config->access_log = $_SERVER['DOCUMENT_ROOT'] . $config->path . "access.log";
 //$config->error_log = $_SERVER['DOCUMENT_ROOT'] . $config->path . "error.log";
-$config->access_log = "/log/enquete.access_log";
-$config->error_log = "/log/enquete.error_log";
+$config->access_log = "/log/stuko.access_log";
+$config->error_log = "/log/stuko.error_log";
 
 // The Name of the CSS file
 $config->css_file = "autocomplete.css";
@@ -66,7 +66,7 @@ $config->server_hostname = "vulcano.informatik.privat";
 // Port of the completion server to which to talk to
 // For example:
 // $config->server_port = rtrim(file_get_contents("/var/opt/completesearch/ports/dblp.port"));
-$config->server_port = 5001;
+$config->server_port = 5003;
 
 // Timeout for connecting to the completion server via socket (in seconds)
 $config->server_timeout = 3;
@@ -103,7 +103,7 @@ $config->delays = array(100, 100, 50);
 // Show only selected facets (in the specified order), if array("") show all facets in alphabetical order
 // ATTENTION: the second mode - array("") for all facets - is no longer supported
 // (because of the new URL parameter concept "#query=info&qp=H1.20:W1.4:F1.4", for example)
-$config->facets_to_show = array("berichtsteil");
+$config->facets_to_show = array("stuko", "year", "typ");
 
 // Show facets for empty query
 $config->show_facets_for_empty_query = true;
@@ -156,7 +156,7 @@ $config->hits_per_page_on_click = 1000;
 $config->excerpts_per_hit = 10;
 
 // Number of words displayed to the left and right of highlighted words in excerpts
-$config->excerpt_radius = 20;
+$config->excerpt_radius = 100;
 
 // Maximum length of a completion (rest is truncated and shown as ...)
 $config->max_completion_length = 80;
@@ -176,14 +176,14 @@ $config->log_level = 2;
 
 // How to rank documents (hits), the digit stands for the entity to sort (0: score, 1: document id), the letter for a / d for ascending / descending
 // Here: documents are ranked by date of publication, newer ones at first
-$config->how_to_rank_docs = "0d";
-// $config->how_to_rank_docs = "1a";
+// $config->how_to_rank_docs = "0d";
+$config->how_to_rank_docs = "1a";
 // $config->how_to_rank_docs = "1d";
 
 // How to rank words (completions),the digit stands for the entity to sort (0: score, 1: ..., 2:..., 3: word id), the letter for a / d for ascending / descending
 // Here: completions with higher score at first
 //$config->how_to_rank_words = "0d";
-$config->how_to_rank_words = "3a";
+$config->how_to_rank_words = "3d";
 
 // Default parameters (which can be changed by user on the options page)
 // NOTE: max_completions_show is now replaced by the first element of top_hits
@@ -234,7 +234,7 @@ $config->user_preferences = array("max_completions_show_right",
 //
 // To apply additional transformations to the %ENTITY% constructs below add transformation functions in "transformations.php"
 
-$config->hit_template = "<p><a class='title' href='%URL%' target='_blank'>%BERICHTSTEIL% &mdash; %ABSCHNITT%</a></p>" .
+$config->hit_template = "<p><a class='title' href='%URL%' target='_blank'>%TITEL% &mdash; %TOP%</a></p>" .
                         "<div class='excerpts'>%EXCERPTS%</div>";
 
 // This is to embed the hits in an "envelope", e.g. surround by the following string; "%TEMPLATES%" is replaced by the hits
