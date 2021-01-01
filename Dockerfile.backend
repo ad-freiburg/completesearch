@@ -27,7 +27,9 @@ RUN apk add --no-cache \
     # Compression library.
     zlib-dev \
     # Debugging
-    gdb
+    gdb \
+    # Curl
+    curl
 
 # =================================================================================================
 # Install some (specific) dependencies from scratch.

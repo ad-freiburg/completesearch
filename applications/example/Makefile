@@ -44,3 +44,20 @@ PARSER_OPTIONS = \
 
 test-pall-csv:
 	make pclean-all pall
+
+# The following target can be used to regenerate the CSV file. It's just here
+# for archival purposes, to try out the example with CompleteSearch, there is no
+# need to regenerate this file.
+#
+# The target assumes that a QLever instance for Wikidata is running under
+# qlever.cs.uni-freiburg.de/api/wikidata. It only works from within the Docker
+# container because of the include in the first line of this Makefile. Here is
+# the command line to run it from the Docker container.
+#
+# docker run --rm -it -v $(pwd)/applications/example:/configuration completesearch.example -c "make example.csv"
+#
+# The sed command in the end just makes the file nicer. The header line needs to
+# be added manually.
+example.csv:
+	curl -Gs "https://qlever.cs.uni-freiburg.de/api/wikidata" --data-urlencode 'query=PREFIX schema: <http://schema.org/> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wikibase: <http://wikiba.se/ontology#> SELECT ?film_id ?wikipedia ?film ?description (MIN(?date) as ?date) (SAMPLE(?sitelinks) as ?sitelinks) (GROUP_CONCAT(DISTINCT ?director;SEPARATOR=";") AS ?directors) (GROUP_CONCAT(DISTINCT ?genre;SEPARATOR=";") AS ?genres) WHERE { ?film_id wdt:P31 wd:Q11424 . ?film_id @en@rdfs:label ?film . ?film_id @en@schema:description ?description . ?film_id wdt:P136 ?genre_id . ?genre_id @en@rdfs:label ?genre . ?film_id wdt:P57 ?director_id . ?director_id @en@rdfs:label ?director . ?film_id wdt:P577 ?date . ?film_id ^schema:about ?wikipedia . ?wikipedia schema:isPartOf <https://en.wikipedia.org/> . ?film_id ^schema:about/wikibase:sitelinks ?sitelinks . } GROUP BY ?film_id ?wikipedia ?film ?description ORDER BY DESC(?sitelinks)' --data-urlencode 'action=tsv_export' | sed 's/@en//g;s/T00:00:00//;s/\^\^\S\+//g;s/;$$//;s/;\t/\t/g;s/["<>]//g' > $@
+
