@@ -7,7 +7,7 @@
 #include "./CsvParser.h"
 
 #define EMPH_ON  "\033[1m"
-#define EMPH_OFF "\033[21m"
+#define EMPH_OFF "\033[0m"
 
 int main(int argc, char** argv)
 {
