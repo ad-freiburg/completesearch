@@ -7,16 +7,16 @@ include codebase/Makefile
 WORD_SEPARATOR_FRONTEND = :
 WORD_SEPARATOR_BACKEND  = :
 
-LOCALE = de_DE.iso88591
+LOCALE = en_us.utf8
 WORDS_FORMAT = ASCII
 SHELL = /usr/local/bin/bash
-ENCODING = iso88591
+ENCODING = utf8
 ENABLE_FUZZY_SEARCH = 0
 FUZZY_SEARCH_ALGORITHM = simple
 FUZZY_USE_BASELINE = 1
 HYB_PREFIX_LENGTH = 3
 ENABLE_SYNONYM_SEARCH = 0
-ENABLE_BINARY_SORT = 0
+ENABLE_BINARY_SORT = 1
 PARSE_EXTENDED_DTD = 0
 NORMALIZE_WORDS = 0
 VERBOSITY = 1
@@ -28,12 +28,13 @@ PORT = 8080
 
 PARSER_OPTIONS = \
         --old-words-format \
-	--full-text=autor,titel,typ,verlag,jahr,beschreibung \
-	--show=autor,titel,typ,verlag,jahr,preis \
-	--filter=autor,titel --facets=autor,jahr,verlag \
-	--excerpts=autor,titel,jahr,beschreibung \
+	--full-text=title,description,date,director,genre \
+	--show=wikipedia,title,date,director \
+	--excerpts=description,genre \
+	--filter=director \
+	--facets=director,genre \
 	--within-field-separator=\; \
-	--allow-multiple-items=autor \
+	--allow-multiple-items=director,genre \
 	--base-name=$(DB) \
         --encoding=$(ENCODING) \
 	--maps-directory=$(CS_CODE_DIR)/utility \

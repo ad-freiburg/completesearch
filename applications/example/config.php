@@ -1,10 +1,17 @@
 ﻿<?php
 
 /**
- * ALL APPLICATION SPECIFIC PARAMETERS.
- * They are set and saved in the stdClass object $config.
+ * CONFIGURATION FOR THE COMPLETESEARCH UI
+ *
+ * The following paramaters should be looked at for *every* application:
  * 
- * ALL PARAMETERS ARE USER-EDITABLE (but change only right hand sides!)
+ * $config->server_hostname
+ * $config->server_port
+ * $config->facets_to_show
+ * $config->how_to_rank_docs
+ * $config->how_to_rank_words
+ * $config->hit_template
+ * 
  */
 
 if (!isset($config)) $config = new stdClass();
@@ -31,7 +38,7 @@ $config->access_log = "/log/example.access_log";
 $config->error_log = "/log/example.error_log";
 
 // Base URL of the DBLP page; specific for the DBLP collection
-$config->dblp_url = "http://www.informatik.uni-trier.de/~ley/db/";
+//$config->dblp_url = "http://www.informatik.uni-trier.de/~ley/db/";
 
 // The Name of the CSS file
 $config->css_file = "autocomplete.css";
@@ -67,7 +74,7 @@ $config->server_hostname = "vulcano";
 // Port of the completion server to which to talk to
 // For example:
 // $config->server_port = rtrim(file_get_contents("/var/opt/completesearch/ports/dblp.port"));
-$config->server_port = 5001;
+$config->server_port = 5002;
 
 // Timeout for connecting to the completion server via socket (in seconds)
 $config->server_timeout = 15;
@@ -87,7 +94,7 @@ $config->language = "en";
 //
 
 // Don't start search before this many characters typed
-$config->min_query_size = 2;
+$config->min_query_size = 0;
 
 // No completions for words shorter than this
 $config->min_prefix_size = 1;
@@ -104,7 +111,7 @@ $config->delays = array(50, 0);
 // Show only selected facets (in the specified order), if array("") show all facets in alphabetical order
 // ATTENTION: the second mode - array("") for all facets - is no longer supported
 // (because of the new URL parameter concept "#query=info&qp=H1.20:W1.4:F1.4", for example)
-$config->facets_to_show = array("autor", "jahr", "verlag");
+$config->facets_to_show = array("director", "genre");
 
 // Show facets for empty query
 $config->show_facets_for_empty_query = true;
@@ -175,10 +182,10 @@ $config->hits_autofill = 1;
 // The log level default (1 = fatal, 2 = error, 3 = warning, 4 = info, 5 = debug)
 $config->log_level = 2;
 
-// How to rank documents (hits), the digit stands for the entity to sort (0: score, 1: docuemnt id), the letter for a / d for ascending / descending
+// How to rank documents (hits), the digit stands for the entity to sort (0: score, 1: document id), the letter for a / d for ascending / descending
 // Here: documents are ranked by date of publication, newer ones at first
 //$config->how_to_rank_docs = "1a";
-$config->how_to_rank_docs = "1d";
+$config->how_to_rank_docs = "1a";
 
 // How to rank words (completions),the digit stands for the entity to sort (0: score, 1: word id), the letter for a / d for ascending / descending
 // Here: completions with higher score at first
@@ -234,8 +241,8 @@ $config->user_preferences = array("max_completions_show_right",
 //
 // To apply additional transformations to the %ENTITY% constructs below add transformation functions in "transformations.php"
 
-$config->hit_template = "<a href='%URL%'><p class='title'>%TITEL% (%JAHR%)</p></a>"
-                         . "<div class='authors'><font>%AUTOR%</font></div>"
+$config->hit_template = "<a href='%WIKIPEDIA%'><p class='title'>%TITLE% (%DATE%)</p></a>"
+                         . "<div class='authors'><font>%DIRECTOR%</font></div>"
                          . "<div class='excerpts'>%EXCERPTS%</div>";
 
 // This is to embed the hits in an "envelope", e.g. surround by the following string; "%TEMPLATES%" is replaced by the hits
