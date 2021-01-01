@@ -56,7 +56,7 @@ To start the backend, you can use almost the same command line as above. Except
 that you also have to specify a port (the port on which the backend will listen
 to requests) and the make target `start` instead of `pall` in the end.
 
-        export DB=example && export PORT=5001 & docker build -f Dockerfile.backend -t completesearch.${DB} . && docker run -it --rm -p ${PORT}:8080 -e DB=${DB} -v $(pwd)/applications/${DB}:/configuration -v $(pwd)/data/${DB}:/data --name completesarch.${DB} completesearch.${DB} -c "make DB=/data/${DB} start"
+        export DB=example && export PORT=5001 && docker build -f Dockerfile.backend -t completesearch.${DB} . && docker run -it --rm -p ${PORT}:8080 -e DB=${DB} -v $(pwd)/applications/${DB}:/configuration -v $(pwd)/data/${DB}:/data --name completesarch.${DB} completesearch.${DB} -c "make DB=/data/${DB} start"
 
 You can also build the index and run the server in one command if you like. For
 that, you simply specify both targets `pall` and `start`. This is only
