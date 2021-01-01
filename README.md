@@ -1,4 +1,4 @@
-# CompleteSearch via Docker
+# CompleteSearch
 
 CompleteSearch is a fast and interactive search engine for what we call *context-sensitive prefix search* on a given collection of documents.
 The techniques and features behind CompleteSearch are described in full detail in [this paper](https://pdfs.semanticscholar.org/ba12/7643fadeed05eed91b0714a5f85444e8df71.pdf).
