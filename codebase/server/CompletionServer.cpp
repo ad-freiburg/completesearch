@@ -354,11 +354,10 @@ CompletionServer<Completer, Index>::CompletionServer(
   /*
    * NEW 15Nov12 (baumgari): Vector which holds all attributes, which should
    * be printed as a list within json, even if there is just one element.
-   * E.g. trees = [ "oak" ] instead of trees = "oak"; This is done by adding
-   * this list to the index "!hitinfo-multiple trees authors flowers" and
-   * initializing it by searching for it.
+   * E.g. trees = [ "oak" ] instead of trees = "oak". In the index, there is
+   * a special word ":info:multiple <field>" for each such field.
    */
-  infoQuery = string(":info:hitinfo-multiple") + wordPartSep + string("*");
+  infoQuery = string(":info:multiple") + wordPartSep + string("*");
   completer.resetTimersAndCounters();
   multipleAttributes
     = completer.getAllContinuationsOfQuery(infoQuery);

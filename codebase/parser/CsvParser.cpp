@@ -894,11 +894,14 @@ void CsvParser::addGlobalInformationToWordsFile()
   if (formats.size() > 1)
     writeInfoWord("field-delimiter", string(1, _infoDelim));
 
-  // Add :info:facet:<name> for each facet
+  // Add :info:facet:<name> for each facet and :info:multiple:<name>
+  // for each field which can have multiple values.
   for (size_t i = 0; i < _fieldOptions.size(); i++)
   {
     if (_fieldOptions[i].getFacet())
       writeInfoWord("facet", _fieldOptions[i].getName());
+    if (_fieldOptions[i].getMultipleItems())
+      writeInfoWord("multiple", _fieldOptions[i].getName());
   }
 }
 
