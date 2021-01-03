@@ -1,6 +1,7 @@
 .svn
 .git
 .*.swp
+.*.swo
 data
 documents/
 .*stxxl

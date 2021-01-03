@@ -12,23 +12,44 @@ body {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; 
   line-height: 1.3;
   font-size: 100%;
+  margin: 1%;
 }
 
-div#container { width: 100%; height: 98%; }
+div#search, div#facets, div#results { padding: 1.0em; }
+
+div#container { width: 100%; }
 div#left { float: left; width: 30%; height: 100%; border: 1px solid; border-right: 0; }
-div#right { float: left; width: 68%; height: 100%; border: 1px solid; }
-div#search p { display: inline-block; font-weight: bold; font-size: 180%; margin: 0.5em 0.5em; padding: 0; }
-div#search input { margin: 0.5em 0.5em; width: 90%; }
-div#search { height: 20%; background-color: #E0E0E0; border-bottom: 1px solid; }
-div#facets { height: 80%; background-color: #E9E9E9; }
-div#results { height: 100%; background-color: #FEFEFE; }
+div#right { float: left; width: 69%; height: 100%; border: 1px solid; }
 
-/* FORMAT OF THE HITS */
+/* FORMAT OF THE SEARCH PANEL */
 
-div#results { margin: 1.0em 1.0em 1.0em 1.0em; }
-div#results div.hit { display: block; margin: 1.0em 0; }
-div#results div.hit p { margin: 0.2em 0; font-size: 120%; }
-div#results div.hit p.header { color: black; font-size: 100%; }
+div#search { height: 15%; background-color: #E0E0E0; border-bottom: 1px solid; }
+div#search p.subtitle { display: inline-block; font-size: 100%; margin: 0;  }
+div#search p.logo { display: inline-block; font-weight: bold; font-size: 150%; margin: 0;  }
+div#search input { width: 90%; margin: 1em 0; }
+
+/* FORMAT OF THE FACET PANEL */
+
+div#facets { height: 75%; background-color: #E9E9E9; }
+div#facets p { display: inline-block; }
+div#facets table { display: inline-block; table-layout: fixed; margin: 0.5em 0;}
+div#facets table { border-spacing: 1px; }
+div#facets table tr { background-color: white; height: 1.4em; }
+div#facets table th { text-align: left; font-size: 90%; padding: 0.4em 0.5em; }
+div#facets table td { text-align: left; font-size: 90%; padding: 0.0em 0.5em; }
+div#facets table th { border-collapse: separate; border-radius: 3px; -moz-border-radius: 3px; }
+div#facets table td { border-collapse: separate; border-radius: 3px; -moz-border-radius: 3px; }
+div#facets table td:nth-child(1) { width: 0%; overflow: hidden; text-overflow: ellipsis; }
+div#facets table td:nth-child(2) { width: 100%; overflow: hidden; text-overflow: ellipsis; }
+div#facets table td:nth-child(3) { width: 0%; overflow: hidden; text-overflow: ellipsis; text-align: right; }
+
+/* FORMAT OF THE HITS PANEL */
+
+div#results { height: 95%; background-color: #FEFEFE; }
+div#results p.header { color: black; font-size: 100%; }
+div#results div.hit { display: block; margin: 0.5em 0; }
+div#results div.hit p { margin: 0.1em 0; font-size: 120%; }
 div#results div.hit p.title { color: darkblue; text-decoration: underline }
 div#results div.hit p.subtitle { color: darkgreen; }
 div#results div.hit p.excerpt { color: #333333; }
+

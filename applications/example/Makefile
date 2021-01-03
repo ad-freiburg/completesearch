@@ -27,8 +27,9 @@ SERVER_OPTIONS_SHORT = -Z
 PARSER=$(CS_CODE_DIR)/parser/CsvParserMain
 PORT = 8080
 
+# Previous version used --old-words-format, which is needed for old UI. For the
+# new UI, we want words like :facet:... and not :ct:...
 PARSER_OPTIONS = \
-        --old-words-format \
 	--full-text=title,description,date,director,genre \
 	--show=wikipedia,title,date,director \
 	--excerpts=description,genre \
