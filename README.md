@@ -44,11 +44,17 @@ all".
 
         export DB=example && docker build -f Dockerfile.backend -t completesearch.${DB} . && docker run -it --rm -e DB=${DB} -v $(pwd)/applications/${DB}:/configuration -v $(pwd)/data/${DB}:/data --name completesarch.${DB} completesearch.${DB} -c "make DB=/data/${DB} pall"
 
-TODO: Explain the input format and the various configuration options in the
-Makefile. For now, just look at `codebase/example/csv/example.csv` and
-`codebase/example/csv/Makefile`. A lot of it is self-explanatory and you can
-simply try to copy this for a new application and play around with some
-parameters.
+There are two steps. The first step takes the CSV file (the columns can acutally be
+separated by anything, not just commas) and produces the two input files required by
+CompleteSearch: a `${DB}.words` file and a `${DB}.docs` file. The purpose and format
+of these files is explained [here](https://ad-wiki.informatik.uni-freiburg.de/completesearch/QuickIntro).
+It's quite simple, you can also just look at the files produced from `example.csv`.
+The second step then builds the actual index.
+
+The first step involves a CSV Parser, which has many options. Some of the options are used
+in the `Makefile` for the example application, have a look. A subset of the options is also described
+[here](https://ad-wiki.informatik.uni-freiburg.de/completesearch/CsvParser). You find all the options
+in [the code which parses the options](https://github.com/ad-freiburg/completesearch/blob/master/codebase/parser/CsvParserOptions.cpp).
 
 ## 3. Starting the backend
 
