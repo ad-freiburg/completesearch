@@ -30,6 +30,13 @@ div#search input { width: 90%; margin: 1em 0; }
 
 /* FORMAT OF THE FACET PANEL */
 
+/*
+div#facets div.wrapper { position: relative; }
+div#facets div.scroll { height: 10em; overflow: auto; margin-top: 1.4em; }
+div#facets table thead td { position: absolute; top: -2.0em; z-index: 2; height: 1.4em; }
+div#facets table tfoot td { position: absolute; bottom:  3.0em; z-index: 2; height: 1.4em; }
+*/
+
 div#facets { height: 75%; background-color: #E9E9E9; }
 div#facets p { display: inline-block; }
 div#facets table { display: inline-block; table-layout: fixed; margin: 0.5em 0;}
@@ -42,6 +49,7 @@ div#facets table td { border-collapse: separate; border-radius: 3px; -moz-border
 div#facets table td:nth-child(1) { width: 0%; overflow: hidden; text-overflow: ellipsis; }
 div#facets table td:nth-child(2) { width: 100%; overflow: hidden; text-overflow: ellipsis; }
 div#facets table td:nth-child(3) { width: 0%; overflow: hidden; text-overflow: ellipsis; text-align: right; }
+div#facets table tfoot td { width: 100%; font-size: 70%; overflow: hidden; text-overflow: ellipsis; }
 
 /* FORMAT OF THE HITS PANEL */
 
