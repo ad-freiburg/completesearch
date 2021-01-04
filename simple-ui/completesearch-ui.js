@@ -130,7 +130,7 @@ class Query {
     // If the query is too short according to the config, we don't launch a
     // query. Exception: the empty query.
     var regex = new RegExp("\\w".repeat(
-      config.min_prefix_length_to_launch_query) + "\\*?$");
+      config.min_prefix_length_to_launch_query) + "[\"*]?$");
     if (this.query_string.length > 0 && !this.query_string.match(regex)) {
       console.log("No query launched, last query word is shorter than "
                     + config.min_prefix_length_to_launch_query);
