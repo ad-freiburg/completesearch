@@ -112,6 +112,7 @@ class HitBox {
     this.num_hits_sent = 0;
     this.first_hit = 0;
     this.query_id = 0;
+    this.round_id = 0;
     this.query_string = "";
  
     // Launch empty query if the config wants it.
@@ -237,9 +238,26 @@ class FacetBox {
     this.num_completions_sent = 0;
     this.query_id = 0;
     this.round_id = 1;
+    this.query_string = "";
     this.facet_word_prefix_with_star =
       ":facet:" + facet_name.toLowerCase() + ":*";
     this.is_dimmed = true;
+
+    // Figure out the ranking for this facet from the config, which either 
+    // specifies an explicit value for that facet or a default value. If the
+    // config does not even provide a default value, we sort by document
+    // count in descendig order (see config.js for all the options).
+    this.how_to_rank_completions = 
+      config.how_to_rank_completions[facet_name]
+        || config.how_to_rank_completions["default"] || "1d";
+
+    // Figure out which kind of scores to display for this facet from the
+    // config, which either specifies an explicit value for that facet or a
+    // default value. If the config does not even provide a default value, we
+    // display documents counts.
+    this.completion_scores_displayed_key =
+      config.completion_scores_displayed[this.facet_name]
+        || config.completion_scores_displayed["default"] || "@dc";
 
     // Build the HTML of the table and add it to the facets panel. The
     // subsequent call to this.display_completions will add empty rows to the
@@ -263,25 +281,48 @@ class FacetBox {
     // Add empty rows.
     this.display_completions();
 
+    // Remember the table selector for this table. We will use it frequently in
+    // the other functions.
+    this.table_selector = "div#facets table." + this.facet_name.toLowerCase();
+    // console.log("Table selector: " + table_selector);
+
     // Initially, all the boxes are dimmed (indicating to the user that no
     // results have been requested).
     this.dim_if_true_undim_if_false(this.is_dimmed);
 
-    // Figure out the ranking for this facet from the config, which either 
-    // specifies an explicit value for that facet or a default value. If the
-    // config does not even provide a default value, we sort by document
-    // count in descendig order (see config.js for all the options).
-    this.how_to_rank_completions = 
-      config.how_to_rank_completions[facet_name]
-        || config.how_to_rank_completions["default"] || "1d";
-
-    // Figure out which kind of scores to display for this facet from the
-    // config, which either specifies an explicit value for that facet or a
-    // default value. If the config does not even provide a default value, we
-    // display documents counts.
-    this.completion_scores_displayed_key =
-      config.completion_scores_displayed[this.facet_name]
-        || config.completion_scores_displayed["default"] || "@dc";
+    // If the table is scrolled to the end, and the number of hits shown are
+    // less than the total number of hits, reload.
+    let _this = this;
+    $(this.table_selector + " tbody").scroll(function(event) {
+      var scroll_top = Math.round($(this).scrollTop());
+      var visible_height = Math.round(parseFloat($(this).css("height")));
+      var max_height = $(this).prop("scrollHeight");
+      var scroll_perc = Math.round(
+        100 * scroll_top / (max_height - visible_height));
+      console.debug("Scrolled: "
+        + "scroll top = " + scroll_top
+        + ", visible height = " + visible_height
+        + ", max height = " + max_height
+        + ", scroll perc = " + scroll_perc + "%");
+      // If scrolled to the bottom and not all completions are shown yet, reload
+      // completions. We always double the number of completions (if there are
+      // that many left).
+      if (scroll_perc == 100 &&
+            _this.completions.length < _this.num_completions_total) {
+        console.log("Reloading " + _this.facet_name + " completions for "
+          + " query \"" + _this.query_string + "\" ...");
+        console.assert(_this.completions.length > 0);
+        var num_completions_requested = Math.min(
+          2 * _this.completions.length, _this.num_completions_total);
+        // TODO: The CompleteSearch engine currently does not send more than
+        // 1000 results. Where is this configured or configurable?
+        if (num_completions_requested) console.log(
+          "NOTE: Requested " + num_completions_requested + " completions"
+          + ", but CompleteSearch will not return more than 1,000");
+        _this.query(_this.query_string, _this.round_id,
+          num_completions_requested);
+      }
+    });
 
     // If config.launch_empty_query, fill the facet box for the empty query. Not
     // for the "word" facet because that is already taken care of by HitBox.
@@ -316,12 +357,18 @@ class FacetBox {
     // Append :facet:<facet_name>:* and get completions from the CompleteSearch
     // backend.
     //
+    // NOTE: Don't do this when the query_string already ends with this word.
+    // This is the case when reloading when the the box is scrolled to the
+    // bottom. It's weird though and points to a suboptimal logic in the code.
+    //
     // TODO 1: Assuming here that query_string is already normalized, is that
     // correct?
     //
     // TODO 2: What about the selected facets, should they not be prepended here?
-    var query_string_with_facets = query_string
-      + (query_string.length > 0 ? " " : "") + this.facet_word_prefix_with_star;
+    var query_string_with_facets = query_string;
+    if (!query_string.endsWith(this.facet_word_prefix_with_star))
+      query_string_with_facets +=
+       (query_string.length > 0 ? " " : "") + this.facet_word_prefix_with_star;
     var url = global.origin + ":" + global.port + "/?q="
                 + query_string_with_facets
                 + "&h=0"
@@ -357,6 +404,7 @@ class FacetBox {
     // NOTE: there is also key "@computed", are we interested in that?
     // CompleteSearch does not always compute full results for efficiency
     // reasons.
+    this.query_string = json.result.query;
     var completions = json.result.completions;
     this.num_completions_total = parseInt(completions["@total"]);
     this.num_completions_sent = parseInt(completions["@sent"]);
@@ -393,27 +441,23 @@ class FacetBox {
   // global.facets_selected. Otherwise a selected facet will appear again in the
   // new result, but unselected.
   display_completions() {
-    var table_selector = "div#facets table." + this.facet_name;
-    // console.log("Table selector: " + table_selector);
-
     // Show the number of completions in the table footer. NOTE: The reason for
     // the &nbsp; is that the footer is otherwise more slim than for the facet
     // boxes with a footer text (although it has the same "height" attribute).
     var table_footer_html = this.num_completions_sent == 0 ? "&nbsp;"
       : "1 &minus; " + this.num_completions_sent + " of "
                      + this.num_completions_total.toLocaleString();
-    $(table_selector + " tfoot td").html(table_footer_html);
+    $(this.table_selector + " tfoot td").html(table_footer_html);
 
     // Empty the table body. In the following, we will first append rows with
     // completions. If there were less than config.completions_per_facet_box
     // results, we will fill up with empty rows. In particular, this will fill
     // up the table with rows if there are no completions at all.
-    $(table_selector + " tbody").html("");
+    $(this.table_selector + " tbody").html("");
 
-    // Fill the rows with our completions (as many as we have, but not more than
-    // config.completions_per_facet_box).
-    var n = Math.min(this.completions.length, config.completions_per_facet_box);
-    for (var i = 0; i < n; i++) {
+    // Fill the rows with the received completions (as many as we have).
+    let _this = this;
+    this.completions.forEach(function(completion, i) {
       // Get the completion and its score. These were stored as arrays of size 2
       // in method update above.
       //
@@ -421,8 +465,9 @@ class FacetBox {
       // ("closures") passed to "change" below all have the same context and
       // "completion_text" will be the last value of the variable for all of
       // them. An alternative would be to use forEach instead of the for loop.
-      let completion_text = this.completions[i][0];
-      var completion_score = this.completions[i][1];
+      // Update: we now use a for loop. Leaving the comment as a warning.
+      let completion_text = completion[0];
+      var completion_score = completion[1];
 
       // Build table row from i-th completion. Each row has a checkbox in the
       // left column, the completion in the middle column, and the completion
@@ -436,9 +481,9 @@ class FacetBox {
   
       // Add row to table body and compute corresponding selector. TODO: Can we
       // get that selector directly from jQuery as a return value?
-      $(table_selector + " tbody").append(table_row);
+      $(_this.table_selector + " tbody").append(table_row);
       var table_row_selector =
-        table_selector + " tbody tr:nth-child(" + (i + 1) + ")";
+        _this.table_selector + " tbody tr:nth-child(" + (i + 1) + ")";
       // console.log("Table row selector: " + table_row_selector);
 
       // Make sure that the checkbox has the right status.
@@ -447,10 +492,9 @@ class FacetBox {
 
       // Add action when selecting or unselecting this facet.
       // console.log("Input selector: " + table_row_selector + " input");
-      let _this = this;
       $(table_row_selector + " input").change(() =>
         _this.facet_selection_changed(completion_text));
-    }
+    });
  
     // If there were less than config.completions_per_facet_box completions,
     // fill up with empty rows.
@@ -464,7 +508,7 @@ class FacetBox {
                             + "</td><td>&nbsp;</td><td>&nbsp;</td></tr>"
     var num_empty_rows = Math.max(0,
           config.completions_per_facet_box - this.completions.length);
-    $(table_selector + " tbody").append(empty_table_row.repeat(num_empty_rows));
+    $(this.table_selector + " tbody").append(empty_table_row.repeat(num_empty_rows));
 
     // Set the dim status of this facet box: dimmed if no completions, undimmed
     // otherwise.
@@ -513,16 +557,15 @@ class FacetBox {
     // If dimmed, background color of the table are more similar to the
     // background of the containing div instead of white. This can be changed in
     // the config.
-    var table_selector = "div#facets table." + this.facet_name.toLowerCase();
     var words_box_bg = should_be_dimmed
       ? config.background_facets_faded : config.background_facets;
     var words_box_fg = should_be_dimmed
       ? config.foreground_facets_faded : config.foreground_facets;
-    $(table_selector + " td").css("background-color", words_box_bg);
-    $(table_selector + " th").css("background-color", words_box_bg);
-    $(table_selector + " th").css("color", words_box_fg);
+    $(this.table_selector + " td").css("background-color", words_box_bg);
+    $(this.table_selector + " th").css("background-color", words_box_bg);
+    $(this.table_selector + " th").css("color", words_box_fg);
     // If dimmed, hide the scrollbar. Otherwise, it's shown.
-    $(table_selector + " tbody").css("overflow",
+    $(this.table_selector + " tbody").css("overflow",
       should_be_dimmed ? "hidden" : "auto");
   }
 }
