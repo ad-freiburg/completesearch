@@ -49,7 +49,7 @@ class Config {
     this.hits_per_page = 7;
 
     // Number of completions in a facet box.
-    this.completions_per_facet_box = 5;
+    this.completions_per_facet_box = 10;
 
     // How to rank hits and completions. A single digit followed by the letter
     // 'a' (ascending) or 'd' (descending). For example, 1a or 5d. The number in
@@ -97,7 +97,7 @@ class Config {
     this.completion_scores_displayed = { "default": "@dc" };
 
     // User-defined facets (will be preferred to automatic ones).
-    this.facet_names = ["author", "year"];
+    this.facet_names = ["author", "venue", "year"];
     // this.facet_names = ["author", "venue", "year"];
 
     // Only launch a query when the last word has at least these many

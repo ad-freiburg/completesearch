@@ -23,40 +23,45 @@ div#right { float: left; width: 69%; height: 100%; border: 1px solid; }
 
 /* FORMAT OF THE SEARCH PANEL */
 
-div#search { height: 15%; background-color: #E0E0E0; border-bottom: 1px solid; }
-div#search p.subtitle { display: inline-block; font-size: 100%; margin: 0;  }
-div#search p.logo { display: inline-block; font-weight: bold; font-size: 150%; margin: 0;  }
+div#search { height: 10%; background-color: #E0E0E0; border-bottom: none; }
+div#search p.subtitle { display: inline-block; font-size: 90%; margin: 0;  }
+div#search p.logo { display: inline-block; font-weight: bold; font-size: 160%; margin: 0;  }
 div#search input { width: 90%; margin: 1em 0; }
 
 /* FORMAT OF THE FACET PANEL */
 
-/*
-div#facets div.wrapper { position: relative; }
-div#facets div.scroll { height: 10em; overflow: auto; margin-top: 1.4em; }
-div#facets table thead td { position: absolute; top: -2.0em; z-index: 2; height: 1.4em; }
-div#facets table tfoot td { position: absolute; bottom:  3.0em; z-index: 2; height: 1.4em; }
-*/
+div#facets { height: calc(81% + 2px); }
+div#facets table { border-spacing: 1px; margin: 0.5em 0;}
+div#facets table,
+div#facets thead,
+div#facets tbody,
+div#facets tfoot,
+div#facets tr { display: block; }
+div#facets table tr { display: table; table-layout: fixed; width: 100%; }
 
-div#facets { height: 75%; background-color: #E9E9E9; }
-div#facets p { display: inline-block; }
-div#facets table { display: inline-block; table-layout: fixed; margin: 0.5em 0;}
-div#facets table { border-spacing: 1px; }
-div#facets table tr { background-color: white; height: 1.4em; }
-div#facets table th { text-align: left; font-size: 90%; padding: 0.4em 0.5em; }
-div#facets table td { text-align: left; font-size: 90%; padding: 0.0em 0.5em; }
-div#facets table th { border-collapse: separate; border-radius: 3px; -moz-border-radius: 3px; }
-div#facets table td { border-collapse: separate; border-radius: 3px; -moz-border-radius: 3px; }
-div#facets table td:nth-child(1) { width: 0%; overflow: hidden; text-overflow: ellipsis; }
-div#facets table td:nth-child(2) { width: 100%; overflow: hidden; text-overflow: ellipsis; }
-div#facets table td:nth-child(3) { width: 0%; overflow: hidden; text-overflow: ellipsis; text-align: right; }
-div#facets table tfoot td { width: 100%; font-size: 70%; overflow: hidden; text-overflow: ellipsis; }
+div#facets table tbody { width: 100%; height: 5.6em; overflow: auto; }
+::-webkit-scrollbar { width: 20px; }
+::-webkit-scrollbar-track { box-shadow: inset 0 0 10px 10px #E0E0E0; border: solid 3px transparent; }
+::-webkit-scrollbar-thumb { box-shadow: inset 0 0 10px 10px darkgray; border: solid 3px transparent; }
+
+div#facets table th { background-color: white; border-radius: 3px; -moz-border-radius: 3px; }
+div#facets table td { background-color: white; border-radius: 3px; -moz-border-radius: 3px; }
+
+div#facets table thead th { text-align: left; font-size: 90%; padding: 0.4em 0.5em; }
+div#facets table tfoot td { text-align: left; font-size: 70%; padding: 0.4em 0.5em; height: 1.4em; }
+div#facets table tbody td { text-align: left; font-size: 90%; padding: 0.1em 0.5em; height: 1.4em; }
+div#facets table td { white-space: nowrap; }
+div#facets table tbody td:nth-child(1) { width: 15%; text-align: center; }
+div#facets table tbody td:nth-child(2) { width: 65%; }
+div#facets table tbody td:nth-child(3) { width: 25%; text-align: right; }
+div#facets table td { overflow: hidden; text-overflow: ellipsis; }
 
 /* FORMAT OF THE HITS PANEL */
 
-div#results { height: 95%; background-color: #FEFEFE; }
-div#results p.header { color: black; font-size: 100%; }
+div#results { height: calc(95% + 2px); background-color: #FEFEFE; }
+div#results p.header { color: black; font-size: 80%; }
 div#results div.hit { display: block; margin: 0.5em 0; }
-div#results div.hit p { margin: 0.1em 0; font-size: 120%; }
+div#results div.hit p { margin: 0.1em 0; font-size: 100%; }
 div#results div.hit p.title { color: darkblue; text-decoration: underline }
 div#results div.hit p.subtitle { color: darkgreen; }
 div#results div.hit p.excerpt { color: #333333; }
