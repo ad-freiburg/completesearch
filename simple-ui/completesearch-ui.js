@@ -37,6 +37,12 @@ class Global {
     $("div#facets").css("background-color", config.background_left);
     $("div#results").css("background-color", config.background_right);
   }
+
+  // Helper function that turns the argument into an array unless it already is
+  // one.
+  make_array(array_or_value) {
+    return Array.isArray(array_or_value) ? array_or_value : [ array_or_value ];
+  }
   
   // Create and initialize the (single) hit box and the facet boxes.
   //
@@ -66,10 +72,11 @@ class Global {
               + "/?q=:info:facet:*&h=0&c=999&format=json")
         .then(response => response.json())
         .then(data => global.facet_names =
-          data.result.completions.c.map(c => c.text.replace(/^.*:/, "")))
+          global.make_array(data.result.completions.c)
+            .map(c => c.text.replace(/^.*:/, "")))
         .then(() => console.log("Facet names found: ", global.facet_names))
-        .then(() => global.facet_names.forEach(
-          function(facet_name) { _this.create_box(facet_name); }))
+        .then(() => global.facet_names.forEach(function(facet_name) {
+          _this.facet_boxes[facet_name] = new FacetBox(facet_name); }))
     }
   }
 

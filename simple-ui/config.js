@@ -18,7 +18,7 @@ class Config {
     //
     //   all fields specified via the --show option of the CSV parser
     //
-    this.db = "dblp";
+    this.db = "wikidata";
     if (this.db == "dblp") {
       this.hit_to_html = function(hit) {
         return "<div class=\"hit\">"
@@ -33,8 +33,16 @@ class Config {
                  // + "<p class=\"excerpt\">@id = " + hit["@id"] + ", @score = "  + hit["@sc"] + "</p>"
                  + "</div>";
       };
-    }
-    if (this.db == "example") {
+    } else if (this.db == "wikidata") {
+      this.hit_to_html = function(hit) {
+        return "<div class=\"hit\">"
+                 + "<p class=\"title\"><a href=\"" + hit.wikipedia + "\" target=\"_blank\">"
+                                         + hit.person + " (" + hit.wikidata.replace(/^.*\//, "") + ")</a></p>"
+                 // + "<p class=\"subtitle\">" + hit.occupation.join(", ") + "</p>"
+                 + "<p class=\"excerpt\">" + hit.excerpt + "</p>"
+                 + "</div>";
+      };
+    } else if (this.db == "example") {
       this.hit_to_html = function(hit) {
         return "<div class=\"hit\">"
                  + "<p class=\"title\"><a href=\"" + hit.wikipedia + "\" target=\"_blank\">"
@@ -97,7 +105,7 @@ class Config {
     this.completion_scores_displayed = { "default": "@dc" };
 
     // User-defined facets (will be preferred to automatic ones).
-    this.facet_names = ["author", "venue", "year"];
+    // this.facet_names = ["author", "venue", "year"];
     // this.facet_names = ["author", "venue", "year"];
 
     // Only launch a query when the last word has at least these many
