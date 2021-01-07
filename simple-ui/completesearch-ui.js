@@ -8,7 +8,7 @@ class Global {
   constructor() {
     // Origin and port of the web page.
     this.origin = window.location.origin.replace(/:\d+$/, "");
-    this.port = parseInt(window.location.port) + 1;
+    this.port = parseInt(window.location.port) + 0;
     // console.log("Origin: " + this.origin + ", port: " + this.port);
  
     // Global query count, so that each query gets a unique ID. Also count the
@@ -323,7 +323,7 @@ class FacetBox {
           2 * _this.completions.length, _this.num_completions_total);
         // TODO: The CompleteSearch engine currently does not send more than
         // 1000 results. Where is this configured or configurable?
-        if (num_completions_requested) console.log(
+        if (num_completions_requested > 1000) console.log(
           "NOTE: Requested " + num_completions_requested + " completions"
           + ", but CompleteSearch will not return more than 1,000");
         _this.query(_this.query_string, _this.round_id,
@@ -373,7 +373,8 @@ class FacetBox {
     //
     // TODO 2: What about the selected facets, should they not be prepended here?
     var query_string_with_facets = query_string;
-    if (!query_string.endsWith(this.facet_word_prefix_with_star))
+    if (this.facet_name != "word"
+         && !query_string.endsWith(this.facet_word_prefix_with_star))
       query_string_with_facets +=
        (query_string.length > 0 ? " " : "") + this.facet_word_prefix_with_star;
     var url = global.origin + ":" + global.port + "/?q="

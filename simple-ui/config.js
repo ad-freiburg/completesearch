@@ -37,7 +37,7 @@ class Config {
       this.hit_to_html = function(hit) {
         return "<div class=\"hit\">"
                  + "<p class=\"title\"><a href=\"" + hit.wikipedia + "\" target=\"_blank\">"
-                                         + hit.person + " (" + hit.wikidata.replace(/^.*\//, "") + ")</a></p>"
+                                         + hit.entity + " (" + hit.wikidata.replace(/^.*\//, "") + ")</a></p>"
                  // + "<p class=\"subtitle\">" + hit.occupation.join(", ") + "</p>"
                  + "<p class=\"excerpt\">" + hit.excerpt + "</p>"
                  + "</div>";
