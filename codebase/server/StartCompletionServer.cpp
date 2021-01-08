@@ -47,7 +47,7 @@ string logFileName = "";         // NOLINT
 #define LOG_END pthread_mutex_unlock(&log_file_mutex);
 string vocabularyFileName;       // NOLINT
 string indexTypeName = "HYB";    /* "INV" or "HYB" */  // NOLINT
-string mapsDirectory = "./utility";
+string mapsDirectory = "codebase/utility";
 // FILE* log_file = NULL;
 extern bool sendErrorDetailsToClient;
 extern string pidFileNameFormatString;
@@ -256,7 +256,7 @@ int main(int argc, char** argv)
         {"no-statistics"                      , 1, NULL, 'V'},
         {"index-type"                         , 1, NULL, 't'},
         {"info-delimiter"                     , 1, NULL, 'i'},
-        {"kill-running-server"                , 0, NULL, 'K'},
+        {"kill-running-server-false"          , 0, NULL, 'K'},
         {"no-double-fork"                     , 0, NULL, 'F'},
         {"zero-fork"                          , 0, NULL, 'Z'},
         {"multi-threaded"                     , 0, NULL, 'm'},

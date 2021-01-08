@@ -40,12 +40,12 @@ ifndef CS_CODE_DIR
   export CS_CODE_DIR    := $(patsubst %/,%,$(dir $(CURDIR)/$(lastword $(MAKEFILE_LIST))))
 endif
 
-# CS_CODE_DIR      = /home/$(USER)/completesearch/codebase
 CS_BIN_DIR       = $(CS_CODE_DIR)/server
 STXXL_SORT_DIR   = $(CS_CODE_DIR)/binarysort
 STXXL_CONFIG     = /opt/stxxl/stxxl.mk
 LIBS_INCLUDED    = -L$(CS_CODE_DIR)/gtest
 TEST_REPORTS_DIR = $(CS_CODE_DIR)/test-reports
+MAPS_DIR         = $(CS_CODE_DIR)/utility
 
 PARSER         = $(CS_CODE_DIR)/parser/CsvParserMain
 PARSER_OPTIONS =
@@ -374,6 +374,7 @@ freqranks:
 	  $(shell $(PERL) -e 'print $(ENABLE_CORS) ? "--enable-cors" : "";') \
 	  --score-aggregations=$(SCORE_AGGREGATIONS) \
 	  --verbosity=$(VERBOSITY) \
+	  --maps-directory=$(MAPS_DIR) \
 	  --document-root=$(DOCUMENT_ROOT) \
 	  --exe-command=$(EXE_COMMAND) \
 	  --query-timeout=$(QUERY_TIMEOUT) \
