@@ -1,2 +1,0 @@
-For a test of facetboxes.php call:
-http://search.mpi-sb.mpg.de/markus/dblp-mirror/facetboxes.php?query=author:holgerbast:

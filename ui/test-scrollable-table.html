@@ -1,0 +1,118 @@
+<html>
+  <head>
+    <title>Scrollable Table TEST</title>
+    <meta charset="utf-8">
+
+    <!-- jQuery and jQuery UI -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <!-- Add rows when scrolling. It is surprisingly non-trivial to figure out the scrolling
+      percentage. There is no direct property provided for this. But it can be computed from the
+      following values that are provided:
+
+      1. scrollTop: The amount of contents scrolled out above (in px)
+      2. height: The height of the visible part of the scrolled area (in px)
+      3. scrollHeight: The total height of the scrollable data (in px)
+    
+    -->
+    <script>
+      $(document).ready(function() {
+        var verbose = false;
+        var num_table_rows = $("table tbody tr").length;
+        console.log("Initial number of table rows: " + num_table_rows);
+        $("table tbody").scroll(function(event) {
+          var scroll_top = Math.round($(this).scrollTop());
+          var visible_height = Math.round(parseFloat($(this).css("height")));
+          var max_height = $(this).prop("scrollHeight");
+          var scroll_perc = Math.round(
+            100 * scroll_top / (max_height - visible_height));
+          if (verbose)
+            console.log("Scrolled: "
+              + "scroll top = " + scroll_top
+              + ", visible height = " + visible_height
+              + ", max height = " + max_height
+              + ", scroll perc = " + scroll_perc + "%");
+          // If almost at the bottom, add more rows.
+          if (scroll_perc == 100) {
+            console.log("Doubling number of table rows: "
+              + num_table_rows + " -> " + 2 * num_table_rows);
+            var table_row =
+              "<tr><td><input type=\"checkbox\"></td><td></td><td></td></tr>";
+            $("table tbody").append(table_row.repeat(num_table_rows));
+            num_table_rows *= 2;
+          }
+        });
+      });
+    </script>
+
+    <!-- CSS stuff
+
+      This post is what really helped me in the end, all the other posts were
+      misleading or not helpful for what I was trying to achieve:
+      https://stackoverflow.com/questions/37579377/table-with-display-block-properties-i-would-like-to-create-the-row-widths-to-1
+
+    -->
+    <style>
+      /* Set font family + make an orange box in the middle of the page (not
+         relevant for table itself) */
+      body { font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
+      body { margin: 15%; border: 1px solid; }
+      div { background-color: orange; height: 100%; }
+
+      /* The next two lines are crucial for what I was trying to achieve. That way and only that way
+         could I have a scrollbar for the body (that requires display: block) as well as a table
+         with fixed column widths (that requires display: table, otherwise table-layout: fixed has
+           not effect) */
+      table, thead, tbody, tfoot, tr { display: block; }
+      table tr { display: table; table-layout: fixed; width: 100%; }
+
+      /* Now the scrollbar. By making our own scollbar, we have control over its width, placement,
+         and color */
+      table tbody { width: 100%; height: 8.8em; overflow: auto; }
+      ::-webkit-scrollbar { width: 25px; }
+      ::-webkit-scrollbar-track { box-shadow: inset 0 0 15px 15px lightgray; border: solid 4px transparent; }
+      ::-webkit-scrollbar-thumb { box-shadow: inset 0 0 15px 15px darkgray; border: solid 4px transparent; }
+
+      /* Outside of the cells: round corners and enough space between them */
+      table { border-spacing: 0.2em; padding: 1.5em; }
+      table th, table td { padding: 0.3em 0.7em; }
+      table th { border-radius: 3px; }
+      table td { border-radius: 3px; }
+
+      /* Inside of the cells: background color, column widths, text alignment */
+      table thead th { background-color: lightgray; text-align: left; }
+      table tfoot td { background-color: lightgray; text-align: left; }
+      table tbody td { background-color: #F9F9F9; }
+      table tbody td:nth-child(1) { text-align: center; width: 10%; }
+      table tbody td:nth-child(2) { text-align: left; width: 80%; }
+      table tbody td:nth-child(3) { text-align: right; width: 10%; }
+
+    </style>
+  </head>
+  <body>
+    <div>
+      <table>
+        <thead>
+         <tr><th colspan="3">Table header</td></tr>
+        </thead>
+        <!-- <div id="body-wrapper"> -->
+          <tbody>
+            <tr><td><input type="checkbox"></td><td>Carboniferous</td><td>17,345</td></tr>
+            <tr><td><input type="checkbox"></td><td>Perm</td><td>1,123</td></tr>
+            <tr><td><input type="checkbox"></td><td>Triassic</td><td>1,123</td></tr>
+            <tr><td><input type="checkbox"></td><td>Jurassic</td><td>1,121</td></tr>
+            <tr><td><input type="checkbox"></td><td>Cretacious</td><td>789</td></tr>
+            <tr><td><input type="checkbox"></td><td></td><td></td></tr>
+            <tr><td><input type="checkbox"></td><td></td><td></td></tr>
+            <tr><td><input type="checkbox"></td><td></td><td></td></tr>
+            <tr><td><input type="checkbox"></td><td></td><td></td></tr>
+            <tr><td><input type="checkbox"></td><td></td><td></td></tr>
+          </tbody>
+        <!-- </div> -->
+        <tfoot>
+          <tr><td colspan="3">Table footer</td></tr>
+        </tfoot>
+      </table>
+    </div>
+  </body>
+</html>

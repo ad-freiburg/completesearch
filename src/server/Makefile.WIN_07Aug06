@@ -1,0 +1,126 @@
+#CXX = g++ -O3 -g -Wall -pedantic -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -DFAST_COMPILATION #-DSTL_VECTOR #-DRANDOM_SCORES
+#CXX = g++ -O3 -Wall -pedantic -DNDEBUG -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
+#CXX = g++ -O3 -Wall -DNDEBUG -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE #STXXL does not compile with pedantic!
+#CXX = g++ -O3 -Wall -DNDEBUG -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE  -finline-limit=3000 #-DFAST_COMPILATION ## STXXL does not compile with pedantic!
+# THESE TWO ARE NOW IN Globals.h: -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE 
+CXX = g++ -O3 -Wall -I/usr/include/db4.2 -DNDEBUG -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE#production settings
+#CXX = g++ -fpermissive -O3 -Wall -I/KM/ir/berkeleydb/include -DNDEBUG -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE#production settings
+#CXX = g++ -g -O3 -Wall -I/KM/ir/berkeleydb/include -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -DFAST_COMPILATION#debug/test settings
+LIBS = -lpthread -L/KM/ir/berkeleydb/lib -ldb_cxx-4.2 
+STXXL_COMPILER_OPTIONS = -DSORT_OPT_PREFETCHING -DUSE_MALLOC_LOCK -DCOUNT_WAIT_TIME -I/KM/ir/stxxl/ \
+			 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE \
+	                 -DSTXXL_USE_POSIX_MEMALIGN_ALLOC -D_XOPEN_SOURCE=600 -DSTXXL_DIRECT_IO_OFF -O3
+STXXL_LINKER_OPTIONS = -L/KM/ir/stxxl/lib/ -lstxxl -lpthread
+DBLIB = db_cxx-4.2
+
+HEADERS = Compress/codes.h CompleterBase.h DocList.h File.h Globals.h HYBCompleter.h \
+	INVCompleter.h Timer.h Query.h QueryResult.h HuffmanCompressionAlgorithm.h \
+	Simple9CompressionAlgorithm.h CompressionAlgorithm.h WordsFile.h ZipfCompressionAlgorithm.h \
+	server.h History.h ExcerptsGenerator.h ExcerptsDB.h
+
+all: startCompletionServer buildIndex #answerQueries printListLengths words2wordids sortWordidsFileInPlace showWordidsFile
+
+BASE_OBJECTS = Globals.o CompleterBase.o History.o codes.o nrutil.o QueryParameters.o
+
+startCompletionServer: StartCompletionServer.o CompletionServer.o ExcerptsGenerator.o ExcerptsDB.o $(BASE_OBJECTS)
+	$(CXX) $(DBFLAGS) -o $@ $^ $(LIBS)
+# DBFLAGS IS NOT DEFINED
+
+StartCompletionServer.o: StartCompletionServer.cpp $(HEADERS) CompletionServer.h
+	$(CXX) -c $*.cpp
+
+answerQueries: answerQueries.o $(BASE_OBJECTS)
+	$(CXX) -o $@ $^
+
+# DBCompleteServer is OLD, do not use anymore!
+DBCompleteServer: DBCompleteServer.o CompletionServer.o ExcerptsGenerator.o ExcerptsDB.o $(BASE_OBJECTS)
+	$(CXX) -o $@ $^ -l$(DBLIB)
+
+buildIndex: buildIndex.o codes.o Globals.o nrutil.o History.o
+	$(CXX) -o $@ $^
+
+printListLengths: printListLengths.o codes.o Globals.o nrutil.o
+	$(CXX) -o $@ $^
+
+filterQueriesByVolume: filterQueriesByVolume.o codes.o Globals.o nrutil.o
+	$(CXX) -o $@ $^
+
+buildVocabulary: buildVocabulary.o Globals.o
+	$(CXX) -o $@ $^
+
+sortVeryLargeWordsFile: sortVeryLargeWordsFile.o Globals.o
+	$(CXX) -o $@ $^ $(STXXL_LINKER_OPTIONS)
+
+sortVeryLargeWordsFile.o: sortVeryLargeWordsFile.cpp
+	$(CXX) $(STXXL_COMPILER_OPTIONS) -c -o $@ $^ 
+
+sortWordidsFile: sortWordidsFile.o Globals.o
+	$(CXX) -o $@ $^ $(STXXL_LINKER_OPTIONS)
+
+sortWordidsFile.o: sortWordidsFile.cpp
+	$(CXX) $(STXXL_COMPILER_OPTIONS) -c -o $@ $^ 
+
+sortWordidsFileInPlace: sortWordidsFileInPlace.o Globals.o
+	$(CXX) -o $@ $^ $(STXXL_LINKER_OPTIONS)
+
+sortWordidsFileInPlace.o: sortWordidsFileInPlace.cpp
+	$(CXX) $(STXXL_COMPILER_OPTIONS) -c -o $@ $^ 
+
+words2wordids: words2wordids.o Globals.o codes.o
+	$(CXX) -o $@ $^
+
+showWordidsFile: showWordidsFile.o Globals.o codes.o
+	$(CXX) -o $@ $^
+
+codes.o: Compress/codes.cpp
+	g++ -O3 -c -o codes.o $<
+
+nrutil.o: Compress/nrutil.c
+	g++ -O3 -c -o nrutil.o $<
+
+%.o: %.cpp $(HEADERS)
+	$(CXX) -c $*.cpp
+
+test-threads: test-threads.cpp 
+	g++ -O3 -Wall -lpthread -o $@ $^
+
+test-shared-memory: test-shared-memory.cpp 
+	g++ -O3 -Wall -o $@ $^
+
+test-client: test-client.cpp 
+	g++ -O3 -Wall -o $@ $^
+
+test-server: test-server.cpp server.o
+	g++ -O3 -Wall -o $@ $^
+
+test-fork: test-fork.cpp 
+	g++ -O3 -Wall -o $@ $^
+
+test-realloc: test-realloc.o Globals.o 
+	$(CXX) -o $@ $^
+
+test-compression-timings: test-compression-timings.o codes.o Globals.o nrutil.o
+	$(CXX) -o $@ $^
+
+test-compression-correctness: test-compression-correctness.o codes.o Globals.o nrutil.o 
+	$(CXX) -o $@ $^
+
+test-decompression: test-decompression.o codes.o Globals.o nrutil.o 
+	$(CXX) -o $@ $^
+
+test-stxxl: test-stxxl.cpp
+	g++ -DSORT_OPT_PREFETCHING \
+	    -DUSE_MALLOC_LOCK \
+	    -DCOUNT_WAIT_TIME \
+	    -I/KM/ir/stxxl/ \
+	    -D_FILE_OFFSET_BITS=64 \
+	    -D_LARGEFILE_SOURCE \
+	    -D_LARGEFILE64_SOURCE \
+	    -DSTXXL_USE_POSIX_MEMALIGN_ALLOC \
+	    -D_XOPEN_SOURCE=600 \
+	    -O3 \
+	    -o test-stxxl test-stxxl.cpp \
+	    -L/KM/ir/stxxl/lib/ -lstxxl -lpthread
+
+clean:
+	$(RM) *.o

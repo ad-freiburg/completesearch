@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://search.mpi-sb.mpg.de/markus.tests/" />
+<title>Visiting the page by a bookmark</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Visiting the page by a bookmark</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>index_nojs.php?query=info&amp;qp=H1.10.11:W1.50:F1.50:F2.4:F3.21</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td>3000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=autocomplete_query</td>
+	<td>info</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>autocomplete_H_boxes_1_subtitle</td>
+	<td>herangezoomt auf 123 Dokumente</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>autocomplete_H_boxes_1_title</td>
+	<td>regexp:Treffer 11 - 20 von 123 für info</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>autocomplete_H_boxes_1_body</td>
+	<td>regexp:it makes use of information saved from inserting the</td>
+</tr>
+<tr>
+	<td>verifyXpathCount</td>
+	<td>//div[@id='autocomplete_H_boxes_1_body']/div[@class='excerpts']</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>verifyXpathCount</td>
+	<td>//div[@id='autocomplete_W_boxes_1_body']/div</td>
+	<td>51</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='autocomplete_F_boxes_1_body']/div/span[@class='more_link']</td>
+	<td>[Top 4] [Top 50] [Top 250] [alle 271]</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='autocomplete_F_boxes_1_body']/div/span[@class='more_link']/a[1]</td>
+	<td>Top 4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='autocomplete_F_boxes_1_body']/div/span[@class='more_link']/a[2]</td>
+	<td>Top 250</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='autocomplete_F_boxes_1_body']/div/span[@class='more_link']/a[3]</td>
+	<td>alle 271</td>
+</tr>
+<tr>
+	<td>verifyXpathCount</td>
+	<td>//div[@id='autocomplete_F_boxes_2_body']/div</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='autocomplete_F_boxes_2_body']/div/span[@class='more_link']</td>
+	<td>[Top 4] [Top 50] [alle 62]</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='autocomplete_F_boxes_2_body']/div/span[@class='more_link']/a[1]</td>
+	<td>Top 50</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='autocomplete_F_boxes_2_body']/div/span[@class='more_link']/a[2]</td>
+	<td>alle 62</td>
+</tr>
+<tr>
+	<td>verifyXpathCount</td>
+	<td>//div[@id='autocomplete_F_boxes_3_body']/div</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='autocomplete_F_boxes_3_body']/div/span[@class='more_link']</td>
+	<td>[Top 4] [alle 21]</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='autocomplete_F_boxes_3_body']/div/span[@class='more_link']/a[1]</td>
+	<td>Top 4</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

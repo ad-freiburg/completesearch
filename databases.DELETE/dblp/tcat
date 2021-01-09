@@ -1,3 +1,0 @@
-#!/bin/bash
-# Show a file with lines and columns using Hannah's table.pl.
-cat $1 | /usr/bin/perl ./table.pl

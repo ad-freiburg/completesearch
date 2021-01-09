@@ -1,8 +1,11 @@
+data
+data.OLD
+applications.OLD
+tags
+tmp
 .svn
 .git
 .*.swp
-data
-documents/
+.*.swo
 .*stxxl
-*stxxl.errlog
-*stxxl.log
+*stxxl*

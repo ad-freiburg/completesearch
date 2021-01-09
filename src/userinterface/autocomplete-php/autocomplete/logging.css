@@ -1,0 +1,46 @@
+.visibleSubNote 
+{ 
+  display: block; 
+  margin-left: 16px; 
+  font-size: 20px; 
+}
+
+.invisibleSubNote 
+{ 
+  display: none; 
+}
+
+#log 
+{ 
+  margin-left: 0px; 
+  padding-left: 1px; 
+}
+
+
+#log ul 
+{ 
+  margin-left: 0px; 
+  padding-left: 0px; 
+}
+
+#log li 
+{ 
+  margin-left: 0px; 
+  padding-left: 16px; 
+  list-style-type: none; 
+}
+
+#log .li-plus	
+{
+	background-image: url(../images/plus.gif);
+	background-repeat: no-repeat;
+	background-position: 0px 2px;
+}
+
+#log .li-minus	
+{
+	background-image: url(../images/minus.gif);
+	background-repeat: no-repeat;
+	background-position: 0px 2px;
+}
+

@@ -1,9 +1,0 @@
-/* For IE 5.5 "cursor: pointer;" don't work */
-.toggle_box_image
-{
-	float: left;
-	margin: 6px 3px 1px 0px;
-	padding: 3px 3px 3px 3px;
-	cursor: hand;
-	display: none;
-}

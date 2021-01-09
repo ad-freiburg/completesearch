@@ -1,0 +1,52 @@
+h1 {
+	font-family: sans-serif;
+	color: rgb(110, 110, 160);
+}
+
+.acs {
+	font-family: sans-serif;
+	font-size: 9pt;
+}
+
+.acs .title {
+	font-family: sans-serif;
+	font-weight: normal;
+	color: rgb(110, 110, 160);
+}
+
+.acs .title-new {
+	font-family: sans-serif;
+	font-weight: normal;
+	color: red;
+}
+
+.acs a {
+	font-family: sans-serif;
+	text-decoration: none;
+}
+
+.acs tr {
+	background-color: rgb(245,245,255);
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.acs th {
+	background-color: rgb(235,235,255);
+	padding: 5px 10px;
+	margin: 3px 10px;
+	text-align: left;
+}
+
+.acs td {
+	background-color: rgb(245,245,255);
+	padding: 5px 10px;
+	margin: 3px 10px;
+	text-align: left;
+}
+
+.acs a:hover {
+	font-family: sans-serif;
+	text-decoration: underline;
+}
+

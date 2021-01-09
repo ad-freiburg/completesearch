@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>Changing options</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Changing options</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>index.php?language=de</td>
+	<td></td>
+</tr>
+<tr>
+	<td>createCookie</td>
+	<td>mcsr=40</td>
+	<td></td>
+</tr>
+<tr>
+	<td>createCookie</td>
+	<td>hpp=5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>createCookie</td>
+	<td>mcl=40</td>
+	<td></td>
+</tr>
+<tr>
+	<td>createCookie</td>
+	<td>eph=3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>createCookie</td>
+	<td>er=5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>createCookie</td>
+	<td>dm=1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>createCookie</td>
+	<td>ll=4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>createCookie</td>
+	<td>qt=HWFC</td>
+	<td></td>
+</tr>
+<tr>
+	<td>createCookie</td>
+	<td>mo=10</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>reset_link</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>autocomplete_options_title</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>mcsr</td>
+	<td>30</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>hpp</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>mcl</td>
+	<td>30</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>eph</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>er</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>dm</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>qt</td>
+	<td>HWF</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>mo</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>ok</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>autocomplete_options_title</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=mcsr</td>
+	<td>30</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=hpp</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=mcl</td>
+	<td>30</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=eph</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=er</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=dm</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=qt</td>
+	<td>HWF</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

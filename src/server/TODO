@@ -1,0 +1,48 @@
+--------------------------------------------------------------------------------
+
+TOP-K COMPUTATION
+
+No need to compute the top-k for all but the last query word. This is especially
+relevant when complex queries are not being typed but sent to the server as a
+single query, e.g., for Absolventa.
+
+--------------------------------------------------------------------------------
+
+ADVANCED FILTERING
+
+Currently, filtering only works if a strict prefix of the current query is in
+the history.
+
+Howver, there are also other cases where filtering can boost efficiency, e.g.,
+going from "ingmar webe ct:" to "ingmar weber ct:".
+
+--------------------------------------------------------------------------------
+
+EFFICIENT INTERSECTION OF COMPLETIONS
+
+Currently done via two (expensive) parallel sorts.
+
+--------------------------------------------------------------------------------
+
+MULTITHREADED PROCESSING
+
+Do it. History already made thread-safe; each item has three states:
+non-existent, being written, exists; changing the state is an atomic operation
+(mutex).
+
+--------------------------------------------------------------------------------
+
+VECTOR OF BLOCKS
+
+Even if a list spans several blocks, do not sort, but maintain a vector of
+blocks. For computing the top-k completions/hits, compute them for each block in
+the list, and then do a simple max top-k.
+
+--------------------------------------------------------------------------------
+
+UPDATE/MULTIPLE INDICES
+
+Allow the completion server to operate with multiple indices. For any given
+query, (i) send it to each index seperately; (ii) merge the result.
+
+--------------------------------------------------------------------------------
