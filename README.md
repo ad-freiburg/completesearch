@@ -24,14 +24,15 @@ Checkout the repository
 
 Just run the following command line, where for the value of DB you can choose
 between a number of demo datasets (one for every subdirectory of `applications`).
-A generic UI will then be available under the specified `PORT`.
+*A generic UI will then be available under the specified `PORT`*.
 Note that the CompleteSearch backend simultaneously provides an API for answering search and completion queries,
 and servers as a simple HTTP server at the same time.
 
-        export DB=movies && PORT=1622 && docker build -t completesearch . && docker run -it --rm -e DB=${DB} -p ${PORT}:8080 -v $(pwd)/applications:/applications -v $(pwd)/data/:/data -v $(pwd)/ui:/ui --name completesearch.${DB} completesearch -c "make DATA_DIR=/data/${DB} DB=${DB} pall start"
+        export DB=movies && PORT=1622 && docker build -t completesearch . && docker run -it --rm -e DB=${DB} -p ${PORT}:8080 -v $(pwd)/applications:/applications -v $(pwd)/data/:/data -v $(pwd)/ui:/ui --name completesearch.${DB} completesearch -c "make DATA_DIR=/data/${DB} DB=${DB} csv pall start"
 
-This command line will build the index and start the server, all in one go.
-If you have already built the index once, you can omit the *pall* (which stand for *precompute all*).
+This command line downloads and uncompresses the CSV, builds the index, and starts the server, all in one go.
+If you have already downloaded the CSV, it will not be downloaded again (the Makefile target *csv:* then has no effect).
+If you have already built the index once, you can omit the Makefile target *pall:* (which stand for *precompute all*).
 
 ## 3. Relevant files
 
