@@ -21,7 +21,7 @@ class Config {
     this.hit_to_html = function(hit) {
       return "<div class=\"hit\">"
                + "<p class=\"title\"><a href=\"" + hit.wikipedia + "\" target=\"_blank\">"
-                                       + hit.film + " (" + hit.date + ")</a></p>"
+                    + hit.film + " (" + hit.date.replace(/-.*$/, "") + ")</a></p>"
                + "<p class=\"subtitle\">" + hit.director.join(", ") + "</p>"
                + "<p class=\"excerpt\">" + hit.excerpt + "</p>"
                + "</div>";
@@ -47,7 +47,7 @@ class Config {
     //
     // How to rank hits (@score or @id). The first letter specified the ordering
     // ("a" = ascending, "d" = descending).
-    this.how_to_rank_hits = "1a";
+    this.how_to_rank_hits = "0d";
 
     // How to rank completions, see the explanations in the comment above. This
     // is a dictionary with one value per facet, where the word facet has key
@@ -82,9 +82,12 @@ class Config {
     // this.facet_names = ["author", "venue", "year"];
     // this.facet_names = ["author", "venue", "year"];
 
+    // Launch empty query on startup?
+    this.launch_empty_query = true;
+
     // Only launch a query when the last word has at least these many
     // characters.
-    this.min_prefix_length_to_launch_query = 3;
+    this.min_prefix_length_to_launch_query = 1;
 
     // Only append a * when the last word has at least these many characters.
     this.min_prefix_length_to_append_star = 3;
@@ -95,9 +98,6 @@ class Config {
     // TODO: We could just ask the index to complete ":facetid:*". If we get a
     // completion, the facetid words are there.
     this.facetids_available = true;
-
-    // Launch empty query on startup?
-    this.launch_empty_query = true;
 
     // Background colors of the three parts of the screen (search field, facets,
     // results). Faded color of inactive word facet box.
