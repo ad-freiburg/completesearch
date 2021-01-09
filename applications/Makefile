@@ -150,10 +150,11 @@ pclean:
 	@rm -f $(DB_PREFIX).keys*
 	@rm -f $(DB_PREFIX).hybrid.build-*
 	@rm -f $(DB_PREFIX).hybrid.from-*
+	@rm -f $(DB_PREFIX).stxxl.disk
 	# Older files which are not produced anymore
 	@rm -f $(DB_PREFIX).cluster*
 	@rm -f $(DB_PREFIX).permuted*
-	ls -lhtr $(DB_PREFIX).
+	ls -lhtr $(DB_PREFIX).*
 
 # Like pclean, but also removes the final products and the log.
 pclean-all: pclean
