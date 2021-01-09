@@ -191,20 +191,7 @@ pclean-all: pclean
 	@rm -f $(DB).fuzzysearch*
 	@rm -f $(DB).keep-in-history
 
-# HACK(bast): Target to handle the current problem that code is not relinked
-# when one of the libraries like fuzzysearch changes.
-relink-all:
-	$(MAKE) -C $(CS_CODE_DIR)/parser relink
-	$(MAKE) -C $(CS_CODE_DIR)/binarysort relink
-	$(MAKE) -C $(CS_CODE_DIR)/fuzzysearch relink
-	$(MAKE) -C $(CS_CODE_DIR)/synonymsearch relink
-	$(MAKE) -C $(CS_CODE_DIR)/utility relink
-	$(MAKE) -C $(CS_CODE_DIR)/server relink
-
-relink:
-	for B in $(BINARIES) StartCompletionServer; do rm -f $$B.o; done
-	$(MAKE) build
-
+# Compute test coverage.
 COVERAGE_NAME="coverage.xml"
 check-all:
 	$(MAKE) "CXX_DEBUG=-O0 -g -fprofile-arcs -ftest-coverage -fPIC -lgcov" clean-all build-all test-all

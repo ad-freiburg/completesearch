@@ -129,8 +129,8 @@ class Config {
     // results). Faded color of inactive word facet box.
     this.background_left = "#E9E9E9";
     this.background_right = "#F9F9F9";
-    this.background_facets = "white";
-    this.background_facets_faded = "#F3F3F3";
+    this.background_facets = "F5F5F5";
+    this.background_facets_faded = "#F9F9F9";
     this.foreground_facets = "black";
     this.foreground_facets_faded = "lightgray";
   }

@@ -4,8 +4,16 @@
 // should be no need to change anything in this file to suit an application,
 // but only in config.js
 
+var config = new Config();
+
+// TEST: Try to figure out the path via which this JS was loaded.
+// var scripts = document.getElementsByTagName("script");
+// var src = scripts[scripts.length - 1].src;
+// console.log("Source of JavaScript: ", src)
+
 class Global {
   constructor() {
+
     // Origin and port of the web page.
     this.origin = window.location.origin.replace(/:\d+$/, "");
     this.port = parseInt(window.location.port) + 0;
@@ -33,8 +41,8 @@ class Global {
     //
     // NOTE: Make sure that the Global object is created *after* the page has
     // actually loaded, otherwise these will have no effect.
-    $("div#search").css("background-color", config.background_left);
-    $("div#facets").css("background-color", config.background_left);
+    // $("div#search").css("background-color", config.background_left);
+    // $("div#facets").css("background-color", config.background_left);
     $("div#results").css("background-color", config.background_right);
   }
 
