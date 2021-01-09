@@ -2,14 +2,11 @@
 #
 # This file is included from applications/Makefile via include $(DB)/Makefile
 
-# TODO: Test whether it also works for different separators than : or whether
-# some : are hard-coded somewhere (I would not be surprised).
-WORD_SEPARATOR_FRONTEND = :
-WORD_SEPARATOR_BACKEND  = :
-
 CSV_SUFFIX = .tsv
 LOCALE = en_us.utf8
 WORDS_FORMAT = ASCII
+WORD_SEPARATOR_FRONTEND = :
+WORD_SEPARATOR_BACKEND  = :
 SHELL = /usr/local/bin/bash
 ENCODING = utf8
 ENABLE_CORS = 1
@@ -47,16 +44,7 @@ PARSER_OPTIONS = \
 	$(shell perl -e 'print $(ENABLE_SYNONYM_SEARCH) ? "--read-synonym-groups" : "";') \
   	$(shell perl -e 'print $(NORMALIZE_WORDS) ? "--normalize-words" : "";') \
   	$(shell perl -e 'print $(PARSE_EXTENDED_DTD) ? "--parse-extended-dtd" : "";')
-
-# Before starting the regular precomputation, download the TSV file from
-# https://ad-research.cs.uni-freiburg.de
-pall::
-	@echo; export CSV_FILE=$(DB_PREFIX)$(CSV_SUFFIX); \
-	  if [ -f $(CSV_FILE) ]; then echo "File $(CSV_FILE) exists"; \
-	  else echo "Downloading ..."; \
-	       echo "Uncompressing ..."; fi \
-	echo
-
+	
 # The following target can be used to regenerate the TSV file. It's just here
 # for archival purposes, to try out the example with CompleteSearch, there is no
 # need to regenerate this file.
