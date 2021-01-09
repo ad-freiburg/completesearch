@@ -299,6 +299,7 @@ pclean-all: pclean
 	  --stxxl-path=$(DATA_DIR) \
 	  --stxxl-disk-file=$(DB_PREFIX).stxxl.disk \
 	  --binary-words-file=$@
+	rm -f stxxl.*
 
 # Build fuzzy search data structure + clustering. This is the sophisticated
 # method from Marjan's Ph.D. thesis. Not needed when FUZZY_USE_BASELINE = 1
@@ -327,6 +328,22 @@ fuzzysearch:
 	  $(shell $(PERL) -e 'print $(FUZZY_NORMALIZE_WORDS) ? "--normalize" : "";') \
 	  $(shell $(PERL) -e 'print $(FUZZY_SEARCH_ALGORITHM) eq "simple" ? "-T" : "";') \
 	  $(DB_PREFIX).
+
+# Get CSV file from https://ad-research.cs.uni-freiburg.de (for example
+# applications). If the file already exists, will not download it again.
+CSV_FILE = $(DB_PREFIX)$(CSV_SUFFIX)
+CSV_FILE_URL = "https://ad-research.cs.uni-freiburg.de/data/csv-files/$(notdir $(CSV_FILE)).bz2"
+csv:
+	@echo
+	@if [ -f "$(CSV_FILE)" ]; then \
+	  printf "\x1b[1mFile $(CSV_FILE) exists\x1b[0m\n"; fi
+	@if [ ! -f "$(CSV_FILE)" ]; then \
+	  echo "Downloading $(CSV_FILE_URL)"; \
+	  wget -O $(CSV_FILE).bz2 $(CSV_FILE_URL); \
+	  echo "Uncompressing $(CSV_FILE).bz2 (this can take a while)"; \
+	  bunzip2 $(CSV_FILE).bz2; \
+	  echo; ls -hl $(CSV_FILE); fi
+	@echo
 
 # SECTION 3: DEPRECATED STUDD
 
