@@ -128,7 +128,7 @@ log:
 
 # Run the complete precomputation (parse, sort, index) with one target. Show all
 # the produced files in the end and how much time it took.
-pall:
+pall::
 	@echo "BEGIN \"make pall\" : " `date` > $(DB_PREFIX).make-begin
 	$(MAKE) parse
 	$(MAKE) sort
@@ -297,7 +297,7 @@ pclean-all: pclean
 	cp -f $< $@
 	$(CS_CODE_DIR)/binarysort/BinarySortMain \
 	  --stxxl-path=$(DATA_DIR) \
-	  --stxxl-disk-file=$(dir $(DB_PREFIX).stxxl.disk) \
+	  --stxxl-disk-file=$(DB_PREFIX).stxxl.disk \
 	  --binary-words-file=$@
 
 # Build fuzzy search data structure + clustering. This is the sophisticated

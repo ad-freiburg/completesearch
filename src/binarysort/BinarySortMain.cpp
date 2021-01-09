@@ -350,14 +350,7 @@ string getPath(const string &file)
 
 int main(int argc, char** argv)
 {
-  cout << endl
-          << endl
-          << "             ******************" << endl
-          << "             *  -BinarySort-  *" << endl
-          << "             ******************" << endl
-          << endl
-          << endl
-          << endl;
+  cout << endl << "\x1b[1mBINARY SORT of words file\x1b[0m" << endl << endl;
   if (argc < 2)
   {
     printUsage();

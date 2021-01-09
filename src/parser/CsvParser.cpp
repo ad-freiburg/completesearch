@@ -16,8 +16,6 @@ using std::cout;
 using std::endl;
 using std::flush;
 
-const char* CsvParser::_fileExtension = ".csv";
-
 // _____________________________________________________________________________
 CsvParser::CsvParser() : ParserBase()
 {
@@ -34,7 +32,8 @@ void CsvParser::parseCommandLineOptions(int argc, char** argv)
     cout << endl;
     exit(1);
   }
-  _options.parseFromCommandLine(argc, argv, ParserBase::_fileNameBase + ".csv");
+  _options.parseFromCommandLine(argc, argv,
+      ParserBase::_fileNameBase + ParserBase::_csvFileNameSuffix);
   _fieldOptions = _options.getFieldOptions();
   _stringConversion.setEncoding(_encoding == ParserBase::UTF8
                                 ? StringConversion::UTF_8
@@ -915,7 +914,8 @@ void CsvParser::parse()
   char* buffer = new char[CSV_MAX_LINE_LENGTH];
 
   // Open CSV file.
-  string csvFileName = ParserBase::getFileNameBase() + _fileExtension;
+  string csvFileName = ParserBase::getFileNameBase()
+                        + ParserBase::getCsvFileNameSuffix();
   FILE* csvFile;
   csvFile = fopen(csvFileName.c_str(), "r");
 
@@ -926,7 +926,7 @@ void CsvParser::parse()
   // If CSV file does not exist, write error to log-file and exit.
   if (csvFile == NULL)
   {
-    perror("Can't open .csv file");
+    perror("Can't open CSV file");
     exit(errno);
   }
   string record;
