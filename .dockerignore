@@ -1,4 +1,7 @@
-ui
 data
-databases.DELETE
+data.OLD
+applications
+applications.OLD
+ui
 tmp
+tags

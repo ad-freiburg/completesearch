@@ -1,9 +1,9 @@
--include codebase/Makefile
+# CONFIGURATION OF PRECOMPUTATION for a particular application
+#
+# This file is included from applications/Makefile via include $(DB)/Makefile
 
-# NOTE: For the old Completesearch UI, must parse with --old-words-format
-# NOTE: and set the separators to : (both frontend and backend)
-# NOTE: Outside of docker, remove the symbolic link to /completesearch
-
+# TODO: Test whether it also works for different separators than : or whether
+# some : are hard-coded somewhere (I would not be surprised).
 WORD_SEPARATOR_FRONTEND = :
 WORD_SEPARATOR_BACKEND  = :
 
@@ -12,7 +12,7 @@ WORDS_FORMAT = ASCII
 SHELL = /usr/local/bin/bash
 ENCODING = utf8
 ENABLE_CORS = 1
-DOCUMENT_ROOT = /configuration
+DOCUMENT_ROOT = /applications/$(DB)
 ENABLE_FUZZY_SEARCH = 0
 FUZZY_SEARCH_ALGORITHM = simple
 FUZZY_USE_BASELINE = 1
@@ -39,16 +39,12 @@ PARSER_OPTIONS = \
 	--facetids=director,genre \
 	--within-field-separator=\# \
 	--allow-multiple-items=director,genre \
-	--base-name=$(DB) \
+	--base-name=$(DB_PREFIX) \
         --encoding=$(ENCODING) \
 	--maps-directory=$(MAPS_DIR) \
 	$(shell perl -e 'print $(ENABLE_SYNONYM_SEARCH) ? "--read-synonym-groups" : "";') \
   	$(shell perl -e 'print $(NORMALIZE_WORDS) ? "--normalize-words" : "";') \
   	$(shell perl -e 'print $(PARSE_EXTENDED_DTD) ? "--parse-extended-dtd" : "";')
-
-test:
-	echo $(CS_CODE_DIR)
-	echo $(MAPS_DIR)
 
 # The following target can be used to regenerate the CSV file. It's just here
 # for archival purposes, to try out the example with CompleteSearch, there is no
