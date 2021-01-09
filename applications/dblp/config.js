@@ -7,7 +7,7 @@
 //
 // All the other options have reasonable default values. But, of course, they
 // can be freely adapted. 
-//
+
 class Config {
   constructor() {
     // HTML for a hit. The variable "hit" has the following properties:
@@ -18,14 +18,14 @@ class Config {
     //
     //   all fields specified via the --show option of the CSV parser
     //
-    this.hit_to_html = function(hit) { return
-      "<div class=\"hit\">"
+    this.hit_to_html = function(hit) {
+      return "<div class=\"hit\">"
         + "<p class=\"title\">"
             + "<a href=\"http://www.dblp.org\" target=\"_blank\">"
                   + hit.title.replace(/\.$/, "") + " (" + hit.year + ")</a>"
-            + "<span style=\"display: inline-block; color: gray; font-size: 85%; text-decoration: none;\">"
-            + "&nbsp;".repeat(3)
-            + "@id = " + hit["@id"] + ", @score = "  + hit["@sc"] + "</span>"
+            // + "<span style=\"display: inline-block; color: gray; font-size: 85%; text-decoration: none;\">"
+            // + "&nbsp;".repeat(3)
+            // + "@id = " + hit["@id"] + ", @score = "  + hit["@sc"] + "</span>"
         + "</p>"
         + "<p class=\"subtitle\">" + hit.author.join(", ") + " @ " + hit.venue + "</p>"
         + "</div>";
@@ -83,8 +83,7 @@ class Config {
     this.completion_scores_displayed = { "default": "@dc" };
 
     // User-defined facets (will be preferred to automatic ones).
-    // this.facet_names = ["author", "venue", "year"];
-    // this.facet_names = ["author", "venue", "year"];
+    this.facet_names = ["author", "venue", "year", "type"];
 
     // Launch empty query on startup?
     this.launch_empty_query = true;
