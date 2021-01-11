@@ -67,6 +67,8 @@ void ParserBase::printUsage()
        << endl
        << "--word-part-separator-backend : separator used within the special"
        <<                                " words"
+       << endl
+       << "--csv-suffix                  : suffix of csv file (default = .csv)"
        << endl;
 }
 
@@ -88,6 +90,7 @@ void ParserBase::parseCommandLineOptions(int argc, char** argv)
       {"encoding"                    , 1, NULL, 'E'},
       {"maps-directory"              , 1, NULL, 'm'},
       {"info-delimiter"              , 1, NULL, 'i'},
+      {"csv-suffix"                  , 1, NULL, 'x'},
       {"word-part-separator-backend" , 1, NULL, 'B'},
       {"normalize-words"             , 0, NULL, 's'},
       {"write-docs-file"             , 0, NULL, 'd'},
@@ -138,6 +141,7 @@ void ParserBase::parseCommandLineOptions(int argc, char** argv)
       case 'f': _outputWordFrequencies = true; break;
       case 'z': _countWordFrequencyDocsOnly = true; break;
       case 'm': _pathToMaps = string(optarg); break;
+      case 'x': _csvFileNameSuffix = string(optarg); break;
     }
   }
   // Print information about the options and about the current locale.
@@ -196,6 +200,7 @@ ParserBase::ParserBase()
   _binary_words_file = NULL;
   _log_file = NULL;
   _encoding = ISO;
+  _csvFileNameSuffix = ".csv";
 
   _wordPartSep   = '!';
   _pathToMaps="";

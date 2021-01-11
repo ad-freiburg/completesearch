@@ -74,6 +74,7 @@ class ParserBase
 
   // Setter and getters.
   string getFileNameBase() const { return _fileNameBase; }
+  string getCsvFileNameSuffix() const { return _csvFileNameSuffix; }
   char getWordPartSep() const { return _wordPartSep; }
   void setFileNameBase(const string& fnb) { _fileNameBase = fnb; }
 
@@ -121,6 +122,7 @@ class ParserBase
   string _synonymGroupsFileName;
   string _userDefinedWordsFileName;
   string _pathToMaps;
+  string _csvFileNameSuffix;
   // Files.
   FILE* _docs_file;
   FILE* _ascii_words_file;

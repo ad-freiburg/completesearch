@@ -128,7 +128,7 @@ log:
 
 # Run the complete precomputation (parse, sort, index) with one target. Show all
 # the produced files in the end and how much time it took.
-pall:
+pall::
 	@echo "BEGIN \"make pall\" : " `date` > $(DB_PREFIX).make-begin
 	$(MAKE) parse
 	$(MAKE) sort
@@ -150,10 +150,11 @@ pclean:
 	@rm -f $(DB_PREFIX).keys*
 	@rm -f $(DB_PREFIX).hybrid.build-*
 	@rm -f $(DB_PREFIX).hybrid.from-*
+	@rm -f $(DB_PREFIX).stxxl.disk
 	# Older files which are not produced anymore
 	@rm -f $(DB_PREFIX).cluster*
 	@rm -f $(DB_PREFIX).permuted*
-	ls -lhtr $(DB_PREFIX).
+	ls -lhtr $(DB_PREFIX).*
 
 # Like pclean, but also removes the final products and the log.
 pclean-all: pclean
@@ -297,8 +298,9 @@ pclean-all: pclean
 	cp -f $< $@
 	$(CS_CODE_DIR)/binarysort/BinarySortMain \
 	  --stxxl-path=$(DATA_DIR) \
-	  --stxxl-disk-file=$(dir $(DB_PREFIX).stxxl.disk) \
+	  --stxxl-disk-file=$(DB_PREFIX).stxxl.disk \
 	  --binary-words-file=$@
+	rm -f stxxl.*
 
 # Build fuzzy search data structure + clustering.
 fuzzysearch:
@@ -326,6 +328,22 @@ fuzzysearch:
 	  $(shell $(PERL) -e 'print $(FUZZY_NORMALIZE_WORDS) ? "--normalize" : "";') \
 	  $(shell $(PERL) -e 'print $(FUZZY_SEARCH_ALGORITHM) eq "simple" ? "-T" : "";') \
 	  $(DB_PREFIX).
+
+# Get CSV file from https://ad-research.cs.uni-freiburg.de (for example
+# applications). If the file already exists, will not download it again.
+CSV_FILE = $(DB_PREFIX)$(CSV_SUFFIX)
+CSV_FILE_URL = "https://ad-research.cs.uni-freiburg.de/data/csv-files/$(notdir $(CSV_FILE)).bz2"
+csv:
+	@echo
+	@if [ -f "$(CSV_FILE)" ]; then \
+	  printf "\x1b[1mFile $(CSV_FILE) exists\x1b[0m\n"; fi
+	@if [ ! -f "$(CSV_FILE)" ]; then \
+	  echo "Downloading $(CSV_FILE_URL)"; \
+	  wget -O $(CSV_FILE).bz2 $(CSV_FILE_URL); \
+	  echo "Uncompressing $(CSV_FILE).bz2 (this can take a while)"; \
+	  bunzip2 $(CSV_FILE).bz2; \
+	  echo; ls -hl $(CSV_FILE); fi
+	@echo
 
 # SECTION 3: DEPRECATED STUDD
 

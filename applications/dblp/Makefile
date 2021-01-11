@@ -27,25 +27,26 @@ PARSER=$(CS_CODE_DIR)/parser/CsvParserMain
 PORT = 8080
 
 # Previous version used --old-words-format, which is needed for old UI. For the
-# new UI, we want words like :facet:... and not :ct:...
+# new UI, we want words like :facet:... and not :ct:... And don't forget the
+# facetids, they are important for efficiency (when adding a single facet to a
+# query).
 PARSER_OPTIONS = \
-	--full-text=film,abstract,date,director,genre \
-	--show=wikipedia,film,date,director \
-	--excerpts=abstract,genre \
-	--filter=director \
-	--facets=director,genre \
-	--facetids=director,genre \
+	--full-text=title,author,venue,year,type \
+	--show=title,author,venue,year,type \
+	--facets=author,venue,year,type \
+	--facetids=author,venue,year,type \
 	--within-field-separator=\# \
-	--allow-multiple-items=director,genre \
+	--allow-multiple-items=author \
+	--no-show-prefix=\* \
 	--base-name=$(DB_PREFIX) \
-	--csv-suffix=$(CSV_SUFFIX) \
         --encoding=$(ENCODING) \
+	--csv-suffix=$(CSV_SUFFIX) \
 	--maps-directory=$(MAPS_DIR) \
 	$(shell perl -e 'print $(ENABLE_SYNONYM_SEARCH) ? "--read-synonym-groups" : "";') \
   	$(shell perl -e 'print $(NORMALIZE_WORDS) ? "--normalize-words" : "";') \
   	$(shell perl -e 'print $(PARSE_EXTENDED_DTD) ? "--parse-extended-dtd" : "";')
-	
-# The following target can be used to regenerate the TSV file. It's just here
+
+# The following target can be used to regenerate the CSV file. It's just here
 # for archival purposes, to try out the example with CompleteSearch, there is no
 # need to regenerate this file.
 #
@@ -58,10 +59,6 @@ PARSER_OPTIONS = \
 #
 # The sed command in the end just makes the file nicer. The header line needs to
 # be added manually.
-movies.tsv:
-	printf "wikidata\twikipedia\tfilm\tabstract\tdate\tsitelinks\tdirector\tgenre\n" > data/$@
-	curl -Gs "https://qlever.cs.uni-freiburg.de/api/wikidata-plus" \
-	  --data-urlencode 'query=PREFIX schema: <http://schema.org/> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wikibase: <http://wikiba.se/ontology#> SELECT ?film_id ?wikipedia ?film ?abstract (MIN(?date) as ?date) (SAMPLE(?sitelinks) as ?sitelinks) (GROUP_CONCAT(DISTINCT ?director;SEPARATOR="#") AS ?directors) (GROUP_CONCAT(DISTINCT ?genre;SEPARATOR="#") AS ?genres) WHERE { ?film_id wdt:P31 wd:Q11424 . ?film_id @en@rdfs:label ?film . ?film_id wdt:P136 ?genre_id . ?genre_id @en@rdfs:label ?genre . ?film_id wdt:P57 ?director_id . ?director_id @en@rdfs:label ?director . ?film_id wdt:P577 ?date . ?film_id ^schema:about ?wikipedia . ?wikipedia schema:abstract ?abstract . ?film_id ^schema:about/wikibase:sitelinks ?sitelinks } GROUP BY ?film_id ?wikipedia ?film ?abstract ORDER BY DESC(?sitelinks)' \
-	  --data-urlencode 'action=tsv_export' \
-	  | sed 's/@en//g;s/T00:00:00//;s/\^\^\S\+//g;s/#$$//;s/#\t/\t/g;s/["<>]//g;s/\(@ \)\+/@ /g;s/\t@ /\t/;s/ @\t/\t/;' \
-	  >> data/$@
+example.csv:
+	curl -Gs "https://qlever.cs.uni-freiburg.de/api/wikidata" --data-urlencode 'query=PREFIX schema: <http://schema.org/> PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX wikibase: <http://wikiba.se/ontology#> SELECT ?film_id ?wikipedia ?film ?description (MIN(?date) as ?date) (SAMPLE(?sitelinks) as ?sitelinks) (GROUP_CONCAT(DISTINCT ?director;SEPARATOR=";") AS ?directors) (GROUP_CONCAT(DISTINCT ?genre;SEPARATOR=";") AS ?genres) WHERE { ?film_id wdt:P31 wd:Q11424 . ?film_id @en@rdfs:label ?film . ?film_id @en@schema:description ?description . ?film_id wdt:P136 ?genre_id . ?genre_id @en@rdfs:label ?genre . ?film_id wdt:P57 ?director_id . ?director_id @en@rdfs:label ?director . ?film_id wdt:P577 ?date . ?film_id ^schema:about ?wikipedia . ?wikipedia schema:isPartOf <https://en.wikipedia.org/> . ?film_id ^schema:about/wikibase:sitelinks ?sitelinks . } GROUP BY ?film_id ?wikipedia ?film ?description ORDER BY DESC(?sitelinks)' --data-urlencode 'action=tsv_export' | sed 's/@en//g;s/T00:00:00//;s/\^\^\S\+//g;s/;$$//;s/;\t/\t/g;s/["<>]//g' > $@
+
