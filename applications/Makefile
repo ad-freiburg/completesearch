@@ -300,8 +300,7 @@ pclean-all: pclean
 	  --stxxl-disk-file=$(dir $(DB_PREFIX).stxxl.disk) \
 	  --binary-words-file=$@
 
-# Build fuzzy search data structure + clustering. This is the sophisticated
-# method from Marjan's Ph.D. thesis. Not needed when FUZZY_USE_BASELINE = 1
+# Build fuzzy search data structure + clustering.
 fuzzysearch:
 	# Remove all : words from the vocabulary (but save it, so that we have
 	# the original one in the end, including words like :filter:... which
