@@ -1,0 +1,17 @@
+# Copied an adapted on 11.01.2020 from
+# https://github.com/ad-freiburg/QLever/blob/master/.travis.yml
+
+language: generic
+os: linux
+dist: focal
+
+services:
+  - docker
+
+script:
+  - docker build -t completesearch .
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
