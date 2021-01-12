@@ -1,5 +1,8 @@
 # CompleteSearch
 
+[![Build
+Status](https://travis-ci.com/ad-freiburg/completesearch.svg?branch=master)](https://travis-ci.com/ad-freiburg/completesearch)
+
 CompleteSearch is a fast and interactive search engine for *context-sensitive prefix search* on a given collection of documents.
 It does not only provide search results, like a regular search engine,
 but also completions for the last (maybe only partially typed) query word that lead to a hit.
