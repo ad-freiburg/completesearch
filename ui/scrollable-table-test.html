@@ -6,9 +6,11 @@
     <!-- jQuery and jQuery UI -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
-    <!-- Add rows when scrolling. It is surprisingly non-trivial to figure out the scrolling
-      percentage. There is no direct property provided for this. But it can be computed from the
-      following values that are provided:
+    <!-- JavaScript
+      
+      Add rows when scrolling. It is surprisingly non-trivial to figure out the
+      scrolling percentage. There is no direct property provided for this. But
+      it can be computed from the following values that are provided:
 
       1. scrollTop: The amount of contents scrolled out above (in px)
       2. height: The height of the visible part of the scrolled area (in px)
@@ -45,7 +47,7 @@
       });
     </script>
 
-    <!-- CSS stuff
+    <!-- CSS
 
       This post is what really helped me in the end, all the other posts were
       misleading or not helpful for what I was trying to achieve:
@@ -53,39 +55,54 @@
 
     -->
     <style>
+
       /* Set font family + make an orange box in the middle of the page (not
          relevant for table itself) */
-      body { font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
+      body { font-family: Helvetica; }
       body { margin: 15%; border: 1px solid; }
       div { background-color: orange; height: 100%; }
 
-      /* The next two lines are crucial for what I was trying to achieve. That way and only that way
-         could I have a scrollbar for the body (that requires display: block) as well as a table
-         with fixed column widths (that requires display: table, otherwise table-layout: fixed has
-           not effect) */
-      table, thead, tbody, tfoot, tr { display: block; }
-      table tr { display: table; table-layout: fixed; width: 100%; }
+      /* The next two lines are crucial for what I was trying to achieve. That
+         way and only that way could I have a scrollbar for the body (that
+         requires display: block) as well as a table with rows of a given
+         width (that requires display: table, otherwise the width: 100% for the
+         rows has no effect).
+       
+         Note 1: The display: block is needed for all four tags. Leaving out
+         tbody, there will be no scrollbar. Leaving out thead or tfoot, the
+         width for tr will have no effect. Leaving out table, the width for tr
+         will also have no effect.
 
-      /* Now the scrollbar. By making our own scollbar, we have control over its width, placement,
-         and color */
-      table tbody { width: 100%; height: 8.8em; overflow: auto; }
+         Note 2: We have to specify the width for tr, not for tbody
+      */
+      table, thead, tbody, tfoot { display: block; }
+      table tr { display: table; width: 100%; }
+      table tbody { height: 8.8em; overflow: auto; }
+
+      /* Now the scrollbar. By making our own scollbar, we have control over its
+         width, placement, and color. The default scrollbar looks weird with
+         our example table. Note that we are abusing box-shadow here to simply
+         draw boxes of a certain color (the effect of "inset" is that the
+         "shadow" is towards the inside of the box). */
       ::-webkit-scrollbar { width: 25px; }
       ::-webkit-scrollbar-track { box-shadow: inset 0 0 15px 15px lightgray; border: solid 4px transparent; }
       ::-webkit-scrollbar-thumb { box-shadow: inset 0 0 15px 15px darkgray; border: solid 4px transparent; }
 
-      /* Outside of the cells: round corners and enough space between them */
+      /* Outside of the cells: space between the cells, padding around the whole
+         table (relative to the containing div), rounded corners. */
       table { border-spacing: 0.2em; padding: 1.5em; }
-      table th, table td { padding: 0.3em 0.7em; }
       table th { border-radius: 3px; }
       table td { border-radius: 3px; }
 
-      /* Inside of the cells: background color, column widths, text alignment */
+      /* Inside of the cells: padding, background color, column widths, text alignment */
+      table th { padding: 0.3em 0.7em; }
+      table td { padding: 0.3em 0.7em; }
       table thead th { background-color: lightgray; text-align: left; }
       table tfoot td { background-color: lightgray; text-align: left; }
       table tbody td { background-color: #F9F9F9; }
       table tbody td:nth-child(1) { text-align: center; width: 10%; }
-      table tbody td:nth-child(2) { text-align: left; width: 80%; }
-      table tbody td:nth-child(3) { text-align: right; width: 10%; }
+      table tbody td:nth-child(2) { text-align: left; width: 70%; }
+      table tbody td:nth-child(3) { text-align: right; width: 20%; }
 
     </style>
   </head>
