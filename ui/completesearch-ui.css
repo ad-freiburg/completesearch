@@ -16,8 +16,8 @@ body {
 }
 
 div#container { width: 100%; }
-div#left { float: left; width: 30%; height: 100%; margin: 0; }
-div#right { float: left; width: 70%; height: 100%; margin: 0; }
+div#left { float: left; width: 35%; height: 100%; }
+div#right { float: left; width: 65%; height: 100%; }
 
 /* FORMAT OF THE SEARCH PANEL */
 
@@ -25,20 +25,24 @@ div#search { background-color: #E0E0E0; border: 1px solid gray; }
 div#search { margin: 1em; margin-right: 0.5em; padding: 1em; }
 div#search p.subtitle { display: inline-block; font-size: 90%; margin: 0;  }
 div#search p.logo { display: inline-block; font-weight: bold; font-size: 160%; margin: 0;  }
+div#search p.logo a { text-decoration: none; color: black; }
+div#search p.logo a:hover { text-decoration: underline; cursor: pointer; }
 div#search input { width: 90%; margin: 1em 0; border: solid 2px; }
 
 /* FORMAT OF THE FACET PANEL */
 
-div#facets table { border-spacing: 1px; margin: 1em; border: 1px solid gray; }
-div#facets table { margin: 1em; margin-right: 0.5em; padding: 0; }
+
 div#facets table,
 div#facets thead,
 div#facets tbody,
-div#facets tfoot,
-div#facets tr { display: block; }
+div#facets tfoot { display: block; }
 div#facets table tr { display: table; table-layout: fixed; width: 100%; }
 
-div#facets table tbody { width: 100%; height: 5.6em; overflow: auto; }
+/* TODO: max-height must be set in JS when suggestions are computed */
+div#facets div { border: 1px solid black; min-width: 10em; margin: 1em; margin-right: 0.5em; }
+div#facets div { overflow-y: hidden; 100%; height: calc(8.8em + 4.6em); min-height: 4.6em; resize: vertical; }
+div#facets table { height: 100%; }
+div#facets table tbody { width: 100%; height: calc(100% - 4.6em); overflow-y: scroll; }
 ::-webkit-scrollbar { width: 20px; }
 ::-webkit-scrollbar-track { box-shadow: inset 0 0 10px 10px #E0E0E0; border: solid 3px transparent; }
 ::-webkit-scrollbar-thumb { box-shadow: inset 0 0 10px 10px darkgray; border: solid 3px transparent; }
@@ -46,23 +50,35 @@ div#facets table tbody { width: 100%; height: 5.6em; overflow: auto; }
 div#facets table th { background-color: #E0E0E0; border-radius: 3px; -moz-border-radius: 3px; }
 div#facets table td { background-color: #E0E0E0; border-radius: 3px; -moz-border-radius: 3px; }
 
-div#facets table thead th { text-align: left; font-size: 90%; padding: 0.4em 0.5em; }
-div#facets table tfoot td { text-align: left; font-size: 70%; padding: 0.4em 0.5em; height: 1.4em; }
-div#facets table tbody td { text-align: left; font-size: 90%; padding: 0.1em 0.5em; height: 1.4em; }
+div#facets table thead th { text-align: left; font-size: 120%; padding: 0.4em 0.5em; }
+div#facets table tfoot td { text-align: left; font-size: 100%; padding: 0.4em 0.5em; height: 1.4em; }
+div#facets table tbody td { text-align: left; font-size: 100%; padding: 0.2em 0.5em; height: 1.4em; }
 div#facets table td { white-space: nowrap; }
-div#facets table tbody td:nth-child(1) { width: 15%; text-align: center; }
-div#facets table tbody td:nth-child(2) { width: 65%; }
-div#facets table tbody td:nth-child(3) { width: 25%; text-align: right; }
+div#facets table tbody td:nth-child(1) { width: 10%; text-align: center; }
+div#facets table tbody td:nth-child(2) { width: 70%; }
+div#facets table tbody td:nth-child(3) { width: 20%; text-align: right; }
 div#facets table td { overflow: hidden; text-overflow: ellipsis; }
 
 /* FORMAT OF THE HITS PANEL */
 
-div#results { background-color: #FEFEFE; border: 1px solid; }
+div#results { background-color: #FEFEFE; border: 1px solid; font-size: 110%; }
 div#results { margin: 1em; margin-left: 0.5em; padding: 1em; height: calc(100% - 4em); }
-div#results p.header { color: black; font-size: 80%; }
-div#results div.hit { display: block; margin: 0.5em 0; }
+div#results { display: block; padding-right: 0em; }
+div#results div.header { color: black; margin-top: -0.7em; margin-bottom: 0.7em; font-size: 100%; }
+div#results div.hits { display: block; height: 95%; overflow: auto; padding-right: 0.5em; }
+div#results div.hit { display: block; margin-top: 0; margin-bottom: 1em; }
 div#results div.hit p { margin: 0.1em 0; font-size: 100%; }
-div#results div.hit p.title { color: darkblue; text-decoration: underline }
+div#results div.hit p.title { color: darkblue; text-decoration: underline; font-size: 120%; margin-bottom: 0.2em; }
 div#results div.hit p.subtitle { color: darkgreen; }
-div#results div.hit p.excerpt { color: #333333; }
+div#results div.hit p.excerpt { color: #333333; text-align: left; }
+div#results div.hit p.excerpt br { display: block; content: " "; margin-top: 0.2em; }
+
+/* HIGHLIGHTING */
+
+hl[idx="0"] { color: black; background-color: rgb(160, 255, 255); }
+hl[idx="0"] { color: black; background-color: rgb(160, 255, 255); }
+hl[idx="1"] { color: black; background-color: rgb(153, 255, 153); }
+hl[idx="2"] { color: black; background-color: rgb(255, 153, 153); }
+hl[idx="3"] { color: black; background-color: rgb(255, 102, 255); }
+hl[idx="4"] { color: black; background-color: rgb(136, 0, 0); }
 

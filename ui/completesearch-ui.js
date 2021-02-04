@@ -14,9 +14,11 @@ var config = new Config();
 class Global {
   constructor() {
 
-    // Origin and port of the web page.
-    this.origin = window.location.origin.replace(/:\d+$/, "");
-    this.port = parseInt(window.location.port) + 0;
+    // Base URL of the page.
+    this.base_url = window.location;
+    console.log("Base URL: " + this.base_url)
+    // this.origin = window.location.origin.replace(/:\d+$/, "");
+    // this.port = parseInt(window.location.port) + 0;
     // console.log("Origin: " + this.origin + ", port: " + this.port);
  
     // Global query count, so that each query gets a unique ID. Also count the
@@ -24,6 +26,9 @@ class Global {
     // was actually changed.
     this.num_queries = 0;
     this.num_rounds = 0;
+
+    // Initial excerpt radius (can be controlled with ALT-l/m).
+    this.excerpt_radius = config.excerpt_radius;
 
     // The hit box and the facet boxes. These will be will be filled by
     // initialize_boxes below.
@@ -76,8 +81,7 @@ class Global {
       });
     } else {
       console.debug("Getting facet names from index ...");
-      fetch(global.origin + ":" + global.port
-              + "/?q=:info:facet:*&h=0&c=999&format=json")
+      fetch(global.base_url + "?q=:info:facet:*&h=0&c=999&format=json")
         .then(response => response.json())
         .then(data => global.facet_names =
           global.make_array(data.result.completions.c)
@@ -129,9 +133,59 @@ class HitBox {
     this.query_id = 0;
     this.round_id = 0;
     this.query_string = "";
+
+    // If the hit box scrolled to the end, and the number of hits shown are
+    // less than the total number of hits, reload.
+    let _this = this;
+    $("div#results div.hits").scroll(function(event) {
+      var scroll_top = Math.round($(this).scrollTop());
+      var visible_height = Math.round(parseFloat($(this).css("height")));
+      var max_height = $(this).prop("scrollHeight");
+      var scroll_perc = Math.round(
+        100 * scroll_top / (max_height - visible_height));
+      if (scroll_perc == 100 &&
+            _this.hits.length < _this.num_hits_total) {
+        console.assert(_this.hits.length > 0);
+        var num_hits_requested = Math.min(_this.num_hits_total,
+          2 * _this.hits.length);  // + config.hits_per_page);
+        console.log("Reloading " + num_hits_requested + " hits for query \""
+          + _this.query_string + "\" ...");
+        // TODO: The CompleteSearch engine currently does not send more than
+        // 1000 results. Where is this configured or configurable?
+        if (num_hits_requested > 1000) console.log(
+          "NOTE: Requested " + num_hits_requested + " hits"
+          + ", but CompleteSearch will not return more than 1,000");
+        // TODO: It is not right to launch a completely new query here (which
+        // will also reload the facet boxes).
+        _this.query(_this.query_string, _this.round_id, num_hits_requested);
+      }
+    });
  
     // Launch empty query if the config wants it.
-    if (config.launch_empty_query) (new Query()).get_result()
+    (new Query()).get_result()
+  }
+
+  // Launch query for more hits (when scrolled to bottom).
+  //
+  // TODO: This repeats code from the Query class, just like FaceBox.query
+  // repeats code. This should be refactored.
+  query(query_string, round_id, num_hits_requested) {
+
+    // Get only hits, no completions.
+    var url = global.base_url
+                + "?q=" + query_string
+                + "&f=" + global.first_hit
+                + "&h=" + num_hits_requested
+                + "&rd=" + config.how_to_rank_hits
+                + "&er=" + global.excerpt_radius
+                + "&c=" + 0
+                + "&format=json";
+    console.debug("URL for loading more hits: " + url);
+    let _this = this;
+    fetch(url)
+      .then(response => response.json())
+      .then(json => global.hit_box.update(
+                      json, _this.query_id, _this.round_id))
   }
 
   // Update from JSON returned by CompleteSearch backend. If the query id is
@@ -215,7 +269,7 @@ class HitBox {
     // Set subtitle of search field according to the total number of hits.
     var subtitle = "No hits";
     if (this.num_hits_total > 0) {
-      subtitle = this.num_hits_total > 1 ? "documents" : "document";
+      subtitle = this.num_hits_total > 1 ? "text records" : "text record";
       var num_hits_formatted = this.num_hits_total.toLocaleString();
       subtitle = this.query_string == ""
         ? "Searching in " + num_hits_formatted + " " + subtitle
@@ -273,7 +327,7 @@ class FacetBox {
     this.completion_scores_displayed_key =
       config.completion_scores_displayed[this.facet_name]
         || config.completion_scores_displayed["default"] || "@dc";
-
+   
     // Build the HTML of the table and add it to the facets panel. The
     // subsequent call to this.display_completions will add empty rows to the
     // body.
@@ -287,19 +341,23 @@ class FacetBox {
     // table_rows_html.fill("<tr><td></td><td></td><td></td></tr>");
     var table_class = facet_name.toLowerCase();
     var table_html =
-      "<table class=\"" + table_class + "\">"
+      "<div class=\"" + table_class + "\">"
+        + "<table class=\"" + table_class + "\">"
         + "<thead>" + table_header_html + "</thead>\n"
         + "<tbody></tbody>"
         + "<tfoot>" + table_footer_html + "</tfoot>\n"
-      + "</table></div></div>";
+      + "</table></div>";
     $("div#facets").append(table_html);
+
+    // Remember the table and div selector for this table. We will use it
+    // frequently in the other functions (especially the table selector).
+    // NEW: There is now also a div selector.
+    this.table_selector = "div#facets table." + this.facet_name.toLowerCase();
+    this.div_selector = "div#facets div." + this.facet_name.toLowerCase();
+    // console.log("Table selector: " + table_selector);
+
     // Add empty rows.
     this.display_completions();
-
-    // Remember the table selector for this table. We will use it frequently in
-    // the other functions.
-    this.table_selector = "div#facets table." + this.facet_name.toLowerCase();
-    // console.log("Table selector: " + table_selector);
 
     // Initially, all the boxes are dimmed (indicating to the user that no
     // results have been requested).
@@ -385,8 +443,8 @@ class FacetBox {
          && !query_string.endsWith(this.facet_word_prefix_with_star))
       query_string_with_facets +=
        (query_string.length > 0 ? " " : "") + this.facet_word_prefix_with_star;
-    var url = global.origin + ":" + global.port + "/?q="
-                + query_string_with_facets
+    var url = global.base_url
+                + "?q=" + query_string_with_facets
                 + "&h=0"
                 + "&c=" + num_completions_requested
                 + "&rw=" + this.how_to_rank_completions
@@ -529,6 +587,16 @@ class FacetBox {
     // Set the dim status of this facet box: dimmed if no completions, undimmed
     // otherwise.
     this.dim_if_true_undim_if_false(this.num_completions_sent == 0);
+
+    // NEW 04.02.2021: Set max-height of div, so that we cannot resize the box beyond
+    // the actual contents.
+    //
+    // TODO: Reload completions (if still some left) instead.
+    var max_height_in_px =
+      $(this.table_selector + " tbody").prop("scrollHeight")
+         + parseFloat($(this.table_selector + " thead").css("height"))
+         + parseFloat($(this.table_selector + " tfoot").css("height"))
+    $(this.div_selector).css("max-height", max_height_in_px.toString() + "px");
   }
 
   // Action when selecting a facet. The argument is the text of the completion.
@@ -569,6 +637,19 @@ class FacetBox {
     if (!this.should_be_dimmed && this.should_be_dimmed == this.is_dimmed)
       return
     this.is_dimmed = should_be_dimmed
+
+    // NEW: Instead of dimming, try hiding the box.
+    //
+    // NOTE: This makes the dimming in the code afterwas without effect (when
+    // the box is hidden from view, it doesn't matter whether it's dimmed or
+    // not).
+    if (this.is_dimmed) {
+      console.log("HIDE:", this.div_selector);
+      $(this.div_selector).hide();
+    } else {
+      console.log("SHOW:", this.div_selector);
+      $(this.div_selector).show();
+    }
 
     // If dimmed, background color of the table are more similar to the
     // background of the containing div instead of white. This can be changed in
@@ -640,11 +721,18 @@ class Query {
       // Get value of input field.
       this.query_string = $("div#search input").val();
 
+      // If the config wants it, replace empty query by predefined query.
+      if (this.query_string == ""
+            && config.replacement_for_empty_query != undefined) {
+        this.query_string = config.replacement_for_empty_query;
+      }
+
       // Add a * after every query part that has length at least
       // config.min_prefix_length_to_append_star.
       var regex = new RegExp("(" + "\\w".repeat(
-        Math.max(config.min_prefix_length_to_append_star, 1)) + "\\b)", "g");
-      this.query_string = this.query_string.replace(regex, "$1*");
+        Math.max(config.min_prefix_length_to_append_star, 1))
+          + ")($|[ .,;-])", "g");
+      this.query_string = this.query_string.replace(regex, "$1*$2");
       // var parts = this.query_string.split(/[ \.]+/);
       // var last_word_long_enough_to_append_star =
       //   parts.length > 0 && parts[parts.length - 1].length
@@ -660,6 +748,10 @@ class Query {
       // :facet:<facet_name> words form one big block, so that operations on a
       // single of these words tend to be expensive).
       //
+      // NOTE: Important to normalize only the query string because the
+      // normalization also converts to lower case and the facet words often
+      // contain letters in upper case.
+      //
       // TODO: It would be easy to add a special :info: word for this. It
       // facetids are available, we should always use them, otherwise we can't.
       var facetid_prefix = config.facetids_available ? ":facetid:" : ":facet:"
@@ -667,12 +759,10 @@ class Query {
             .map(facet_word => "\""
                   + facet_word.replace(/^:facet:/, facetid_prefix)
                   + "\"").join(" ")
-              + " " + this.query_string;
+              + " " + this.normalized(this.query_string);
 
-      // Normalize, see below. Do this after the code above because the final
-      // character might be a space. Then we don't want to add a *, but we want to
-      // remove the space for the query.
-      this.query_string = this.normalized(this.query_string);
+      // Remove leading space if any (may have been added by the above).
+      this.query_string = this.query_string.trim();
     }
 
     console.log("Query #" + this.query_id + ": \"" + this.query_string + "\"");
@@ -683,11 +773,16 @@ class Query {
   // any sequence of whitespaces to a single whitespace and any sequences of
   // more than one * into a single *.
   normalized(query_string) {
-    return query_string
+    var query_string_rewritten = config.rewrite_query != undefined
+      ? config.rewrite_query(query_string) : query_string;
+    console.log("REWRITTEN: ", query_string_rewritten);
+    return query_string_rewritten
              .replace(/\s+/g, " ")       // single spaces only
-             .replace(/^\w+/, "")        // clip leading non-word chars
+             .replace(/^[ ,;.-]+/, "")        // clip leading separator chars
              .replace(/[ ,;.-]+$/, "")   // clip trailing separator chars
-             .replace(/\*+$/, "*");      // at most one * 
+             .replace(/[ ,;.-]+ /, " ")  // clip separator chars before space
+             .replace(/\*+$/, "*")       // at most one * 
+             .toLowerCase();
   }
 
   // Send to backend and get result.
@@ -697,13 +792,26 @@ class Query {
   // or PageDown, used for paging. This function also gets called when selecting
   // or unselecting a facet. The we call it without argument, hence the default
   // of null.
-  get_result(key_code = null) {
-    // console.log("Key code: " + key_code);
+  get_result(event = null) {
+    var key_code = event ? event.keyCode : null;
+    var ctrl_pressed = event ? event.ctrlKey : false;
+    var shift_pressed = event ? event.shiftKey : false;
+    var alt_pressed = event ? event.altKey : false;
+    console.log("Key code: " + key_code + " (alt = " + alt_pressed + ")");
+
+    // Result paging with PAGE_UP and PAGE_DOWN.
     if (key_code == this.PAGE_UP) global.first_hit += config.hits_per_page;
     if (key_code == this.PAGE_DOWN) global.first_hit -= config.hits_per_page;
     if (global.first_hit + config.hits_per_page > global.last_total)
       global.first_hit = global.last_total - config.hits_per_page;
     if (global.first_hit < 0) global.first_hit = 0;
+
+    // Controlling the excerpt radius with ALT-m (77) and ALT-l (76).
+    if (key_code == 77 && alt_pressed) global.excerpt_radius *= 2;
+    if (key_code == 76 && alt_pressed) global.excerpt_radius /= 2;
+    global.excerpt_radius = Math.min(1024, Math.max(2, global.excerpt_radius));
+    if (key_code == 77 && alt_pressed) console.log("Increased exerpt radius");
+    if (key_code == 76 && alt_pressed) console.log("Decreased exerpt radius");
 
     // If the query_string was changed, we need to reset the facets and the
     // first hit, but only then! We have to pay attention that we do not reset
@@ -744,10 +852,11 @@ class Query {
           || config.how_to_rank_completions["default"] || "1d";
 
     // Get hits and completions.
-    var url = global.origin + ":" + global.port + "/?q="
-                + this.query_string
+    var url = global.base_url
+                + "?q=" + this.query_string
                 + "&h=" + config.hits_per_page
                 + "&c=" + num_completions
+                + "&er=" + global.excerpt_radius
                 + "&rd=" + how_to_rank_hits
                 + "&rw=" + how_to_rank_completions
                 + "&f=" + global.first_hit
@@ -787,8 +896,8 @@ $(document).ready(function() {
 
   // Action when something happens in the search field.
   $("div#search input").focus();
-  $("div#search input").keyup(function(e) {
+  $("div#search input").keyup(function(event) {
     var query = new Query();
-    query.get_result(e.keyCode);
+    query.get_result(event);
   });
 });
