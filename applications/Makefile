@@ -75,6 +75,7 @@ KEEP_IN_HISTORY_QUERIES  = 1
 WARM_HISTORY_QUERIES     = 1
 ENABLE_CORS           = 0
 EXE_COMMAND 	      =
+PID_FILE_FORMAT       = $(DB_PREFIX).completesearch_%s_%s.pid
 
 include $(DB)/Makefile
 
@@ -198,6 +199,7 @@ pclean-all: pclean
 	  --query-timeout=$(QUERY_TIMEOUT) \
 	  --word-part-separator-backend=$(WORD_SEPARATOR_BACKEND) \
 	  --word-part-separator-frontend=$(WORD_SEPARATOR_FRONTEND) \
+	  --pid-file=$(PID_FILE_FORMAT) \
 	  --log-file=$*.log \
 	  --port=$(PORT) \
 	  $*.hybrid
