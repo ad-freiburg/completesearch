@@ -84,4 +84,4 @@ ENTRYPOINT ["/bin/bash"]
 # index, omit the pall (which stands for: precompute all). The value of DB
 # controls, which application (subfolders in applications and data).
 # 
-# export DB=movies && PORT=1622 && docker build -t completesearch . && docker run -it --rm -e DB=${DB} -p ${PORT}:8080 -v $(pwd)/applications:/applications -v $(pwd)/data/:/data -v $(pwd)/ui:/ui --name completesearch.${DB} completesearch -c "make DATA_DIR=/data/${DB} DB=${DB} pall start"
+# export DB=movies && PORT=1622 && docker build -t completesearch . && docker run -it --rm -e DB=${DB} -p ${PORT}:8080 -v "$(pwd)"/applications:/applications -v "$(pwd)"/data/:/data -v "$(pwd)"/ui:/ui --name completesearch.${DB} completesearch -c "make DATA_DIR=/data/${DB} DB=${DB} pall start"
