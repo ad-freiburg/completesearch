@@ -917,6 +917,7 @@ void CompletionServer<Completer, Index>::processRequest(boost::asio::ip::tcp::so
         string extension = requestString.substr(requestString.rfind('.') + 1);
         if      (extension == "css")   contentType = "text/css";
         else if (extension == "js")    contentType = "text/javascript";
+        else if (extension == "pdf")   contentType = "application/pdf";
         else if (extension == "html"   
               || extension == "htm"
               || extension == "shtml") contentType = "text/html";
@@ -931,7 +932,8 @@ void CompletionServer<Completer, Index>::processRequest(boost::asio::ip::tcp::so
         os << "\r\n" << resultString;
         resultString = os.str();
 
-        log << "* NEW: Returning specified file: \"" << path << "\"" << endl;
+        log << "* NEW: Returning specified file: \"" << path << "\""
+            << " ... extension was: \"" << extension << "\"" << endl;
         sendResult(resultString.length(), resultString, client, completer, log);
         return;
       }
