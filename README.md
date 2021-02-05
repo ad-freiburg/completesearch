@@ -88,7 +88,7 @@ The binary to start the CompleteSearch engine is called `startCompletionServer`.
 It is very powerful and has a lot of options.
 For some example uses, you can have a look at the `Makefile` in the director
 `applications` and at the included `Makefile` of one of the example applications.
-A detailed documentation of all the options can be found in a `README.md` in the directory `src`.
+A detailed documentation of all the options can be found in the [README.md in the src directory](https://github.com/ad-freiburg/completesearch/tree/master/src).
 
 Once started, you can either ask queries using our generic and customizable UI (see above).
 Or you can ask the backend directly, via the HTTP API provided by `startCompletionServer`.
