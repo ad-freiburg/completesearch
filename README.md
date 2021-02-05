@@ -80,7 +80,7 @@ The CSV parse is very powerful and highly customizable.
 You can see how it is used in the *Makefile* of the various example applications
 (in the subdirectories of the directory `applications`).
 A subset of the options is described in more detail [here](https://ad-wiki.informatik.uni-freiburg.de/completesearch/CsvParser).
-For a complete list, look at the [code that parses the options](https://github.com/ad-freiburg/completesearch/blob/master/codebase/parser/CsvParserOptions.cpp).
+For a complete list, look at the [code that parses the options](https://github.com/ad-freiburg/completesearch/blob/master/src/parser/CsvParserOptions.cpp).
 
 ## 4. The CompleteSearch engine
 
