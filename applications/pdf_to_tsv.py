@@ -69,7 +69,7 @@ class PdfToText:
         # multiple empty lines to one.
         text = re.sub("\x0c", "\n\x0c", text)
         text = re.sub("\n *(\n *)+", "\n\n", text)
-        return text
+        return text + "\n\x0c\x0c\n"
 
     @staticmethod
     def via_pdfact(filename):
@@ -83,7 +83,7 @@ class PdfToText:
         text = result.stdout.decode("utf-8")
         # HACK to get "End of document correct"
         text = re.sub("\x0c", "\x0c ", text)
-        return text + "\x0c"
+        return text + "\n\x0c\x0c\n"
 
     @staticmethod
     def via_pdftohtml(filename):
@@ -113,7 +113,7 @@ class PdfToText:
         # Replace all HTML entites by space.
         text = re.sub("&#\d+;", " ", text)
 
-        return text + "\x0c"
+        return text + "\n\x0c\x0c\n"
 
 
 """ Config for parsing a particular PDF file. """
@@ -333,7 +333,7 @@ class PdfParser:
           # and also counts as a start of a new paragraph. If it's the last
           # character, it also marks the end of the whole document.
           if line.startswith("\x0c"):
-              if re.match("\x0c$", line):
+              if re.match("\x0c\x0c$", line):
                   log.debug("End of document")
                   self.output_tsv_line(
                           h1_text, h2_text, content, content_page_number)
