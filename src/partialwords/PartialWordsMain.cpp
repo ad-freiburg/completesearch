@@ -11,19 +11,24 @@
 // Main function.
 int main(int argc, char** argv) {
   // Parse command line argument and usage info.
-  if (argc != 2) {
-    printf("Usage: ./PartialWordsMain <vocabulary file>\n");
+  if (argc != 2 && argc != 3 && argc != 4) {
+    printf("Usage: ./PartialWordsMain <primary vocabulary file>"
+	   " [<secondary vocabulary file>] [<min_word_length]\n");
     exit(1);
   }
-  std::string file_name = argv[1];
-  size_t max_n = 100;  // For showInput and showOutput only.
+  std::string primary_vocabulary_file_name = argv[1];
+  std::string secondary_vocabulary_file_name = argc >= 3 ? argv[2] : "";
+  size_t min_word_length = argc >= 4 ? atoi(argv[3]) : 6;
+  size_t max_n = VERBOSITY >= 2 ? MAX_SIZE_T : 100; // For show... below.
 
   // Read vocabulary from file and build suffix array.
   PartialWords pw;
-  pw.readVocabulary(file_name);
+  pw.readVocabularies(primary_vocabulary_file_name,
+                      secondary_vocabulary_file_name);
+  bool verbose = pw.vocabularySize() <= 100;
   pw.buildSuffixArray();
-  pw.showSuffixArrayInputText(max_n);
-  pw.showSuffixArray(max_n);
-  pw.findPartialWords(6);
+  if (VERBOSITY >= 1) pw.showSuffixArrayInputText(max_n);
+  if (VERBOSITY >= 1) pw.showSuffixArray(max_n);
+  pw.findPartialWords(min_word_length);
   pw.showPartialWordMatches();
 }
