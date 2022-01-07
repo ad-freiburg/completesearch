@@ -58,7 +58,8 @@ class CsvField
   bool getFulltext() const { return _fulltext; }
   bool getExcerpt() const { return _excerpt; }
   // HACK(bast): score must never be zero (buildIndex fails otherwise).
-  unsigned getScore() const { return _score == 0 ? 1 : _score; }
+  // NEW 09.02.2021: Where does it fail?
+  unsigned getScore() const { return _score; }  // _score == 0 ? 1 : _score; }
   bool getPhraseCompletion() const { return _phraseCompletion; }
   bool getFilter() const { return _filter; }
   bool getFilterPlus() const { return _filterPlus; }

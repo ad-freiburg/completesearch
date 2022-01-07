@@ -16,8 +16,8 @@ body {
 }
 
 div#container { width: 100%; }
-div#left { float: left; width: 35%; height: 100%; }
-div#right { float: left; width: 65%; height: 100%; }
+div#left { float: left; width: 40%; }
+div#right { float: left; width: 60%; }
 
 /* FORMAT OF THE SEARCH PANEL */
 
@@ -42,7 +42,7 @@ div#facets table tr { display: table; table-layout: fixed; width: 100%; }
 div#facets div { border: 1px solid black; min-width: 10em; margin: 1em; margin-right: 0.5em; }
 div#facets div { overflow-y: hidden; 100%; height: calc(8.8em + 4.6em); min-height: 4.6em; resize: vertical; }
 div#facets table { height: 100%; }
-div#facets table tbody { width: 100%; height: calc(100% - 4.6em); overflow-y: scroll; }
+div#facets table tbody { width: 100%; height: calc(100% - 4.7em + 1px); overflow-y: scroll; }
 ::-webkit-scrollbar { width: 20px; }
 ::-webkit-scrollbar-track { box-shadow: inset 0 0 10px 10px #E0E0E0; border: solid 3px transparent; }
 ::-webkit-scrollbar-thumb { box-shadow: inset 0 0 10px 10px darkgray; border: solid 3px transparent; }
@@ -56,15 +56,17 @@ div#facets table tbody td { text-align: left; font-size: 100%; padding: 0.2em 0.
 div#facets table td { white-space: nowrap; }
 div#facets table tbody td:nth-child(1) { width: 10%; text-align: center; }
 div#facets table tbody td:nth-child(2) { width: 70%; }
+div#facets table tbody td:nth-child(2):hover { width: 70%; cursor: pointer; }
 div#facets table tbody td:nth-child(3) { width: 20%; text-align: right; }
-div#facets table td { overflow: hidden; text-overflow: ellipsis; }
+div#facets table td:nth-child(2) { overflow: hidden; text-overflow: ellipsis; }
 
 /* FORMAT OF THE HITS PANEL */
 
 div#results { background-color: #FEFEFE; border: 1px solid; font-size: 110%; }
 div#results { margin: 1em; margin-left: 0.5em; padding: 1em; height: calc(100% - 4em); }
 div#results { display: block; padding-right: 0em; }
-div#results div.header { color: black; margin-top: -0.7em; margin-bottom: 0.7em; font-size: 100%; }
+div#results div.header { color: black; margin-top: -0.7em; margin-bottom: 0.7em; margin-right: 2em; }
+div#results div.header { font-size: 80%; border-bottom: 1px dotted black; }
 div#results div.hits { display: block; height: 95%; overflow: auto; padding-right: 0.5em; }
 div#results div.hit { display: block; margin-top: 0; margin-bottom: 1em; }
 div#results div.hit p { margin: 0.1em 0; font-size: 100%; }

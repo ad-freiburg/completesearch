@@ -187,10 +187,17 @@ string ExcerptsGenerator::cleanedUpExcerpt(const string& excerpt) const
 	mode = separatorCount == 2 ? DISCARD : COPY;
 	if (separatorCount > 2) excerptCleanedUp += ' ';
       }
-      // NEW 03Sep18 (Hannah): Escape " by &quot; so that no problem in JSON.
+      // NEW 05.03.2021 (Hannah): Escape " by \" and \ by \\ for clean JSON
+      // strings. The only other characters that make problems in a JSON string
+      // are control characters (form feed, newline, carriage return, tab),
+      // which I assume are already removed at this point.
+      //
+      // NOTE: The " was escaped by &quot; before, I presume that \" also works
+      // for XML?
       if (mode == COPY)
       {
-        if (excerpt[i] == '"') excerptCleanedUp += "&quot;";   
+        if (excerpt[i] == '"') excerptCleanedUp += "\\\"";   
+        else if (excerpt[i] == '\\') excerptCleanedUp += "\\\\";   
         else excerptCleanedUp += excerpt[i]; 
       }
     }
@@ -600,10 +607,16 @@ void ExcerptsGenerator::generateExcerptsFromIntervals
       computeWordsAndPositions(intervals[i].second);
       Low = EG_MAX(0, intervals[i].first);
       Up = EG_MIN(_wordList.size()-1, intervals[i].second);
-      // set i-th excerpt; precede by ... if not beginnning of document
+      // Set i-th excerpt. Precede by ... if not beginnning of document.
       if (Low > 0) excerpt += dots;
-      LeftStrPos = _positionList[Low].first;
+      // NEW 10.02.2021: If Low == 0, take text from very beginning of document
+      // (there may by non-word characters in the beginning). Also show all
+      // non-space characters after the last word, like in the case above (but
+      // without the shift, which - I guess - is there in order to avoid very
+      // long excerpts in case of very long sequences of non-space chars).
+      LeftStrPos = Low > 0 ? _positionList[Low].first : 0;
       RightStrPos = _positionList[Up].first + _positionList[Up].second;
+      while (RightStrPos < document.size() && document[RightStrPos] != ' ') RightStrPos++;
       excerpt += getPartOfString(document, LeftStrPos, RightStrPos - LeftStrPos);
 
       // highlight matching query term in excerpt (if asked for)
@@ -1098,7 +1111,7 @@ bool ExcerptsGenerator::isPrefix(const string& candidate, const string& word)
 {
   LOG << IF_VERBOSITY_HIGH
       << "isPrefix(" << candidate << ", " << word << ") ... ";
-  // If word starts with a ^ do an ordinary prefix match.
+  // If word does not start with a ^ do an ordinary prefix match.
   if (word.empty() || word[0] != wordPartSeparator) 
   {
     bool ret = isRealPrefix(candidate, word);

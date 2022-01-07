@@ -16,10 +16,15 @@ class Global {
 
     // Base URL of the page.
     this.base_url = window.location;
-    console.log("Base URL: " + this.base_url)
+    console.log("Base URL: " + this.base_url);
     // this.origin = window.location.origin.replace(/:\d+$/, "");
     // this.port = parseInt(window.location.port) + 0;
     // console.log("Origin: " + this.origin + ", port: " + this.port);
+
+    // Read query after # in URL and add to input field if zero.
+    // var hash_query = window.location.hash.match(/query=([^&]+)/);
+    // if (hash_query) console.log("HASH query:", hash_query);
+      // $("div#search input").val(hash_query[1]);
  
     // Global query count, so that each query gets a unique ID. Also count the
     // number of "rounds" = the number of times, the input in the search field
@@ -41,6 +46,10 @@ class Global {
 
     // Keep track of the selected facets and know which names there are.
     this.facets_selected = new Set();
+
+    // Regex matching separator and word character.
+    this.sep_char_regex = "[ ,;.-]";
+    this.word_char_regex = "[^ ,;.-]";
 
     // Set colors according to configuration.
     //
@@ -81,7 +90,8 @@ class Global {
       });
     } else {
       console.debug("Getting facet names from index ...");
-      fetch(global.base_url + "?q=:info:facet:*&h=0&c=999&format=json")
+      var url = global.base_url + "?q=:info:facet:*&h=0&c=999&format=json";
+      fetch(url)
         .then(response => response.json())
         .then(data => global.facet_names =
           global.make_array(data.result.completions.c)
@@ -89,6 +99,8 @@ class Global {
         .then(() => console.log("Facet names found: ", global.facet_names))
         .then(() => global.facet_names.forEach(function(facet_name) {
           _this.facet_boxes[facet_name] = new FacetBox(facet_name); }))
+        .catch(error => console.error("ERROR fetching result for "
+          + "facet names query with " + url + ": " + error.message));
     }
   }
 
@@ -105,6 +117,77 @@ var global;
 
 
 // CLASSES (code for the web page comes at the end).
+
+// Class for asking queries to the CompleteSearch backend.
+//
+// TODO: This is a stub and not yet used. Still unsure what exactly should go
+// into this class and what should go in HitBox and FacetBox.
+class Backend {
+
+  // Initialize.
+  constructor() {
+    // Base URL of CompleteSearch backend.
+    this.base_url = global.base_url;
+
+    // The values of the various parameters. Note that the expression after ||
+    // is taken if the expression before is undefined.
+    this.how_to_rank_hits = config.how_to_rank_hits;
+    this.how_to_rank_completions = {
+      "word" : config.how_to_rank_completions["word"]
+          || config.how_to_rank_completions["default"] || "1d" };
+
+    // 2D count for query id (1 = increased by one when something changes in the
+    // search field, 2 = increased by selecting facets or loading more
+    // completions or hits).
+    this.query_id = [0, 0];
+  }
+
+  // Get hits.
+  get_hits(query_string, num_hits, first_hit) {
+    // Build URL from paramters
+    var url = global.base_url
+                + "?q=" + query_string
+                + "&h=" + num_hits
+                + "&c=0"
+                + "&er=" + global.excerpt_radius
+                + "&rd=" + this.how_to_rank_hits
+                + "&f=" + first_hit
+                + "&format=json";
+    console.debug("URL for hits and completions: " + url);
+    this.query_id[1] += 1;
+    let _this = this;
+    fetch(url)
+      .then(response => response.json())
+      .then(json => global.hit_box.update(
+                      json, _this.query_id[0], _this.query_id[1]))
+      .catch(error => console.error("ERROR fetching HITS via " 
+                                      + url + ": ", error));
+  }
+
+  // Get completions for given facet.
+  get_completions(query_string, num_completions, facet_name) {
+    // Build URL from paramters
+    var url = global.base_url
+                + "?q=" + query_string
+                + "&h=0"
+                + "&c=" + num_completions
+                + "&rw=" + this.how_to_rank_completions
+                + "&format=json";
+    console.debug("URL for hits and completions: " + url);
+    this.query_id[1] += 1;
+    let _this = this;
+    fetch(url)
+      .then(response => response.json())
+      .then(json => global.facet_boxes[facet_name].update(
+                      json, _this.query_id[0], _this.query_id[1]))
+      .catch(error => console.error("ERROR fetching \"" + facet_name
+                                      + "\" COMPL via " + url + ": ", error));
+  }
+
+  // if (global.hit_box) global.hit_box.scroll_to_top = true;
+  // if (global.facet_boxes["word"]) global.facet_boxes["word"].scroll_to_top = true;
+}
+
 
 // The hit box on the right. This should be used as follows:
 //
@@ -133,6 +216,7 @@ class HitBox {
     this.query_id = 0;
     this.round_id = 0;
     this.query_string = "";
+    this.scroll_to_top = true;
 
     // If the hit box scrolled to the end, and the number of hits shown are
     // less than the total number of hits, reload.
@@ -157,17 +241,15 @@ class HitBox {
           + ", but CompleteSearch will not return more than 1,000");
         // TODO: It is not right to launch a completely new query here (which
         // will also reload the facet boxes).
+        _this.scroll_to_top = false;
         _this.query(_this.query_string, _this.round_id, num_hits_requested);
       }
     });
- 
-    // Launch empty query if the config wants it.
-    (new Query()).get_result()
   }
 
   // Launch query for more hits (when scrolled to bottom).
   //
-  // TODO: This repeats code from the Query class, just like FaceBox.query
+  // TODO: This repeats code from the Query class, just like FacetBox.query
   // repeats code. This should be refactored.
   query(query_string, round_id, num_hits_requested) {
 
@@ -186,6 +268,8 @@ class HitBox {
       .then(response => response.json())
       .then(json => global.hit_box.update(
                       json, _this.query_id, _this.round_id))
+      .catch(error => console.error("ERROR fetching result for "
+                                     + url + ": " + error.message));
   }
 
   // Update from JSON returned by CompleteSearch backend. If the query id is
@@ -200,7 +284,7 @@ class HitBox {
       console.debug("Received hits for Query #" + query_id
         + ", but hits for Query #" + this.query_id
         + " are already displayed ... discarding the former");
-      return;
+      return json;
     }
     this.query_id = query_id;
     this.round_id = round_id;
@@ -241,7 +325,6 @@ class HitBox {
                              "@id": hit["@id"],
                              "excerpt": hit["excerpt"] },
                            hit.info));
-
     // Now we can display the hits in the hit box.
     this.display_hits();
 
@@ -258,9 +341,14 @@ class HitBox {
       ? "<p class=\"header\">Number of hits: " 
           + this.num_hits_total.toLocaleString()
           + ", showing: " + this.first_hit + " &minus; "
-          + (this.first_hit + this.num_hits_sent - 1) + "</p>"
+          + (this.first_hit + this.num_hits_sent - 1)
+          + " ... <b>scroll for more hits, Alt-m / Alt-l for more or less text</b>"
+          + "</p>"
       : ""; // <p>No hits</p>";
     $("div#results div.header").html(header);
+
+    // Highlight query words in excerpt (see function below for details).
+    this.highlight_query_words();
 
     // Make HTML using config.hit_to_html and show it.
     var html = this.hits.map(hit => config.hit_to_html(hit))
@@ -276,6 +364,54 @@ class HitBox {
         : "Zoomed in on " + num_hits_formatted + " " + subtitle
     }
     $("div#search p.subtitle").html(subtitle);
+
+    // Scroll to top (deactivate when reloading hits after scrolling to the
+    // bottom, activated otherwise).
+    // console.log("SCROLL TO TOP: ", this.scroll_to_top);
+    if (this.scroll_to_top) $("div#results div.hits").scrollTop(0);
+  }
+
+  // Highlight query words in excerpts.
+  //
+  // NOTE: This is done to some extent by CompleteSearch's ExcerptGenerator
+  // class, but this has (a) some bugs and (b) it does not color partial words.
+  // Therefore, this function first *undoes* the highlighting from the
+  // ExcertsGenerator (tages of the form <hl idx="..."> and </hl> and then
+  // inserts its own highlight.
+  highlight_query_words() {
+    // console.log("HIGHLIGHT in excerpts for query:", this.query_string);
+    // Break query into its parts (treating all characters with special meaning
+    // as whitespace). Remove special words first. Remove empty strings.
+    var query_parts = this.query_string
+                             .replace(/":.*?"/g, "")
+                             .replace(/[\.,;:\*|\s]+/ug, " ").split(/\s+/)
+                             .filter(s => s);
+    // console.log("QUERY parts:", query_parts);
+    // Build regex for each non-empty query part.
+    var query_part_regexes = [];
+    query_parts.forEach(function(query_part) {
+      query_part_regexes.push(new RegExp("(" + query_part + ")", "uig"));
+    });
+    // For each excerpt, first remove all highlights from excerpts that were
+    // inserted by CompleteSearch and then highlight the query parts.
+    console.log("Highlight regexes:", query_part_regexes);
+    this.hits.forEach(function(hit) {
+      // For some hits, we might have an array of excerpts, just flatten this
+      // by concatenating the excerpts.
+      hit.excerpt = Array.isArray(hit.excerpt)
+        ? hit.excerpt.join(" ") : hit.excerpt;
+      // Remove existing highlights.
+      if (hit.excerpt) hit.excerpt = hit.excerpt.replace(/<\/?hl[^>]*>/g, "");
+      // For each query part, add highlight.
+      query_part_regexes.forEach(function(query_part_regex, i) {
+        if (hit.excerpt) hit.excerpt = hit.excerpt.replace(
+          query_part_regex, "<hl idx=\"" + i + "\">$1</hl>");
+        if (hit.title) hit.title = hit.title.replace(
+          query_part_regex, "<hl idx=\"" + i + "\">$1</hl>");
+        if (hit.h1) hit.h1 = hit.h1.replace(
+          query_part_regex, "<hl idx=\"" + i + "\">$1</hl>");
+      });
+    });
   }
 }
 
@@ -311,6 +447,7 @@ class FacetBox {
     this.facet_word_prefix_with_star =
       ":facet:" + facet_name.toLowerCase() + ":*";
     this.is_dimmed = true;
+    this.scroll_to_top = true;
 
     // Figure out the ranking for this facet from the config, which either 
     // specifies an explicit value for that facet or a default value. If the
@@ -392,6 +529,7 @@ class FacetBox {
         if (num_completions_requested > 1000) console.log(
           "NOTE: Requested " + num_completions_requested + " completions"
           + ", but CompleteSearch will not return more than 1,000");
+        _this.scroll_to_top = false;
         _this.query(_this.query_string, _this.round_id,
           num_completions_requested);
       }
@@ -405,6 +543,7 @@ class FacetBox {
     // in the collection; (2) filling the facet boxes. Note that there are
     // neither hits nor completions for the completely empty query.
     if (facet_name != "word" && config.launch_empty_query)
+      this.scroll_to_top = true;
       this.query("", this.round_id);
   }
 
@@ -434,7 +573,7 @@ class FacetBox {
     // This is the case when reloading when the the box is scrolled to the
     // bottom. It's weird though and points to a suboptimal logic in the code.
     //
-    // TODO 1: Assuming here that query_string is already normalized, is that
+    // TODO 1: Assuming here that query_string is already rewritten, is that
     // correct?
     //
     // TODO 2: What about the selected facets, should they not be prepended here?
@@ -453,7 +592,9 @@ class FacetBox {
     let _this = this;
     fetch(url)
       .then(response => response.json())
-      .then(data => _this.update(data, query_id, _this.round_id));
+      .then(data => _this.update(data, query_id, _this.round_id))
+      .catch(error => console.error("ERROR fetching result for facet \""
+        + this.facet_name + "\" with " + url + ": " + error.message));
   }
 
   // Update from JSON returned by CompleteSearch backend. If the query id is
@@ -465,7 +606,7 @@ class FacetBox {
       console.debug("Received completions for Query #" + query_id
         + ", but completions for Query #" + this.query_id
         + " are already displayed ... discarding the former");
-      return;
+      return json;
     }
     this.query_id = query_id;
     this.round_id = round_id;
@@ -564,25 +705,49 @@ class FacetBox {
       if (global.facets_selected.has(completion_text))
         $(table_row_selector + " input").prop("checked", true);
 
-      // Add action when selecting or unselecting this facet.
+      // Add action when selecting or unselecting this facet (either by clicking
+      // in the checkbox or on the completion).
       // console.log("Input selector: " + table_row_selector + " input");
       $(table_row_selector + " input").change(() =>
+        _this.facet_selection_changed(completion_text));
+      $(table_row_selector + " td:nth-child(2)").click(() =>
         _this.facet_selection_changed(completion_text));
     });
  
     // If there were less than config.completions_per_facet_box completions,
-    // fill up with empty rows.
+    // fill up with empty rows until tbody height reached.
     //
     // NOTE: The reason for the hidden checkbox and the two &nbsp; is that we
     // want to make sure that the row takes up the exact same amount of space as
     // with normal contents. It looks slightly different otherwise (the rows are
     // slightly slimmer and slightly less wide).
+    //
+    // NEW: Add rows until scroll height > table body height. NOTE: We can't
+    // take >= because the scroll height is always at leas the table body
+    // height. TODO: How do we get the height of the rows so far?
+    var row_height =
+          parseFloat($(this.table_selector + " tbody tr") .css("height")) +
+        + parseFloat($(this.table_selector).css("border-spacing").split(" ")[1]);
+    // $(this.table_selector + " tbody").css("height", (4 * row_height) + "px");
+    var tbody_height = parseFloat($(this.table_selector + " tbody").css("height"));
+    // console.log("TBODY HEIGHT: ", tbody_height);
+    var num_empty_rows = Math.max(Math.max(0, 5 - this.completions.length),
+          Math.round(tbody_height / row_height - this.completions.length));
+    // console.log("Border spacing: ", border_spacing);
+    // console.log("Row height: ", row_height);
+    // console.log("EMPTY ROWS: ", num_empty_rows);
+
     var empty_checkbox = "<input style=\"visibility: hidden\" type=checkbox>";
     var empty_table_row = "<tr><td>" + empty_checkbox
                             + "</td><td>&nbsp;</td><td>&nbsp;</td></tr>"
-    var num_empty_rows = Math.max(0,
-          config.completions_per_facet_box - this.completions.length);
+    // var num_empty_rows = Math.max(0,
+    //       config.completions_per_facet_box - this.completions.length);
     $(this.table_selector + " tbody").append(empty_table_row.repeat(num_empty_rows));
+    // console.log("FILL " + this.table_selector + ": " + num_empty_rows);
+    // console.log("Scroll height BEFORE: ", $(this.table_selector + " tbody").prop("scrollHeight"));
+    // console.log("Scroll height AFTER : ", $(this.table_selector + " tbody").prop("scrollHeight"));
+    // console.log("Table body height   : ",
+    //   Math.round(parseFloat($(this.table_selector + " tbody").css("height"))));
 
     // Set the dim status of this facet box: dimmed if no completions, undimmed
     // otherwise.
@@ -597,6 +762,12 @@ class FacetBox {
          + parseFloat($(this.table_selector + " thead").css("height"))
          + parseFloat($(this.table_selector + " tfoot").css("height"))
     $(this.div_selector).css("max-height", max_height_in_px.toString() + "px");
+
+    // Scroll to top (if specified, reset to default afterwards).
+    //
+    // NOTE: when reloading hits after scrolling to the bottom, scroll_to_top is
+    // explicitly set to false.
+    if (this.scroll_to_top) $(this.table_selector + " tbody").scrollTop(0);
   }
 
   // Action when selecting a facet. The argument is the text of the completion.
@@ -606,12 +777,35 @@ class FacetBox {
   // might end up in a situation, where the checkbox shows one thing but the
   // results are actually for the opposite.
   facet_selection_changed(completion_text) {
-    // Add the facet if it's not there, delete it if it's there.
+    // Add the facet if it's not there, delete it if it's there. If it is
+    // added, remove the query words that are contained in completion_text from
+    // the query.
     var facet = completion_text;
     if (global.facets_selected.has(facet)) {
       global.facets_selected.delete(facet);
     } else {
       global.facets_selected.add(facet);
+      // For non-word facets (completion_text starting with :facet:...):
+      //
+      // Remove query words that are contained in the displayed text (the part
+      // after the :facet:...: prefix) from the query. Note that we do this
+      // right in the input field since new Query() below reads the query from
+      // that field (there is no global variable for the query string). 
+      if (completion_text.startsWith(":facet:")) {
+        const completion_text_suffix = completion_text.replace(/^.*:/, "");
+        const query_parts_before = $("div#search input")
+                                     .val().split(/\s+/).filter(s => s);
+        console.log("Completion text:", completion_text);
+        // console.log("Completion text:", completion_text_suffix);
+        // console.log("Query parts before:", query_parts_before);
+        var query_parts_after = [];
+        query_parts_before.forEach(function(query_part) {
+          if (!completion_text_suffix.match(new RegExp(query_part, "i")))
+            query_parts_after.push(query_part);
+        });
+        // console.log("Query parts after:", query_parts_after);
+        $("div#search input").val(query_parts_after.join(" "));
+      }
     }
     console.info("Facet selection is now: ", global.facets_selected);
 
@@ -644,10 +838,10 @@ class FacetBox {
     // the box is hidden from view, it doesn't matter whether it's dimmed or
     // not).
     if (this.is_dimmed) {
-      console.log("HIDE:", this.div_selector);
+      // console.log("Hide:", this.div_selector);
       $(this.div_selector).hide();
     } else {
-      console.log("SHOW:", this.div_selector);
+      // console.log("Show:", this.div_selector);
       $(this.div_selector).show();
     }
 
@@ -710,7 +904,7 @@ class Query {
     global.num_queries += 1;
     global.num_rounds += 1;
 
-    // If called without query string, we take the (normalized) query string
+    // If called without query string, we take the (rewritten) query string
     // from the input field and prepend the index words for the selected facets.
     //
     // TODO: Who calls this with a query string? It seem to me: no one anymore,
@@ -729,10 +923,14 @@ class Query {
 
       // Add a * after every query part that has length at least
       // config.min_prefix_length_to_append_star.
-      var regex = new RegExp("(" + "\\w".repeat(
+      var regex = new RegExp("(" + global.word_char_regex.repeat(
         Math.max(config.min_prefix_length_to_append_star, 1))
-          + ")($|[ .,;-])", "g");
+          + ")($|"+ global.sep_char_regex + ")", "g");
       this.query_string = this.query_string.replace(regex, "$1*$2");
+      // No * for words with a $ in the end.
+      this.query_string = this.query_string.replace(/\$\*/g, "");
+      // No * for words that consist only of digits.
+      this.query_string = this.query_string.replace(/\b(\d+)\*/g, "$1");
       // var parts = this.query_string.split(/[ \.]+/);
       // var last_word_long_enough_to_append_star =
       //   parts.length > 0 && parts[parts.length - 1].length
@@ -759,30 +957,36 @@ class Query {
             .map(facet_word => "\""
                   + facet_word.replace(/^:facet:/, facetid_prefix)
                   + "\"").join(" ")
-              + " " + this.normalized(this.query_string);
+              + " " + this.rewrite_query(this.query_string);
 
       // Remove leading space if any (may have been added by the above).
       this.query_string = this.query_string.trim();
     }
 
-    console.log("Query #" + this.query_id + ": \"" + this.query_string + "\"");
+    console.log("\nQuery #" + this.query_id + ": \"" + this.query_string + "\"");
   }
 
-  // Compute normalized version of query string to avoid backend errors because
-  // of trivial things. For now: memove whitespace in the beginning and compress
-  // any sequence of whitespaces to a single whitespace and any sequences of
-  // more than one * into a single *.
-  normalized(query_string) {
-    var query_string_rewritten = config.rewrite_query != undefined
-      ? config.rewrite_query(query_string) : query_string;
-    console.log("REWRITTEN: ", query_string_rewritten);
-    return query_string_rewritten
-             .replace(/\s+/g, " ")       // single spaces only
-             .replace(/^[ ,;.-]+/, "")        // clip leading separator chars
-             .replace(/[ ,;.-]+$/, "")   // clip trailing separator chars
-             .replace(/[ ,;.-]+ /, " ")  // clip separator chars before space
-             .replace(/\*+$/, "*")       // at most one * 
-             .toLowerCase();
+  // Rewrite query.
+  // 
+  // For now: memove whitespace in the beginning and compress any sequence of
+  // whitespaces to a single whitespace and any sequences of more than one *
+  // into a single *.
+  rewrite_query(query_string) {
+    if (config.rewrite_query != undefined) {
+      query_string = config.rewrite_query(query_string);
+      // console.log("Query string rewritten: ", query_string);
+    }
+    var leading_sep_chars = new RegExp("^" + global.sep_char_regex + "+");
+    var trailing_sep_chars = new RegExp(global.sep_char_regex + "+($| )");
+    query_string = query_string
+      .replace(/\s+/g, " ")             // single spaces only
+      .replace(/-/g, ".")               // Treat - like . (phrase query)
+      .replace(leading_sep_chars, "")   // clip leading sep chars
+      .replace(trailing_sep_chars, "")  // clip trailing sep chars
+      .replace(/\*+$/, "*")             // at most one * 
+      .toLowerCase();
+    // console.log("REWRITTEN query string: ", query_string);
+    return query_string;
   }
 
   // Send to backend and get result.
@@ -800,8 +1004,8 @@ class Query {
     console.log("Key code: " + key_code + " (alt = " + alt_pressed + ")");
 
     // Result paging with PAGE_UP and PAGE_DOWN.
-    if (key_code == this.PAGE_UP) global.first_hit += config.hits_per_page;
-    if (key_code == this.PAGE_DOWN) global.first_hit -= config.hits_per_page;
+    // if (key_code == this.PAGE_UP) global.first_hit += config.hits_per_page;
+    // if (key_code == this.PAGE_DOWN) global.first_hit -= config.hits_per_page;
     if (global.first_hit + config.hits_per_page > global.last_total)
       global.first_hit = global.last_total - config.hits_per_page;
     if (global.first_hit < 0) global.first_hit = 0;
@@ -825,7 +1029,7 @@ class Query {
 
     // If the query is too short according to the config, we don't launch a
     // query. Exception: the empty query.
-    var regex = new RegExp("\\w".repeat(
+    var regex = new RegExp("[^ ,;.-]".repeat(
       config.min_prefix_length_to_launch_query) + "[\"*]?$");
     if (this.query_string.length > 0 && !this.query_string.match(regex)) {
       console.log("No query launched, last query word of "
@@ -865,15 +1069,23 @@ class Query {
     // TODO: Do we need let here instead of var? Maybe yes, when several queries
     // are executed and the "then" parts interleave.
     let _this = this;
+    if (global.hit_box) global.hit_box.scroll_to_top = true;
+    if (global.facet_boxes["word"]) global.facet_boxes["word"].scroll_to_top = true;
     fetch(url)
       .then(response => response.json())
       .then(json => global.hit_box.update(
                       json, _this.query_id, _this.round_id))
       .then(json => global.facet_boxes["word"].update(
-                      json, _this.query_id, _this.round_id));
+                       json, _this.query_id, _this.round_id))
+      // NOTE: An earlier version of the code printed only error.message which
+      // omits the location of the error in the code, which makes it extremely
+      // hard to locate the error.
+      .catch(error => console.error("ERROR fetching result for "
+        + "hits and completions query with " + url + ": ", error));
 
     // Launch query for each other facet ("word" was already dealt with above).
     global.facet_names.forEach(function(facet_name) {
+      global.facet_boxes[facet_name].scroll_to_top = true;
       global.facet_boxes[facet_name].query(_this.query_string, _this.round_id);
     });
 
@@ -893,6 +1105,17 @@ $(document).ready(function() {
   // Create the hit box and the facet boxes and initialize them. This also fills
   // the facet boxes for the empty query if config.launch_empty_query
   global.initialize_boxes();
+
+  // There are three places in the code, where a FULL query (hits and
+  // completions) is launched: initially (below), when something is typed
+  // (further below), or when a facet in one of the boxes is selected
+  // (FacetBox.facet_selection_changed -> maybe better move that function to the
+  // class Query?).
+ 
+  // Launch empty query (checks config.replacement_for_empty_query and only does
+  // something if it is defined).
+  var query = new Query();
+  query.get_result();
 
   // Action when something happens in the search field.
   $("div#search input").focus();

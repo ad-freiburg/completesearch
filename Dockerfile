@@ -29,7 +29,9 @@ RUN apk add --no-cache \
     # Debugging
     gdb \
     # Curl
-    curl
+    curl \
+    # GNU coreutils (needed for e.g., join)
+    coreutils
 
 # =================================================================================================
 # Install some (specific) dependencies from scratch.
@@ -70,6 +72,7 @@ RUN ln -s /bin/bash /usr/local/bin/bash
 # The name of the database to parse.
 ENV DB=movies
 WORKDIR /applications
+# USER 1000:1000
 EXPOSE 8080
 
 # =================================================================================================

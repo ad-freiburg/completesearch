@@ -1418,7 +1418,7 @@ string CompletionServer<Completer, Index>::buildResponseString(
     const vector<HitData>& hits, ConcurrentLog& log)
 {
   // NEW (baumgari) 20Feb14: The default format of the response is now
-  // set to the format of the info field within the docs file. This
+  // set to the format of the special :info:field-formats words. This
   // information is stored in the variable infoFieldsFormats and interpreted
   // here.
   InfoFieldFormat infoFieldFormat = XML;

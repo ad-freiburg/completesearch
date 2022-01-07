@@ -798,7 +798,11 @@ void CsvParser::writeFieldsToDocsFile(unsigned docID, vector<FieldItem>* fields)
         _fieldOptions[(*fields)[i].fieldIndex];
       if (csvField.getExcerpt())
       {
-        excerpt += (*fields)[i].fieldContent + string(". ");
+        // TODO: Why is the . needed here? Note that in the previous version of
+        // the code there was ". " after every fieldContent, even if there was
+        // only one where getExcerpt is true.
+        if (excerpt.size() > 0) excerpt += string(". ");
+        excerpt += (*fields)[i].fieldContent;
       }
     }
     fprintf(_docs_file,

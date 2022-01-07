@@ -61,6 +61,7 @@ build-all:
 	$(MAKE) -C $(CS_CODE_DIR)/gtest build
 	$(MAKE) -C $(CS_CODE_DIR)/synonymsearch build
 	$(MAKE) -C $(CS_CODE_DIR)/utility build
+	$(MAKE) -C $(CS_CODE_DIR)/partialwords build
 	$(MAKE) -C $(CS_CODE_DIR)/fuzzysearch build
 	$(MAKE) -C $(CS_CODE_DIR)/binarysort build
 	$(MAKE) -C $(CS_CODE_DIR)/parser build
@@ -83,6 +84,7 @@ clean-all:
 	$(MAKE) -C $(CS_CODE_DIR)/fuzzysearch clean
 	$(MAKE) -C $(CS_CODE_DIR)/synonymsearch clean
 	$(MAKE) -C $(CS_CODE_DIR)/utility clean
+	$(MAKE) -C $(CS_CODE_DIR)/partialwords clean
 	$(MAKE) -C $(CS_CODE_DIR)/server clean
 	rm -f $(TEST_REPORTS_DIR)/*.xml
 
