@@ -33,6 +33,9 @@ class Config {
     // Number of completions in a facet box.
     this.completions_per_facet_box = 10;
 
+    // How many words to show around each match in excerpt.
+    this.excerpt_radius = 20;
+
     // How to rank hits and completions. A single digit followed by the letter
     // 'a' (ascending) or 'd' (descending). For example, 1a or 5d. The number in
     // parantheses is the name of the attribute in the JSON result, see code. I
