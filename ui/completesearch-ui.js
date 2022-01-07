@@ -347,6 +347,9 @@ class HitBox {
       : ""; // <p>No hits</p>";
     $("div#results div.header").html(header);
 
+    // Highlight query words in excerpt (see function below for details).
+    this.highlight_query_words();
+
     // Make HTML using config.hit_to_html and show it.
     var html = this.hits.map(hit => config.hit_to_html(hit))
     $("div#results div.hits").html(html.join("\n"));
@@ -366,6 +369,49 @@ class HitBox {
     // bottom, activated otherwise).
     // console.log("SCROLL TO TOP: ", this.scroll_to_top);
     if (this.scroll_to_top) $("div#results div.hits").scrollTop(0);
+  }
+
+  // Highlight query words in excerpts.
+  //
+  // NOTE: This is done to some extent by CompleteSearch's ExcerptGenerator
+  // class, but this has (a) some bugs and (b) it does not color partial words.
+  // Therefore, this function first *undoes* the highlighting from the
+  // ExcertsGenerator (tages of the form <hl idx="..."> and </hl> and then
+  // inserts its own highlight.
+  highlight_query_words() {
+    // console.log("HIGHLIGHT in excerpts for query:", this.query_string);
+    // Break query into its parts (treating all characters with special meaning
+    // as whitespace). Remove special words first. Remove empty strings.
+    var query_parts = this.query_string
+                             .replace(/":.*?"/g, "")
+                             .replace(/[\.,;:\*|\s]+/ug, " ").split(/\s+/)
+                             .filter(s => s);
+    // console.log("QUERY parts:", query_parts);
+    // Build regex for each non-empty query part.
+    var query_part_regexes = [];
+    query_parts.forEach(function(query_part) {
+      query_part_regexes.push(new RegExp("(" + query_part + ")", "uig"));
+    });
+    // For each excerpt, first remove all highlights from excerpts that were
+    // inserted by CompleteSearch and then highlight the query parts.
+    console.log("Highlight regexes:", query_part_regexes);
+    this.hits.forEach(function(hit) {
+      // For some hits, we might have an array of excerpts, just flatten this
+      // by concatenating the excerpts.
+      hit.excerpt = Array.isArray(hit.excerpt)
+        ? hit.excerpt.join(" ") : hit.excerpt;
+      // Remove existing highlights.
+      if (hit.excerpt) hit.excerpt = hit.excerpt.replace(/<\/?hl[^>]*>/g, "");
+      // For each query part, add highlight.
+      query_part_regexes.forEach(function(query_part_regex, i) {
+        if (hit.excerpt) hit.excerpt = hit.excerpt.replace(
+          query_part_regex, "<hl idx=\"" + i + "\">$1</hl>");
+        if (hit.title) hit.title = hit.title.replace(
+          query_part_regex, "<hl idx=\"" + i + "\">$1</hl>");
+        if (hit.h1) hit.h1 = hit.h1.replace(
+          query_part_regex, "<hl idx=\"" + i + "\">$1</hl>");
+      });
+    });
   }
 }
 
@@ -731,12 +777,35 @@ class FacetBox {
   // might end up in a situation, where the checkbox shows one thing but the
   // results are actually for the opposite.
   facet_selection_changed(completion_text) {
-    // Add the facet if it's not there, delete it if it's there.
+    // Add the facet if it's not there, delete it if it's there. If it is
+    // added, remove the query words that are contained in completion_text from
+    // the query.
     var facet = completion_text;
     if (global.facets_selected.has(facet)) {
       global.facets_selected.delete(facet);
     } else {
       global.facets_selected.add(facet);
+      // For non-word facets (completion_text starting with :facet:...):
+      //
+      // Remove query words that are contained in the displayed text (the part
+      // after the :facet:...: prefix) from the query. Note that we do this
+      // right in the input field since new Query() below reads the query from
+      // that field (there is no global variable for the query string). 
+      if (completion_text.startsWith(":facet:")) {
+        const completion_text_suffix = completion_text.replace(/^.*:/, "");
+        const query_parts_before = $("div#search input")
+                                     .val().split(/\s+/).filter(s => s);
+        console.log("Completion text:", completion_text);
+        // console.log("Completion text:", completion_text_suffix);
+        // console.log("Query parts before:", query_parts_before);
+        var query_parts_after = [];
+        query_parts_before.forEach(function(query_part) {
+          if (!completion_text_suffix.match(new RegExp(query_part, "i")))
+            query_parts_after.push(query_part);
+        });
+        // console.log("Query parts after:", query_parts_after);
+        $("div#search input").val(query_parts_after.join(" "));
+      }
     }
     console.info("Facet selection is now: ", global.facets_selected);
 
@@ -858,6 +927,10 @@ class Query {
         Math.max(config.min_prefix_length_to_append_star, 1))
           + ")($|"+ global.sep_char_regex + ")", "g");
       this.query_string = this.query_string.replace(regex, "$1*$2");
+      // No * for words with a $ in the end.
+      this.query_string = this.query_string.replace(/\$\*/g, "");
+      // No * for words that consist only of digits.
+      this.query_string = this.query_string.replace(/\b(\d+)\*/g, "$1");
       // var parts = this.query_string.split(/[ \.]+/);
       // var last_word_long_enough_to_append_star =
       //   parts.length > 0 && parts[parts.length - 1].length
