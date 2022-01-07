@@ -44,27 +44,37 @@ class PdfToText:
     text as simple text, with the following additions:
 
     1. The end of the page is signalled by a \x0c =  (form feed) at the
-    beginning of the line. This is also always the last character of the whole
-    text.
+    beginning of the line. The end of the file is signalled by \x0c\x0c as the
+    last two characters. All tool provide this information reliably because PDF
+    is a page-based format.
 
     2. The beginning of a line in bold face is signalled by a \x01 =  (start
-    of heading). This is provided by via_pdftohtml.
+    of heading). This is an important signal to identify headers. All tools
+    provide this information with high reliability because font information is
+    explicit in a PDF (pdtotext only with Claudius' extensions).
 
-    3. The end of a paragraph is signalled by a completely blank line. This is
-    provided by via_pdfact and via_pdftohtml, but both of them have false
-    positives (blank lines in the middle of a paragraph) as well as false
-    negatives (missing blank lines betwenn two paragraphs).
+    3. The beginning a new paragraph is signalled by a completely blank line.
+    Only the extended pdftotext and pdfact provide this with reasonable (but not
+    perfect) reliability. The original pdftotext and pdftohtml both have a lot
+    of false positives (blank lines in the middle of a paragraph) as well as
+    false negatives (missing blank lines betwenn two paragraphs).
     """
 
     @staticmethod
     def via_pdftotext(filename):
         """
-        pdftotext is simple and fast, but only provides  info.
+        Poppler's pdftotext with extensions by Claudius.
         """ 
+        # cmd = ["/usr/local/bin/pdftotext", filename, "-"]
         cmd = ["/usr/local/bin/pdftotext", "-semantic-layout", filename, "-"]
         # cmd = ["/usr/bin/pdftotext", "-layout", filename, "-"]
         result = subprocess.run(cmd, stdout=subprocess.PIPE)
         text = result.stdout.decode("utf-8")
+
+        # HACK: Currently a lot of things are marked [TITLE]. Also, most TOPs
+        # from the Studienkommission are wrongly marked [PAGE HEADER].
+        text = re.sub("\[(TITLE|PAGE-HEADER)\] ", "", text)
+
         # Make sure there is an empty line before each page break and reduce
         # multiple empty lines to one.
         text = re.sub("\x0c", "\n\x0c", text)
@@ -174,7 +184,7 @@ class PdfParserConfig:
             # P = H2 (no content outside Absätze).
             self.p_regex = self.h2_regex
 
-        elif re.search("/(stuko|promo|senat)/", filename):
+        elif re.search("/(stuko|promo|dekanat|senat)/", filename):
             log.debug("CONFIG: \x1b[1mProtokolle\x1b[0m")
             self.pdftotext = PdfToText.via_pdftotext
             self.h1_regex = re.compile('^(\s*T[Oo][Pp]\s*:?\s*([0-9.]+).*)$')
@@ -184,6 +194,12 @@ class PdfParserConfig:
                 self.title_regex = re.compile('/([^/]+)\.pdf$')
                 self.date_regex = re.compile('(\d\d.\d\d.\d\d\d\d)$')
 
+        elif re.search("/reading/", filename):
+            self.title_regex = re.compile('/([^/]+)\.pdf$')
+            self.date_regex = re.compile('^$')
+            self.h1_regex = re.compile('^(\s*(\d+).*)$')
+            self.h2_regex = re.compile('^(().*)') # Something that always matches.
+            self.pdftotext = PdfToText.via_pdftotext
 
         else:
             log.error("No config found for \"" + filename + "\", you can" +
