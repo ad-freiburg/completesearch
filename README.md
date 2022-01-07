@@ -8,34 +8,33 @@ It does not only provide search results, like a regular search engine,
 but also completions for the last (maybe only partially typed) query word that lead to a hit.
 This can be used to provide very efficient support for a variety of features:
 query autocompletion, faceted search, synonym search, error-tolerant search, semantic search.
-A list of publications on the techniques behind CompleteSearch and the many applications is provided at the end of this page.
+A list of publications on the techniques behind CompleteSearch and its many applications is provided at the end of this page.
 
 For a demo on various datasets, just checkout this repository and follow the instructions below.
-With a single command line, you get a working demo on one from a selection of datasets
-(each of the size of a few million documents, so not paticularly large, but also not small).
-CompleteSearch easily scales to collections with tens or even hundreds of millions of documents,
+With a single command line, you get a working demo (you can choose from several datasets,
+each of the size of a few million documents, so not paticularly large, but also not small).
+CompleteSearch scales to collections with tens or even hundreds of millions of documents,
 without losing its interactivity.
 
 ## 1. Checkout
 
-Checkout the repository
+Checkout the repository and build the docker image
 
     git clone https://github.com/ad-freiburg/completesearch
     cd completesearch
+    docker build -t completesearch .
 
-## 2. Demos
+## 2. Quickstart by Demo
 
-Just run the following command line, where for the value of DB you can choose
-between a number of demo datasets (one for every subdirectory of `applications`).
-*A generic UI will then be available under the specified `PORT`*.
-Note that the CompleteSearch backend simultaneously provides an API for answering search and completion queries,
-and servers as a simple HTTP server at the same time.
+The following command line builds a search index and then starts the search server
+for the dataset specified via the `DB` variable (the name of any subdirectory of [applications](applications/) works).
+Under the specified `PORT` you then have a generic UI, as well as an API (see Section 4 below).
 
-        export DB=movies && PORT=1622 && docker build -t completesearch . && docker run -it --rm -e DB=${DB} -p ${PORT}:8080 -v $(pwd)/applications:/applications -v $(pwd)/data/:/data -v $(pwd)/ui:/ui --name completesearch.${DB} completesearch -c "make DATA_DIR=/data/${DB} DB=${DB} csv pall start"
+        export DB=movies && PORT=1622 && docker run -it --rm -e DB=${DB} -p ${PORT}:8080 -v $(pwd)/applications:/applications -v $(pwd)/data/:/data -v $(pwd)/ui:/ui --name completesearch.${DB} completesearch -c "make DATA_DIR=/data/${DB} DB=${DB} csv pall start"
 
 This command line downloads and uncompresses the CSV, builds the index, and starts the server, all in one go.
-If you have already downloaded the CSV, it will not be downloaded again (the Makefile target *csv:* then has no effect).
-If you have already built the index once, you can omit the Makefile target *pall:* (which stand for *precompute all*).
+If you have already downloaded the CSV, it will not be downloaded again (the Makefile target `csv:` then has no effect).
+If you have already built the index once, you can omit the Makefile target `pall:` (which stand for precompute all).
 
 ## 3. Relevant files
 
