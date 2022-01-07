@@ -1,12 +1,12 @@
-# include ../Makefile
+include ../Makefile
 
 CXX = g++ -g
 CC = gcc -g
 SACA_DIR = .
 
-all:
+build:
 	$(CC) -c $(SACA_DIR)/gsacak.c
-	$(MAKE) -B PartialWordsMain
+	$(MAKE) PartialWordsMain
 
 OBJECTS = PartialWords.o $(SACA_DIR)/gsacak.o
 HEADERS = PartialWords.h

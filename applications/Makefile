@@ -16,7 +16,7 @@
 # Most of these variables are used as argument for startCompletionServer in the
 # start: target below. See src/README.md for what they stand for.
 
-test:
+show-config:
 	@echo
 	@echo "TEST (printing current directory and values of basic vars)"
 	@echo
@@ -32,6 +32,7 @@ test:
 	@echo "Precomputation + start : make DATA_DIR=... DB=... pall start"
 	@echo
 
+
 # Always set these by calling make DATA_DIR=<...> DB=<...> <target>. DATA_DIR is
 # the directory of the index files. DB is the prefix of all index files and the
 # name of the subdirectories for the data and the config.
@@ -41,6 +42,7 @@ DATA_DIR       = set_data_dir_in_Makefile
 # Directory with the code and the compiled binaries.
 CS_CODE_DIR    = /src
 CS_BIN_DIR     = $(CS_CODE_DIR)/server
+CS_PW_DIR      = $(CS_CODE_DIR)/partialwords
 MAPS_DIR       = $(CS_CODE_DIR)/utility
 PARSER         = $(CS_CODE_DIR)/parser/CsvParserMain
 
@@ -50,6 +52,7 @@ SORT           = sort
 LOCALE_POSIX   = export LC_ALL=POSIX
 SHELL         := /bin/bash
 PERL           = perl
+JOIN           = /usr/bin/join
 
 HYB_PREFIX_LENGTH     = 3
 MAX_SIZE_HISTORY      = 512M
@@ -62,6 +65,8 @@ NORMALIZE_WORDS       = 0
 FUZZY_NORMALIZE_WORDS = 0
 FUZZY_COMPLETION_MATCHING = 1
 USE_GENERALIZED_EDIT_DISTANCE_SLOW = 0
+PW_ADDITIONAL_VOCAB   = $(CS_PW_DIR)/partialwords/american-english.vocabulary
+PW_MIN_WORD_LENGTH    = 5
 SCORE_AGGREGATIONS    = SSSS
 VERBOSITY             = 1
 SHOW_QUERY_RESULT     = 0
@@ -109,6 +114,15 @@ sort:
 	  else $(MAKE) $(DB_PREFIX).words-sorted.binary; fi
 	$(MAKE) $(DB_PREFIX).docs-sorted
 
+partialwords:
+	mv $(DB_PREFIX).words-unsorted.ascii $(DB_PREFIX).words-unsorted.ascii.TMP
+	mv $(DB_PREFIX).words-sorted.ascii $(DB_PREFIX).words-sorted.ascii.TMP
+	$(CS_PW_DIR)/PartialWordsMain $(DB_PREFIX).vocabulary $(PW_ADDITIONAL_VOCAB) $(PW_MIN_WORD_LENGTH) \
+	  | grep -v "^:" > $(DB_PREFIX).partial-words && wc -l $(DB_PREFIX).partial-words | numfmt --grouping
+	$(JOIN)	-t $$'\t' -j 1 $(DB_PREFIX).words-sorted.ascii.TMP $(DB_PREFIX).partial-words -o "2.2 1.2 1.3 1.4" \
+	  | cat - $(DB_PREFIX).words-sorted.ascii.TMP > $(DB_PREFIX).words-unsorted.ascii
+	$(MAKE) $(DB_PREFIX).words-sorted.ascii
+
 vocabulary:
 	$(LOCALE_POSIX); cut -f1 $(DB_PREFIX).words-sorted.ascii | $(SORT) -u > $(DB_PREFIX).vocabulary
 
@@ -133,6 +147,7 @@ pall::
 	@echo "BEGIN \"make pall\" : " `date` > $(DB_PREFIX).make-begin
 	$(MAKE) parse
 	$(MAKE) sort
+	$(MAKE) partialwords
 	$(MAKE) index
 	@echo "END   \"make pall\" : " `date` > $(DB_PREFIX).make-end
 	@echo; echo "Files in directory $(DATA_DIR) with prefix $(DB):"
