@@ -65,6 +65,7 @@ NORMALIZE_WORDS       = 0
 FUZZY_NORMALIZE_WORDS = 0
 FUZZY_COMPLETION_MATCHING = 1
 USE_GENERALIZED_EDIT_DISTANCE_SLOW = 0
+PARTIAL_WORDS         = 0
 PW_ADDITIONAL_VOCAB   = $(CS_PW_DIR)/partialwords/american-english.vocabulary
 PW_MIN_WORD_LENGTH    = 5
 SCORE_AGGREGATIONS    = SSSS
@@ -147,7 +148,7 @@ pall::
 	@echo "BEGIN \"make pall\" : " `date` > $(DB_PREFIX).make-begin
 	$(MAKE) parse
 	$(MAKE) sort
-	$(MAKE) partialwords
+	if [ "$(PARTIAL_WORDS)" -eq "1" ]; then $(MAKE) partialwords; fi
 	$(MAKE) index
 	@echo "END   \"make pall\" : " `date` > $(DB_PREFIX).make-end
 	@echo; echo "Files in directory $(DATA_DIR) with prefix $(DB):"
