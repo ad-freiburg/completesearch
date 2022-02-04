@@ -5,20 +5,65 @@
 # Author: Hannah Bast <bast@cs.uni-freiburg.de>
 
 """
-Goal of this code: make a TSV file from Satzungen (Prüfungsordnungen, Gesetze,
-etc.), where each line corresponds to one unit from information and each line
-knows its associated parent headers. For Satzungen, this unit is typically an
-"Absatz" and the associated "Paragraph" to which it belongs.
+Goal of this code:
 
-TODO: Some PDFs (for example, the Landeshochschulgesetz - LHG) have a table of
-contents in the beginning, which lists all the paragraphs. It would be desirable
-that this table of contents is ignored, and in particular not every header is
-output as a proper unit of information. That is not so easy, however, since
-locally a paragraph header in the TOC looks just like a paragraph header in the
-actual content. One possible solution: analyze which lines (the text, excluding
-the numeration) occurs multiple times in the document and if there is a section
-at the beginning of the document which contains mostly lines repeated later,
-consider that section the table of contents.
+Break a PDF into paragraphs, where each paragraph knows the level-1 heading
+(H1), and (optionally) the level-2 heading (H2) to which it belongs. It should
+also know its page number in the PDF.
+
+This is useful for many search scenarios, especially when you have long PDFs
+with a rich logical structure. For example: by-laws (Satzungen), laws (Gesetze),
+meeting minutes (Protokolle), books, or long reports.
+
+To understand the difference, compare it with the standard display of search
+results: You get a snippet of text containing your keywords and you know that
+it's in particular by-law. But wouldn't it by nice to see right in the search
+result:
+
+* that it's "Art. 7 GDPR Conditions for Consent, Paragraph 2" (and see the
+whole paragraph and read it right there)
+
+* that it's "ACM SIGIR Business Meeting 2020, Item 7 Future of ICTIR" (and see
+the whole item and read it right there)
+
+* you get the idea
+
+Of course, a click on the hit should lead to the right PDF and to the exact
+page, where the matching snippet is located.
+
+CONFIGURATION:
+
+See the variables in PdfParserConfig.__init__, for example:
+
+self.h1_must_be_emphasized
+self.h1_must_be_new_par
+self.h1_single_line_only
+self.output_sections_without_content
+self.output_sections_without_header
+self.join_hyphenated_words
+self.h0_regex
+self.h1_regex
+self.h2_regex
+
+TODO: 
+
+Many PDFs PDFs (for example, the Landeshochschulgesetz - LHG) have a table of
+contents in the beginning, which lists all the paragraphs. These look very much
+like the headers that come later in the document. Typically, we would like to
+ignore the TOC headers and not index them at all. This is not easy to do in
+general, but here are two ways that often work:
+
+1. If they they are not all in bold (pdftotext with option -semantic-layout
+outputs a  at the beginning of each line that is all in bold).
+
+2. If the text contains a sequence of many ........ (these are indeed extracted
+like that, or somtimes also as . . . . . . both of which can be recognized
+easily).
+
+A more general way would be to analze the document for a "special section"
+towards the beginning that contains headers in quick succession which then later
+occur again in the document. This "special section" is then very likely the
+Table of Contents.
 """
 
 import argparse
