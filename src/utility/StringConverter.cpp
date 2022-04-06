@@ -458,7 +458,8 @@ string StringConverter::replaceNonAlphanum(const string&         sIn,
       }
       string sUtf8Char = getUtf8Encoding(nCp);
 
-      if (nCp <= MAX_UTF8_CODEPOINT && (bInSaveList == true || _isAlphanumCodepointUtf8[nCp] == true))
+      if (bInSaveList == true || (nCp <= MAX_UTF8_CODEPOINT &&
+          _isAlphanumCodepointUtf8[nCp] == true))
       {
         sRes += sUtf8Char;
       }
@@ -492,7 +493,8 @@ string StringConverter::replaceNonAlphanum(const string&         sIn,
           bInSaveList = true;
         }
       }
-      if (nCp <= MAX_ISO_CODEPOINT && (bInSaveList == true || _isAlphanumCodepointIso8859_1[nCp] == true))
+      if (bInSaveList == true || (nCp <= MAX_ISO_CODEPOINT &&
+          _isAlphanumCodepointIso8859_1[nCp] == true))
       {
         sRes[m++] =  static_cast<char>(nCp);
       }
