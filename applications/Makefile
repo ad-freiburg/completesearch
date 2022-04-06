@@ -345,7 +345,7 @@ fuzzysearch:
 	  --locale=$(LOCALE) \
 	  $(shell $(PERL) -e 'print $(FUZZY_NORMALIZE_WORDS) ? "--normalize" : "";') \
 	  $(shell $(PERL) -e 'print $(FUZZY_SEARCH_ALGORITHM) eq "simple" ? "-T" : "";') \
-	  $(DB_PREFIX).
+	  $(DB_PREFIX)
 
 # Get CSV file from https://ad-research.cs.uni-freiburg.de (for example
 # applications). If the file already exists, will not download it again.
