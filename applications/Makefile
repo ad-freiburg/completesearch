@@ -137,7 +137,8 @@ start::
 	$(MAKE) $(DB_PREFIX).start
 
 stop::
-	$(CS_BIN_DIR)/startCompletionServer --kill $(PORT)
+	$(CS_BIN_DIR)/startCompletionServer --pid-file=$(PID_FILE_FORMAT) \
+	  --kill $(PORT)
 
 log:
 	tail -n 200 -f $(DB_PREFIX).log
