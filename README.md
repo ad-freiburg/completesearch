@@ -59,7 +59,7 @@ It's nice, however, to always have a working UI available for testing, without a
 ## 4. The CompleteSearch index
 
 Like all search engines, CompleteSearch builds an index with the help of which it can then answer queries efficiently.
-It is not an ordinary inverted index, but something more fancy: a half-inverted index or *hybird (HYB)* index.
+It is not an ordinary inverted index, but something more fancy: a half-inverted index or *hybrid (HYB)* index.
 You don't have to understand this if you just want to use CompleteSearch.
 But if you are interested, you can learn more about it in the publications below.
 
