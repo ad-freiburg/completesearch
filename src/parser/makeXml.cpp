@@ -36,7 +36,7 @@ void printUsage()
        << "chosen. Directories are explored recursively."
        << endl << endl
        << "NEW 25Sep07: each control character with ASCII code below 32, with "
-       << "the execption of tab,"
+       << "the exception of tab,"
        << endl
        << "newline, and carriage return, is replaced by a space (to ensure "
        << "that the xml is well-formed)."
